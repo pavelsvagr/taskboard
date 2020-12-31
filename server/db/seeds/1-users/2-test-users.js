@@ -2,22 +2,6 @@ const { getObjectId } = require("mongo-seeding")
 
 module.exports = [
   {
-    "_id": getObjectId("5fca8c0b9bfaac213c3d3ce5"),
-    "active": true,
-    "email": "aneta.kolek@ackee.cz",
-    "photo": null,
-    "name": "Aneta Kolek",
-    "role": "user"
-  },
-  {
-    "_id": getObjectId("5fca8c0b9bfaac213c3d3ce8"),
-    "active": true,
-    "email": "martin.vavrousek@ackee.cz",
-    "photo": null,
-    "name": "Martin Vavroušek",
-    "role": "user"
-  },
-  {
     "_id": getObjectId("5fccb6375543d1275007c144"),
     "active": true,
     "email": "martinnovak@example.org",

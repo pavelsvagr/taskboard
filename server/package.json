@@ -29,6 +29,7 @@
     "start": "node index.js",
     "dev": "nodemon index.js",
     "seed": "node ./db/seeder.js",
+    "truncate": "node ./db/drop.js",
     "test": "set NODE_ENV=test&& mocha tests/*/*.js --exit"
   },
   "dependencies": {
