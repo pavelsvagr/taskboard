@@ -110,7 +110,6 @@ class BoardSettingsForm extends Component {
 
   handleSubmit = (values) => {
     const { updateBoard: updateAction, board } = this.props
-    delete (board.identifier)
     updateAction(board.identifier, values)
   }
 
