@@ -26,7 +26,7 @@ exports.loginByGoogle = async (profile) => {
       for (const emailEnding of keys.whitelistedEmails.split(',')) {
         if (email.endsWith(`@${emailEnding}`)) {
           // User is whitelisted, give it base permission and create him
-          user = new User(googleId, email, null, null, fullName, Role.Admin, true)
+          user = new User(googleId, email, null, null, fullName, Role.Mod, true)
           user = await userRepository.create(user)
           break
         }
