@@ -102,7 +102,7 @@ class Users extends Component {
             onDetail={this.handleEditForm}
           />
           {users?.count && (
-            <UnlockAccess globalRoles={[Role.Admin, Role.Mod]}>
+            <UnlockAccess globalRoles={[Role.Admin]}>
               <ActionButtons>
                 <AddButton onClick={this.handleNewUser} shape="circle" />
               </ActionButtons>
