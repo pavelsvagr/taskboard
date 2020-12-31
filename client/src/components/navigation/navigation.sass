@@ -1,0 +1,34 @@
+@import "../../styles/breakpoints"
+@import "../../styles/colors/colors"
+@import "../../styles/sizes"
+
+.nav
+  &__button
+    display: none
+
+  &__avatar
+    background-color: $color-primary-background
+    color: $color-light
+
+
+@media (max-width: $br-md)
+  .nav
+    display: none
+
+    &--active
+      display: block
+      max-width: 100% !important
+      width: 100% !important
+
+      .ant-layout-sider-trigger
+        max-width: 100% !important
+        width: 100% !important
+
+    &__button
+      display: block
+      position: fixed
+      top: $space-md
+      right: $space-md
+      box-shadow: 0 1px 8px $color-shadow-menu
+      z-index: 100
+

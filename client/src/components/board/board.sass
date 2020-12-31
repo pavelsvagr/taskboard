@@ -1,0 +1,228 @@
+@import '../../styles/colors/colors'
+@import '../../styles/breakpoints'
+@import '../../styles/sizes'
+
+@mixin team-header
+  font-size: 0.8em
+  color: inherit !important
+  padding: $space-xs 2px $space-xs 20px !important
+
+@mixin transparent-input
+  background: $color-highlight-dark !important
+  border: none !important
+  box-shadow: none !important
+
+.assignment_button
+  text-align: left
+  display: block
+  color: $color-text
+
+.board
+  &-layout-content
+    background: $color-light
+    margin: 0 0 $space-md 80px
+
+  &__toolbar
+    border-bottom: $color-border-light 1px solid
+    background: $color-background
+
+    &__head
+      padding: $space-sm $space-lg
+
+    &__actions
+        text-align: right
+
+
+  &__team-header
+    @include team-header
+
+    .ant-btn
+      height: $size-sm !important
+      font-size: $size-sm
+      line-height: $size-sm
+
+  &__content
+    min-height: 300px
+
+  &__row
+    line-height: 60px
+    border-bottom: 1px solid $color-highlight-dark
+
+    &:hover
+      background: $color-highlight-dark
+
+    &--large
+      line-height: $size-lg + $space-md
+      .ant-avatar
+        height: $size-lg
+        width: $size-lg
+        .ant-avatar-string
+          line-height: $size-lg
+
+    &--header
+      line-height: inherit
+      text-align: center
+      background: $color-header-dark
+
+    &--dragged
+      box-shadow: 1px 1px 3px $color-shadow-dark
+
+    &--deactivated
+      background: repeating-linear-gradient(45deg, $color-shadow-light, $color-shadow-light 5px, transparent 5px, transparent 10px)
+
+      &:hover
+        background: repeating-linear-gradient(45deg, $color-shadow-light, $color-shadow-light 5px, transparent 5px, transparent 10px)
+
+      .board__assignment, .board__assignment:hover
+        background: transparent !important
+
+
+
+    &__inline-edit
+      width: 100%
+
+      &__option
+        display: flex
+        justify-content: space-between
+
+  &__col
+    display: flex
+    position: relative
+    text-wrap: avoid
+
+    &:not(:last-child)
+      border-right: 1px $color-border-light solid
+
+    &__inline-edit
+      width: 100%
+
+      &__option
+        display: flex
+        justify-content: space-between
+
+    &--header
+      padding-bottom: $space-xs
+      padding-top: $space-xs
+      border-right: #eee 1px solid
+
+      &:not(:first-child)
+        background: $color-header-light
+
+    &--first
+      font-weight: 600
+      padding: 0 $space-sm
+
+    &__toolbar, &__toolbar--absolute
+      &__button, .ant-btn
+        border: 1px solid transparent
+        background: none
+        box-shadow: none
+        color: $color-text !important
+
+        &:hover, &:focus
+          border: 1px solid transparent
+          background: $color-light
+          color: $color-text !important
+
+    &__toolbar
+      display: flex
+      align-items: center
+
+    &__toolbar--absolute
+      position: absolute
+      right: $space-xs
+
+    &__value
+      flex-grow: 4
+      min-width: 0
+
+      .ant-select-selector
+        @include transparent-input
+
+  &-picker
+    @include transparent-input
+
+
+    input, .anticon
+      color: $color-light
+      font-size: 1.2em
+      text-align: center
+
+  &__assignment
+    text-align: left
+    background: transparent
+    border: none
+    width: 100%
+    height: 100%
+    box-shadow: none
+    display: block
+    color: $color-text
+    padding: 0 $space-md
+    line-height: inherit !important
+
+    &__button
+      text-align: center
+      line-height: $size-lg
+
+
+    &:hover
+      color: $color-text
+
+  .ant
+    &-collapse
+      &-header
+        @include team-header
+        padding-left: $space-xl !important
+
+      &-arrow
+        top: 8px !important
+
+      &-content
+        color: inherit
+
+      &-content-box
+        padding: 0 !important
+        margin: 0
+
+@media(max-width: $br-xl)
+  .board
+    &__col--first
+      border-bottom: 1px solid $color-border-light
+
+    &-picker
+      input, .anticon
+        font-size: 1em
+
+    &__row
+      line-height: $size-lg
+
+      &--large
+        line-height: $size-lg + $space-sm
+        .ant-avatar
+          height: $size-md
+          width: $size-md
+
+          .ant-avatar-string
+            line-height: $size-md
+
+@media(max-width: $br-md)
+  .box-container
+    &__toolbox
+      & > *
+        width: 100% !important
+        max-width: 100%
+
+  .board
+    &-layout-content
+      margin: 0
+
+    &__row
+      padding: 0
+
+    &__col
+      &--first
+        padding: 0 $space-sm
+        border: none
+
+    &__toolbar__actions
+      text-align: center

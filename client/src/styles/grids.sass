@@ -1,0 +1,34 @@
+@import 'breakpoints'
+@import 'colors/colors'
+@import 'sizes'
+
+.ant-table
+  display: block
+
+  @media screen and (max-width: $br-md)
+    .table__actions
+      position: absolute
+      right: $space-sm
+      top: $space-sm
+      z-index: 100
+
+    &-thead
+      display: none
+
+    &-thead > tr,
+    &-tbody > tr:not(.table__col__no-responsive)
+      position: relative
+
+      > th, > td
+        position: static
+        display: block
+        width: auto !important
+        border: none
+        padding: $space-xs
+
+        &:last-child
+          border-bottom: 1px solid #eee
+
+
+
+

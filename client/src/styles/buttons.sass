@@ -1,0 +1,46 @@
+@import 'colors/colors'
+@import 'sizes'
+
+%button-action
+  box-shadow: 0 1px 8px $color-shadow-menu
+
+%large-button
+  height: $size-lg !important
+  width: $size-lg !important
+
+.button-action
+  button
+    @extend %large-button
+
+
+  .ant-affix
+    width: 0 !important
+    right: $space-md + $space-lg
+
+    button
+      float: right
+      @extend %button-action
+
+.button
+  &--large
+    @extend %large-button
+
+
+.button
+  &--light:focus:not(.button--active)
+    border-color: $color-light !important
+    color: $color-light
+
+  &--active.button--light:focus
+    border-color: $color-light !important
+    color: $color-text
+
+  &--active, &--light:hover
+    background: $color-light !important
+    border-color: $color-light !important
+    color: $color-text !important
+
+@media (max-width: $br-md)
+  .button-action
+    .ant-affix
+      right: $space-md

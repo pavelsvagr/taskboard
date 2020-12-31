@@ -1,0 +1,238 @@
+@import './styles/colors/colors'
+@import './styles/sizes'
+@import './styles/color_schemas'
+@import './styles/breakpoints'
+@import './styles/buttons'
+@import './styles/boxes'
+@import './styles/grids'
+
+html, body
+  height: 100%
+  width: 100%
+
+.fill
+  height: 100%
+  width: 100%
+
+.table__actions .ant-btn:not(:last-child)
+  margin-right: $space-sm
+
+.alert-count
+  .ant-badge-count
+    box-shadow: none
+    top: $space-sm
+
+.strike
+  text-decoration: line-through
+  color: $color-shadow-menu
+
+.logo
+  display: inline-block
+  cursor: pointer
+  width: 32px
+  height: 32px
+  margin: 8px 0
+  background-image: url("./images/logo_simple.png")
+  background-size: cover
+
+.project-board
+  position: relative
+  height: 100%
+  overflow: auto
+
+.ant-spin-nested-loading, .ant-spin-container
+  height: 100%
+
+.ant-spin-nested-loading > div > .ant-spin .ant-spin-text
+  padding-top: $space-lg
+
+h1.title
+  font-size: 8em
+  padding: 0
+  margin: 0
+
+.flex-center
+  align-items: center
+
+.site-content
+  padding: $space-md 0
+
+.site-layout-content
+  background: #fff
+  padding: 24px
+  margin: 0 $space-md 0 ($space-md + $nav-width)
+
+.right
+  float: right
+
+.full-width
+  width: 100%
+
+.row-input > div
+  padding: $space-sm $space-md
+  line-height: $size-md
+
+.editable-cell
+  position: relative
+
+.editable-cell-value-wrap
+  padding: $space-xs $space-sm
+  cursor: pointer
+
+.table__row--editable:hover
+  .editable-cell-value-wrap
+    border: 1px solid #d9d9d9
+    border-radius: 4px
+    padding: ($space-xs - 2) ($space-md - 2) // - border size
+
+.row-input div:first-child
+  font-weight: normal
+  text-align: right
+
+.form__submit
+  text-align: right
+  margin-top: $space-md
+
+
+html
+  min-height: 280px
+
+#root
+  min-height: 100%
+  display: flex
+  background: linear-gradient(to bottom right, $color-background, $color-background-alt)
+
+h1, .ant-modal-title
+  font-size: 22px
+  font-weight: 500
+  margin: 0
+
+h2
+  font-weight: 400
+
+.form-section
+  padding: $space-lg $space-lg 0 $space-lg
+
+.basic-modal
+  .ant-tabs-tab
+    padding: $space-sm $space-lg
+
+  .ant-modal-body
+    padding: 0
+
+  .basic-modal__body
+    padding: $space-lg
+
+
+.no-paginate
+  .ant-pagination-item,
+  .ant-pagination-next,
+  .ant-pagination-prev,
+  .ant-pagination-jump-next,
+  .ant-pagination-jump-prev
+    display: none
+
+.quote
+  font-size: 1.7em
+  font-weight: lighter
+  color: grey
+  font-style: italic
+
+.ellipsis
+  overflow: hidden
+  white-space: nowrap
+  text-overflow: ellipsis
+  max-width: 100%
+
+.ant-layout-sider .ant-menu .ant-menu-item
+  margin: 0
+  line-height: $size-lg
+  height: $size-lg
+
+.logo-spin
+  background: url("./images/logo_simple.png") center center no-repeat
+  background-size: 20px 20px
+
+.ant
+  &-table .ant-table-thead tr > th
+    background: none
+    border-bottom: solid 1px $color-border-light
+
+  &-layout, &-layout-content
+    background: none
+
+  &-dropdown, &-modal
+    animation-duration: 0s !important
+
+.site-content
+  padding-top: $space-md
+  background: none
+
+
+.ant-menu.ant-menu-dark, .ant-layout-sider-trigger
+  background: transparent
+
+.ant-layout-sider
+  box-shadow: 2px 0 8px $color-shadow-menu
+  background: $color-background-secondary
+
+.credentials__logo
+  max-height: 1em
+
+.credentials__label
+  margin-left: $space-sm
+
+.heading
+  font-weight: 300
+  font-size: 1.3em
+
+.card
+  &-redmine
+    background-image: url("./images/redmine-logo-bw.png")
+    background-position: center right
+    background-repeat: no-repeat
+    background-size: 80px 80px
+
+
+.ant-form-item-label > label, .label
+  font-weight: 600
+  white-space: normal
+
+.ant-tabs-tab
+  font-size: 16px
+  font-family: 'Josefin Sans', sans-serif
+  font-weight: 300
+  text-transform: uppercase
+
+.descriptions--iconic .ant-descriptions-item-label
+  font-size: 1.2em
+
+  .anticon
+    font-size: 1.5em
+    color: $color-light
+
+.color-picker, .color-picker--disabled
+  border: 1px solid #dcdcdc
+
+.color-picker:hover
+  border: 1px solid black
+
+.color-picker--selected
+  border: 1px solid black !important
+
+.text-center
+  text-align: center
+
+.text-right
+  text-align: right
+
+@media (max-width: $br-md)
+  .site-layout-content,
+  .board-layout-content
+    margin: 0
+
+  .site-layout-content
+    padding-top: $space-xl
+
+  .site-content
+    padding: 0

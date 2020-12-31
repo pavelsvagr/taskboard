@@ -1,0 +1,37 @@
+// Spaces
+$space-sm: 10px
+$space-xs: ($space-sm / 2)
+$space-md: 1.5 * $space-sm
+$space-lg: 2.5 * $space-sm
+$space-xl: 4 * $space-sm
+
+// Sizing
+$size-xs: 10px
+$size-sm: 1.5 * $size-xs
+$size-md: 3 * $size-xs
+$size-lg: 5 * $size-xs
+
+$nav-width: 80px
+
+$sizes: ('xs' : $size-xs,  'sm' : $size-sm, 'md' : $size-md, 'lg' : $size-lg )
+
+$spaces: ('xs' : $space-xs, 'sm' : $space-sm, 'md' : $space-md, 'lg' : $space-lg, 'xl' : $space-xl)
+
+@each $sizeName, $size in $sizes
+  .size-#{$sizeName}
+    height: $size
+    width: $size
+    line-height: $size
+
+  .h-#{$sizeName}
+    height: $size
+
+  .lh-#{$sizeName}
+    line-height: $size
+
+@each $spaceName, $space in $spaces
+  .p-#{$spaceName}
+    padding: $space
+
+  .m-#{$spaceName}
+    margin: $space

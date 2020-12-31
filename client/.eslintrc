@@ -1,0 +1,18 @@
+{
+  "extends": ["react-app", "airbnb", "prettier"],
+  "overrides": [
+    {
+      "parser": "babel-eslint",
+      "files": ["**/*.js?(x)"]
+    }
+  ],
+  "rules": {
+    "no-underscore-dangle": 0,
+    "no-param-reassign": 0,
+    "react/jsx-props-no-spreading": 0,
+    "import/no-unresolved": 0,
+    "no-case-declarations": 0,
+    "no-restricted-syntax": 0,
+    "semi": [2, "never"]
+  }
+}

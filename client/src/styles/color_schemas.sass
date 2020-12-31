@@ -1,0 +1,70 @@
+@import 'colors/colors'
+@import 'breakpoints'
+
+@function color-light-sign($color)
+  @if (lightness($color) > 90)
+    @return 0.3
+  @else
+    @return -1
+
+@function color-light-correction($color)
+  @if (lightness($color) > 90)
+    @return 20
+  @else
+    @return 5
+
+
+$colors: ('darkblue': #adc6ff, 'blue': #91d5ff, 'cyan': #b5f5ec, 'red' : #ffccc7, 'green' : #d9f7be, 'orange' : #ffd591, 'brown': #C5B3AB, 'magenta' : #ffadd2, 'purple' : #d3adf7, 'gold': #ffd666, 'lime': #d3f261, 'white': rgb(250,250,250))
+
+@each $colorName, $color in $colors
+  $sign: color-light-sign($color)
+  $correction: color-light-correction($color)
+
+  .color-#{$colorName}
+    background: linear-gradient(to bottom right, scale-color($color, $lightness: 80%), scale-color($color, $lightness: 30%)) !important
+
+    .board__col:not(:last-child)
+      border-right: 1px solid scale-color($color, $lightness: -$correction)
+
+    &.ant-tag
+      background: scale-color($color, $lightness: -10%) !important
+      border: none
+      color: $color-text
+
+  .board
+    .color-#{$colorName}
+      .board
+        &__row
+          border-bottom: 1px dashed scale-color($color, $alpha: -20%, $lightness: -$correction)
+
+          &:hover
+            .board__col--first
+              background: linear-gradient(to bottom right, scale-color($color, $lightness: - $sign * 30%), scale-color($color, $lightness: - $sign * 15%))
+
+          &--dragged
+            background-color: scale-color($color, $lightness:  $sign * 15%)
+
+        &__assignment
+          color: scale-color($color, $lightness: -50%)
+
+          &:hover
+            background: linear-gradient(to bottom right, scale-color($color, $lightness: - $sign * 30%), scale-color($color, $lightness: - $sign * 15%))
+            color: $color-text
+            border: none
+
+          &__selected
+            color: $color-text
+
+      .ant-collapse-header, .draggable-content__header
+          background: linear-gradient(to bottom right, $color, scale-color($color, $lightness: -15%))
+
+  @media(max-width: $br-xl)
+    .board
+      .color-#{$colorName}
+        .board
+          &__col--first
+            border-bottom: 1px dashed scale-color($color, $alpha: $sign * 40%, $lightness: $sign * $correction)
+          &__col:not(:last-child)
+            border-right: 1px dashed scale-color($color, $lightness: $sign * $correction)
+          &__row
+            border-bottom: 1px solid scale-color($color, $alpha: $sign * 50%)

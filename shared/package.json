@@ -1,0 +1,38 @@
+{
+  "name": "taskboard-shared",
+  "version": "1.0.0",
+  "description": "Taskboard app shared library for servers and clients. Created as Diploma thesis on FIT CVUT by Pavel Švagr",
+  "main": "index.js",
+  "scripts": {
+    "test": "set NODE_ENV=test&& mocha tests/*/*/*.js --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavelsvagr/taskboard.git"
+  },
+  "author": "Pavel Švagr",
+  "license": "Apache-2.0",
+  "keywords": [
+    "react",
+    "node",
+    "taks",
+    "projects",
+    "management",
+    "priorities"
+  ],
+  "bugs": {
+    "url": "https://github.com/pavelsvagr/taskboard/issues"
+  },
+  "homepage": "https://github.com/pavelsvagr/taskboard#readme",
+  "dependencies": {
+    "moment": "^2.29.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.1.0",
+    "chai": "^4.2.0",
+    "mocha": "^8.2.1",
+    "prettier": "2.2.0",
+    "eslint-config-prettier": "^6.15.0",
+    "prettier-eslint": "^11.0.0"
+  }
+}

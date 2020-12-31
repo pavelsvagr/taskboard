@@ -1,0 +1,64 @@
+{
+  "name": "taskboard-server",
+  "version": "1.0.0",
+  "description": "Server for Taskboard app created as Diploma thesis FIT CVUT by Pavel Švagr",
+  "main": "index.js",
+  "engines": {
+    "node": "14.15.1",
+    "npm": "6.14.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavelsvagr/taskboard.git"
+  },
+  "author": "Pavel Švagr",
+  "license": "Apache-2.0",
+  "keywords": [
+    "react",
+    "node",
+    "taks",
+    "projects",
+    "management",
+    "priorities"
+  ],
+  "bugs": {
+    "url": "https://github.com/pavelsvagr/taskboard/issues"
+  },
+  "homepage": ".",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js",
+    "seed": "node ./db/seeder.js",
+    "test": "set NODE_ENV=test&& mocha tests/*/*.js --exit"
+  },
+  "dependencies": {
+    "aws-sdk": "2.x",
+    "axios": "^0.20.0",
+    "body-parser": "^1.19.0",
+    "concurrently": "^5.3.0",
+    "cookie-session": "^1.4.0",
+    "cors": "^2.8.5",
+    "crypto-js": "^4.0.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.6.1",
+    "link-module-alias": "^1.2.0",
+    "moment": "^2.29.0",
+    "mongo-seeding": "^3.5.0",
+    "mongoose": "^5.10.6",
+    "nodemon": "^2.0.4",
+    "passport": "^0.4.1",
+    "passport-google-oauth20": "^2.0.0",
+    "sendgrid": "^5.2.3"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.9",
+    "babel-eslint": "^10.1.0",
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "mocha": "^8.2.1",
+    "prettier": "2.2.0",
+    "prettier-eslint": "^11.0.0"
+  }
+}

@@ -1,0 +1,25 @@
+@import '../../../styles/colors/colors'
+
+%notification
+  margin: 15px 5px
+
+.notification
+  @extend %notification
+  border: 1px solid $color-highlight-dark
+
+  &--new
+    @extend %notification
+    border: 1px solid $color-primary
+    box-shadow: 0 0 3px scale-color($color-primary, $alpha: -50%)
+
+    .ant-card-head
+      background: $color-primary
+      color: $color-light
+      font-weight: 600
+
+    .ant-card-body
+      font-size: 0.9em
+
+  &__description
+    font-size: 0.8em
+    color: $color-shadow-menu

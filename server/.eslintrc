@@ -1,0 +1,29 @@
+{
+  "parser": "babel-eslint",
+  "extends": [
+    "airbnb",
+    "prettier"
+  ],
+  "parserOptions": {
+    "sourceType": "module"
+  },
+  "env": {
+    "mocha": true
+  },
+  "rules": {
+    "no-underscore-dangle": 0,
+    "no-param-reassign": 0,
+    "no-restricted-syntax": 0,
+    "no-await-in-loop": 0,
+    "import/no-unresolved": [
+      2,
+      {
+        "caseSensitive": false
+      }
+    ],
+    "semi": [
+      2,
+      "never"
+    ]
+  }
+}

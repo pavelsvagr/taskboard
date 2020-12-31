@@ -1,0 +1,93 @@
+@import '../../styles/colors/colors'
+@import '../../styles/breakpoints'
+
+.landing
+  color: $color-light
+  font-size: 18px
+  min-height: 100%
+  flex: 1
+  font-weight: 300
+  padding: 0 20px
+  background: linear-gradient(to bottom right, $color-primary-alt, $color-primary-background)
+
+  &__logo-conatiner
+    text-align: right
+
+  &__logo
+    display: inline-block
+    width: 250px
+    height: 250px
+    background-image: url("../../images/logo_simple.png")
+    background-size: cover
+
+  &__title
+    font-weight: 500
+    color: #fff !important
+    font-size: 100px !important
+    font-family: 'Josefin Sans', sans-serif
+    //text-transform: uppercase
+
+    &--low
+      font-weight: 100
+      text-transform: lowercase
+
+    &--error
+      font-weight: 300
+      font-size: 30px
+
+      &-description
+        font-size: 20px
+        font-weight: 300
+        text-transform: none
+
+
+  .ant
+    &-divider
+      background: linear-gradient(to right, $color-primary-alt, $color-light)
+      height: 1px
+      border: none
+      margin: 30px
+
+  .login
+    background: $color-light
+    color: $color-primary
+
+@media (max-width: $br-lg)
+  .landing
+    &__logo-container
+      text-align: center
+      margin-bottom: 30px
+
+    &__title
+      text-align: center
+      font-size: 50px !important
+
+      &--error
+        font-weight: 300
+        font-size: 24px
+
+        &-description
+          font-size: 16px
+          font-weight: 300
+
+    .ant
+      &-divider
+        background: transparent
+        margin: 15px 0
+
+    &__logo
+      width: 120px
+      height: 120px
+
+@media (max-width: $br-sm)
+  .landing
+    &__logo-container
+      text-align: center
+
+    &__title
+      text-align: center
+
+    .ant
+      &-divider
+        background: transparent
+        margin: 15px 0

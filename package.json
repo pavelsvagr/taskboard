@@ -1,0 +1,53 @@
+{
+  "name": "taskboard",
+  "version": "1.0.0",
+  "description": "Taskboard app created as Diploma thesis FIT CVUT by Pavel Švagr",
+  "workspaces": [
+    "client",
+    "server",
+    "shared"
+  ],
+  "scripts": {
+    "start": "node server",
+    "server": "nodemon ./server/index.js",
+    "client": "npm run start --prefix client",
+    "install": "npm i --prefix shared && npm i --prefix client && npm i --prefix server",
+    "test": "npm run test --prefix server && npm run test --prefix sahred npm run test -- prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "npm install --prefix client && npm install --prefix server && npm install --prefix shared && npm run build --prefix client"
+  },
+  "engines": {
+    "node": "14.15.1",
+    "npm": "6.14.8"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pavelsvagr/taskboard.git"
+  },
+  "author": "Pavel Švagr",
+  "license": "Apache-2.0",
+  "keywords": [
+    "react",
+    "node",
+    "taks",
+    "projects",
+    "management",
+    "priorities"
+  ],
+  "bugs": {
+    "url": "https://github.com/pavelsvagr/taskboard/issues"
+  },
+  "homepage": "https://github.com/pavelsvagr/taskboard#readme",
+  "devDependencies": {
+    "concurrently": "^5.3.0",
+    "eslint": "^7.2.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-jsx-a11y": "^6.4.1",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.0.0",
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.1"
+  },
+  "dependencies": {}
+}

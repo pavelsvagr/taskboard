@@ -1,0 +1,30 @@
+@import "colors/colors"
+
+.card
+  &--disabled
+    background: $color-highlight-dark
+    cursor: not-allowed
+
+  &--bordered
+    background: inherit
+
+    .ant-card-head
+      border-bottom: none
+      font-weight: bold
+
+      &-title
+        padding-bottom: 0
+        color: $color-light
+
+  &--full-content
+    position: relative
+
+    .ant-card-body
+      padding: 0
+
+  &__descriptions
+    &--bordered .ant-descriptions-view
+      border: none
+
+      th
+        border-top: 1px solid $color-border-dark

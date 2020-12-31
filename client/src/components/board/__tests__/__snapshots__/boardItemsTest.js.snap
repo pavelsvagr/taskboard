@@ -1,0 +1,1102 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BoardItems.jsx Snapshot: Match admin 1`] = `
+<div>
+  <div
+    className="board__toolbar"
+  >
+    <div
+      className="ant-row board__toolbar__head"
+      style={
+        Object {
+          "background": "linear-gradient(to right, #3ba5ff, #9254de)",
+          "margin": 0,
+        }
+      }
+    >
+      <div
+        className="ant-col ant-col-order-1 ant-col-xs-12 ant-col-sm-12 ant-col-md-12 ant-col-lg-6 ant-col-xl-7 ant-col-xxl-7"
+        style={Object {}}
+      >
+        <h1
+          style={
+            Object {
+              "color": "white",
+            }
+          }
+        >
+          test-smoke
+        </h1>
+      </div>
+      <div
+        className="ant-col text-center ant-col-xs-24 ant-col-xs-order-3 ant-col-sm-24 ant-col-sm-order-3 ant-col-md-24 ant-col-md-order-3 ant-col-lg-12 ant-col-lg-order-2 ant-col-xl-10 ant-col-xl-order-2 ant-col-xxl-10 ant-col-xxl-order-2"
+        style={Object {}}
+      >
+        <div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "justifyContent": "center",
+                "marginLeft": -2,
+                "marginRight": -2,
+              }
+            }
+          >
+            <div
+              className="ant-col"
+              style={
+                Object {
+                  "paddingLeft": 2,
+                  "paddingRight": 2,
+                }
+              }
+            >
+              <button
+                className="ant-btn ant-btn-circle ant-btn-icon-only ant-btn-background-ghost button--light"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <span
+                  aria-label="left"
+                  className="anticon anticon-left"
+                  role="img"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    data-icon="left"
+                    fill="currentColor"
+                    focusable="false"
+                    height="1em"
+                    viewBox="64 64 896 896"
+                    width="1em"
+                  >
+                    <path
+                      d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
+            <div
+              className="ant-col"
+              style={
+                Object {
+                  "paddingLeft": 2,
+                  "paddingRight": 2,
+                }
+              }
+            >
+              <div
+                className="ant-picker board-picker"
+                onMouseUp={[Function]}
+              >
+                <div
+                  className="ant-picker-input"
+                >
+                  <input
+                    autoComplete="off"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    onMouseDown={[Function]}
+                    placeholder="Select week"
+                    readOnly={true}
+                    size={24}
+                    title="20. 12. - 26. 12. 2020"
+                    value="20. 12. - 26. 12. 2020"
+                  />
+                  <span
+                    className="ant-picker-suffix"
+                  >
+                    <span
+                      aria-label="calendar"
+                      className="anticon anticon-calendar"
+                      role="img"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        data-icon="calendar"
+                        fill="currentColor"
+                        focusable="false"
+                        height="1em"
+                        viewBox="64 64 896 896"
+                        width="1em"
+                      >
+                        <path
+                          d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              className="ant-col"
+              style={
+                Object {
+                  "paddingLeft": 2,
+                  "paddingRight": 2,
+                }
+              }
+            >
+              <button
+                className="ant-btn ant-btn-circle ant-btn-icon-only ant-btn-background-ghost button--light"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <span
+                  aria-label="right"
+                  className="anticon anticon-right"
+                  role="img"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    data-icon="right"
+                    fill="currentColor"
+                    focusable="false"
+                    height="1em"
+                    viewBox="64 64 896 896"
+                    width="1em"
+                  >
+                    <path
+                      d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col text-right ant-col-xs-8 ant-col-xs-order-2 ant-col-sm-9 ant-col-sm-order-2 ant-col-md-12 ant-col-md-order-2 ant-col-lg-6 ant-col-lg-order-3 ant-col-xl-7 ant-col-xl-order-3 ant-col-xxl-7 ant-col-xxl-order-3"
+        style={Object {}}
+      >
+        <div
+          className="table__actions"
+        >
+          <button
+            className="ant-btn ant-btn-circle ant-btn-icon-only ant-btn-background-ghost button--light"
+            disabled={false}
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            type="button"
+          >
+            <span
+              aria-label="sync"
+              className="anticon anticon-sync"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="sync"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M168 504.2c1-43.7 10-86.1 26.9-126 17.3-41 42.1-77.7 73.7-109.4S337 212.3 378 195c42.4-17.9 87.4-27 133.9-27s91.5 9.1 133.8 27A341.5 341.5 0 01755 268.8c9.9 9.9 19.2 20.4 27.8 31.4l-60.2 47a8 8 0 003 14.1l175.7 43c5 1.2 9.9-2.6 9.9-7.7l.8-180.9c0-6.7-7.7-10.5-12.9-6.3l-56.4 44.1C765.8 155.1 646.2 92 511.8 92 282.7 92 96.3 275.6 92 503.8a8 8 0 008 8.2h60c4.4 0 7.9-3.5 8-7.8zm756 7.8h-60c-4.4 0-7.9 3.5-8 7.8-1 43.7-10 86.1-26.9 126-17.3 41-42.1 77.8-73.7 109.4A342.45 342.45 0 01512.1 856a342.24 342.24 0 01-243.2-100.8c-9.9-9.9-19.2-20.4-27.8-31.4l60.2-47a8 8 0 00-3-14.1l-175.7-43c-5-1.2-9.9 2.6-9.9 7.7l-.7 181c0 6.7 7.7 10.5 12.9 6.3l56.4-44.1C258.2 868.9 377.8 932 512.2 932c229.2 0 415.5-183.7 419.8-411.8a8 8 0 00-8-8.2z"
+                />
+              </svg>
+            </span>
+          </button>
+          <button
+            className="ant-btn ant-btn-circle ant-btn-icon-only ant-btn-background-ghost button--light"
+            disabled={false}
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            type="button"
+          >
+            <span
+              aria-label="setting"
+              className="anticon anticon-setting"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="setting"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M924.8 625.7l-65.5-56c3.1-19 4.7-38.4 4.7-57.8s-1.6-38.8-4.7-57.8l65.5-56a32.03 32.03 0 009.3-35.2l-.9-2.6a443.74 443.74 0 00-79.7-137.9l-1.8-2.1a32.12 32.12 0 00-35.1-9.5l-81.3 28.9c-30-24.6-63.5-44-99.7-57.6l-15.7-85a32.05 32.05 0 00-25.8-25.7l-2.7-.5c-52.1-9.4-106.9-9.4-159 0l-2.7.5a32.05 32.05 0 00-25.8 25.7l-15.8 85.4a351.86 351.86 0 00-99 57.4l-81.9-29.1a32 32 0 00-35.1 9.5l-1.8 2.1a446.02 446.02 0 00-79.7 137.9l-.9 2.6c-4.5 12.5-.8 26.5 9.3 35.2l66.3 56.6c-3.1 18.8-4.6 38-4.6 57.1 0 19.2 1.5 38.4 4.6 57.1L99 625.5a32.03 32.03 0 00-9.3 35.2l.9 2.6c18.1 50.4 44.9 96.9 79.7 137.9l1.8 2.1a32.12 32.12 0 0035.1 9.5l81.9-29.1c29.8 24.5 63.1 43.9 99 57.4l15.8 85.4a32.05 32.05 0 0025.8 25.7l2.7.5a449.4 449.4 0 00159 0l2.7-.5a32.05 32.05 0 0025.8-25.7l15.7-85a350 350 0 0099.7-57.6l81.3 28.9a32 32 0 0035.1-9.5l1.8-2.1c34.8-41.1 61.6-87.5 79.7-137.9l.9-2.6c4.5-12.3.8-26.3-9.3-35zM788.3 465.9c2.5 15.1 3.8 30.6 3.8 46.1s-1.3 31-3.8 46.1l-6.6 40.1 74.7 63.9a370.03 370.03 0 01-42.6 73.6L721 702.8l-31.4 25.8c-23.9 19.6-50.5 35-79.3 45.8l-38.1 14.3-17.9 97a377.5 377.5 0 01-85 0l-17.9-97.2-37.8-14.5c-28.5-10.8-55-26.2-78.7-45.7l-31.4-25.9-93.4 33.2c-17-22.9-31.2-47.6-42.6-73.6l75.5-64.5-6.5-40c-2.4-14.9-3.7-30.3-3.7-45.5 0-15.3 1.2-30.6 3.7-45.5l6.5-40-75.5-64.5c11.3-26.1 25.6-50.7 42.6-73.6l93.4 33.2 31.4-25.9c23.7-19.5 50.2-34.9 78.7-45.7l37.9-14.3 17.9-97.2c28.1-3.2 56.8-3.2 85 0l17.9 97 38.1 14.3c28.7 10.8 55.4 26.2 79.3 45.8l31.4 25.8 92.8-32.9c17 22.9 31.2 47.6 42.6 73.6L781.8 426l6.5 39.9zM512 326c-97.2 0-176 78.8-176 176s78.8 176 176 176 176-78.8 176-176-78.8-176-176-176zm79.2 255.2A111.6 111.6 0 01512 614c-29.9 0-58-11.7-79.2-32.8A111.6 111.6 0 01400 502c0-29.9 11.7-58 32.8-79.2C454 401.6 482.1 390 512 390c29.9 0 58 11.6 79.2 32.8A111.6 111.6 0 01624 502c0 29.9-11.7 58-32.8 79.2z"
+                />
+              </svg>
+            </span>
+          </button>
+          <button
+            className="ant-btn ant-btn-circle ant-btn-icon-only ant-btn-background-ghost button--light"
+            disabled={false}
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            type="button"
+          >
+            <span
+              aria-label="copy"
+              className="anticon anticon-copy"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="copy"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M832 64H296c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h496v688c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V96c0-17.7-14.3-32-32-32zM704 192H192c-17.7 0-32 14.3-32 32v530.7c0 8.5 3.4 16.6 9.4 22.6l173.3 173.3c2.2 2.2 4.7 4 7.4 5.5v1.9h4.2c3.5 1.3 7.2 2 11 2H704c17.7 0 32-14.3 32-32V224c0-17.7-14.3-32-32-32zM350 856.2L263.9 770H350v86.2zM664 888H414V746c0-22.1-17.9-40-40-40H232V264h432v624z"
+                />
+              </svg>
+            </span>
+          </button>
+          <button
+            className="ant-btn ant-btn-circle ant-btn-icon-only ant-btn-background-ghost button--light "
+            disabled={false}
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            type="button"
+          >
+            <span
+              aria-label="edit"
+              className="anticon anticon-edit"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="edit"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M257.7 752c2 0 4-.2 6-.5L431.9 722c2-.4 3.9-1.3 5.3-2.8l423.9-423.9a9.96 9.96 0 000-14.1L694.9 114.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2 1-7.1 2.9L256.8 538.8c-1.5 1.5-2.4 3.3-2.8 5.3l-29.5 168.2a33.5 33.5 0 009.4 29.8c6.6 6.4 14.9 9.9 23.8 9.9zm67.4-174.4L687.8 215l73.3 73.3-362.7 362.6-88.9 15.7 15.6-89zM880 836H144c-17.7 0-32 14.3-32 32v36c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-36c0-17.7-14.3-32-32-32z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ant-spin-nested-loading"
+  >
+    <div
+      className="ant-spin-container"
+    >
+      <div
+        className="ant-spin-nested-loading"
+      >
+        <div>
+          <div
+            className="ant-spin ant-spin-spinning"
+          >
+            <span
+              className="ant-spin-dot ant-spin-dot-spin"
+            >
+              <i
+                className="ant-spin-dot-item"
+              />
+              <i
+                className="ant-spin-dot-item"
+              />
+              <i
+                className="ant-spin-dot-item"
+              />
+              <i
+                className="ant-spin-dot-item"
+              />
+            </span>
+          </div>
+        </div>
+        <div
+          className="ant-spin-container ant-spin-blur"
+        >
+          <div
+            className="board__rows"
+          >
+            <div
+              className="ant-row board__row--header"
+              style={Object {}}
+            >
+              <div
+                className="ant-col board__col--header ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-0 ant-col-xl-5"
+                style={Object {}}
+              >
+                Solver
+              </div>
+              <div
+                className="ant-col board__col--header ant-col-xs-0 ant-col-sm-0 ant-col-md-NaN ant-col-lg-NaN ant-col-xl-NaN"
+                style={Object {}}
+              >
+                Priority
+                 
+                1
+              </div>
+            </div>
+            <div
+              className="ant-collapse ant-collapse-icon-position-left ant-collapse-ghost"
+              role={null}
+            >
+              <div
+                className="ant-collapse-item ant-collapse-item-active color-white"
+              >
+                <div
+                  aria-expanded="true"
+                  className="ant-collapse-header board__team-header"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <span
+                    aria-label="right"
+                    className="anticon anticon-right ant-collapse-arrow"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="right"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      style={
+                        Object {
+                          "msTransform": "rotate(90deg)",
+                          "transform": "rotate(90deg)",
+                        }
+                      }
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
+                      />
+                    </svg>
+                  </span>
+                  test-smoke-team
+                </div>
+                <div
+                  className="ant-collapse-content ant-collapse-content-active"
+                  role={null}
+                >
+                  <div
+                    className="ant-collapse-content-box"
+                  >
+                    <div
+                      className="ant-row board__row board__row--deactivated"
+                      style={Object {}}
+                    >
+                      <div
+                        className="ant-col board__col board__col--first ellipsis ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-5"
+                        style={Object {}}
+                      >
+                        <div
+                          className="board__col__value ellipsis"
+                        >
+                          <div
+                            className="ant-space ant-space-horizontal ant-space-align-center"
+                          >
+                            <div
+                              className="ant-space-item"
+                              style={Object {}}
+                            >
+                              <span
+                                className="strike"
+                              >
+                                Test member
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="board__col__toolbar"
+                        >
+                          <button
+                            className="ant-btn ant-btn-circle ant-btn-icon-only ant-dropdown-trigger"
+                            onClick={[Function]}
+                            onMouseDown={[Function]}
+                            onTouchStart={[Function]}
+                            type="button"
+                          >
+                            <span
+                              aria-label="ellipsis"
+                              className="anticon anticon-ellipsis"
+                              role="img"
+                            >
+                              <svg
+                                aria-hidden="true"
+                                className=""
+                                data-icon="ellipsis"
+                                fill="currentColor"
+                                focusable="false"
+                                height="1em"
+                                viewBox="64 64 896 896"
+                                width="1em"
+                              >
+                                <path
+                                  d="M176 511a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0z"
+                                />
+                              </svg>
+                            </span>
+                          </button>
+                        </div>
+                      </div>
+                      <div
+                        className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-19"
+                        style={Object {}}
+                      >
+                        <div
+                          className="board__col__value ellipsis"
+                        >
+                          <button
+                            className="ant-btn board__assignment"
+                            disabled={true}
+                            onClick={[Function]}
+                            type="button"
+                          >
+                            <div
+                              className="ant-row"
+                              style={Object {}}
+                            >
+                              <div
+                                className="ant-col ant-col-22 ellipsis board__assignment__selected"
+                                style={Object {}}
+                              />
+                              <div
+                                className="ant-col ant-col-2"
+                                style={Object {}}
+                              >
+                                <span
+                                  aria-label="plus-circle"
+                                  className="anticon anticon-plus-circle"
+                                  role="img"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    className=""
+                                    data-icon="plus-circle"
+                                    fill="currentColor"
+                                    focusable="false"
+                                    height="1em"
+                                    viewBox="64 64 896 896"
+                                    width="1em"
+                                  >
+                                    <path
+                                      d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+                                    />
+                                    <path
+                                      d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                                    />
+                                  </svg>
+                                </span>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                className="ant-collapse-item ant-collapse-item-active color-blue"
+              >
+                <div
+                  aria-expanded="true"
+                  className="ant-collapse-header board__team-header"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <span
+                    aria-label="right"
+                    className="anticon anticon-right ant-collapse-arrow"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="right"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      style={
+                        Object {
+                          "msTransform": "rotate(90deg)",
+                          "transform": "rotate(90deg)",
+                        }
+                      }
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
+                      />
+                    </svg>
+                  </span>
+                  test-smoke-team2
+                </div>
+                <div
+                  className="ant-collapse-content ant-collapse-content-active"
+                  role={null}
+                >
+                  <div
+                    className="ant-collapse-content-box"
+                  />
+                </div>
+              </div>
+              <div
+                className="ant-collapse-item ant-collapse-item-active color-white"
+              >
+                <div
+                  aria-expanded="true"
+                  className="ant-collapse-header board__team-header"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <span
+                    aria-label="right"
+                    className="anticon anticon-right ant-collapse-arrow"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="right"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      style={
+                        Object {
+                          "msTransform": "rotate(90deg)",
+                          "transform": "rotate(90deg)",
+                        }
+                      }
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
+                      />
+                    </svg>
+                  </span>
+                  &lt;no team&gt;
+                </div>
+                <div
+                  className="ant-collapse-content ant-collapse-content-active"
+                  role={null}
+                >
+                  <div
+                    className="ant-collapse-content-box"
+                  >
+                    <div
+                      className="color-white"
+                    >
+                      <div
+                        className="ant-row board__row board__row--deactivated"
+                        style={Object {}}
+                      >
+                        <div
+                          className="ant-col board__col board__col--first ellipsis ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-5"
+                          style={Object {}}
+                        >
+                          <div
+                            className="board__col__value ellipsis"
+                          >
+                            <div
+                              className="ant-space ant-space-horizontal ant-space-align-center"
+                            >
+                              <div
+                                className="ant-space-item"
+                                style={Object {}}
+                              >
+                                <span
+                                  className="strike"
+                                >
+                                  Test member2
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                          <div
+                            className="board__col__toolbar"
+                          >
+                            <button
+                              className="ant-btn ant-btn-circle ant-btn-icon-only ant-dropdown-trigger"
+                              onClick={[Function]}
+                              onMouseDown={[Function]}
+                              onTouchStart={[Function]}
+                              type="button"
+                            >
+                              <span
+                                aria-label="ellipsis"
+                                className="anticon anticon-ellipsis"
+                                role="img"
+                              >
+                                <svg
+                                  aria-hidden="true"
+                                  className=""
+                                  data-icon="ellipsis"
+                                  fill="currentColor"
+                                  focusable="false"
+                                  height="1em"
+                                  viewBox="64 64 896 896"
+                                  width="1em"
+                                >
+                                  <path
+                                    d="M176 511a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0z"
+                                  />
+                                </svg>
+                              </span>
+                            </button>
+                          </div>
+                        </div>
+                        <div
+                          className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-19"
+                          style={Object {}}
+                        >
+                          <div
+                            className="board__col__value ellipsis"
+                          >
+                            <button
+                              className="ant-btn board__assignment"
+                              disabled={true}
+                              onClick={[Function]}
+                              type="button"
+                            >
+                              <div
+                                className="ant-row"
+                                style={Object {}}
+                              >
+                                <div
+                                  className="ant-col ant-col-22 ellipsis board__assignment__selected"
+                                  style={Object {}}
+                                />
+                                <div
+                                  className="ant-col ant-col-2"
+                                  style={Object {}}
+                                >
+                                  <span
+                                    aria-label="plus-circle"
+                                    className="anticon anticon-plus-circle"
+                                    role="img"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      className=""
+                                      data-icon="plus-circle"
+                                      fill="currentColor"
+                                      focusable="false"
+                                      height="1em"
+                                      viewBox="64 64 896 896"
+                                      width="1em"
+                                    >
+                                      <path
+                                        d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+                                      />
+                                      <path
+                                        d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                                      />
+                                    </svg>
+                                  </span>
+                                </div>
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`BoardItems.jsx Snapshot: Match user 1`] = `
+<div>
+  <div
+    className="board__toolbar"
+  >
+    <div
+      className="ant-row board__toolbar__head"
+      style={
+        Object {
+          "background": "linear-gradient(to right, #3ba5ff, #9254de)",
+          "margin": 0,
+        }
+      }
+    >
+      <div
+        className="ant-col ant-col-order-1 ant-col-xs-12 ant-col-sm-12 ant-col-md-12 ant-col-lg-6 ant-col-xl-7 ant-col-xxl-7"
+        style={Object {}}
+      >
+        <h1
+          style={
+            Object {
+              "color": "white",
+            }
+          }
+        >
+          test-smoke
+        </h1>
+      </div>
+      <div
+        className="ant-col text-center ant-col-xs-24 ant-col-xs-order-3 ant-col-sm-24 ant-col-sm-order-3 ant-col-md-24 ant-col-md-order-3 ant-col-lg-12 ant-col-lg-order-2 ant-col-xl-10 ant-col-xl-order-2 ant-col-xxl-10 ant-col-xxl-order-2"
+        style={Object {}}
+      >
+        <div>
+          <div
+            className="ant-row"
+            style={
+              Object {
+                "justifyContent": "center",
+                "marginLeft": -2,
+                "marginRight": -2,
+              }
+            }
+          >
+            <div
+              className="ant-col"
+              style={
+                Object {
+                  "paddingLeft": 2,
+                  "paddingRight": 2,
+                }
+              }
+            >
+              <button
+                className="ant-btn ant-btn-circle ant-btn-icon-only ant-btn-background-ghost button--light"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <span
+                  aria-label="left"
+                  className="anticon anticon-left"
+                  role="img"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    data-icon="left"
+                    fill="currentColor"
+                    focusable="false"
+                    height="1em"
+                    viewBox="64 64 896 896"
+                    width="1em"
+                  >
+                    <path
+                      d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
+            <div
+              className="ant-col"
+              style={
+                Object {
+                  "paddingLeft": 2,
+                  "paddingRight": 2,
+                }
+              }
+            >
+              <div
+                className="ant-picker board-picker"
+                onMouseUp={[Function]}
+              >
+                <div
+                  className="ant-picker-input"
+                >
+                  <input
+                    autoComplete="off"
+                    disabled={false}
+                    onBlur={[Function]}
+                    onChange={[Function]}
+                    onFocus={[Function]}
+                    onKeyDown={[Function]}
+                    onMouseDown={[Function]}
+                    placeholder="Select week"
+                    readOnly={true}
+                    size={24}
+                    title="20. 12. - 26. 12. 2020"
+                    value="20. 12. - 26. 12. 2020"
+                  />
+                  <span
+                    className="ant-picker-suffix"
+                  >
+                    <span
+                      aria-label="calendar"
+                      className="anticon anticon-calendar"
+                      role="img"
+                    >
+                      <svg
+                        aria-hidden="true"
+                        data-icon="calendar"
+                        fill="currentColor"
+                        focusable="false"
+                        height="1em"
+                        viewBox="64 64 896 896"
+                        width="1em"
+                      >
+                        <path
+                          d="M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z"
+                        />
+                      </svg>
+                    </span>
+                  </span>
+                </div>
+              </div>
+            </div>
+            <div
+              className="ant-col"
+              style={
+                Object {
+                  "paddingLeft": 2,
+                  "paddingRight": 2,
+                }
+              }
+            >
+              <button
+                className="ant-btn ant-btn-circle ant-btn-icon-only ant-btn-background-ghost button--light"
+                disabled={false}
+                onClick={[Function]}
+                type="button"
+              >
+                <span
+                  aria-label="right"
+                  className="anticon anticon-right"
+                  role="img"
+                >
+                  <svg
+                    aria-hidden="true"
+                    className=""
+                    data-icon="right"
+                    fill="currentColor"
+                    focusable="false"
+                    height="1em"
+                    viewBox="64 64 896 896"
+                    width="1em"
+                  >
+                    <path
+                      d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
+                    />
+                  </svg>
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        className="ant-col text-right ant-col-xs-8 ant-col-xs-order-2 ant-col-sm-9 ant-col-sm-order-2 ant-col-md-12 ant-col-md-order-2 ant-col-lg-6 ant-col-lg-order-3 ant-col-xl-7 ant-col-xl-order-3 ant-col-xxl-7 ant-col-xxl-order-3"
+        style={Object {}}
+      >
+        <div
+          className="table__actions"
+        >
+          <button
+            className="ant-btn ant-btn-circle ant-btn-icon-only ant-btn-background-ghost button--light"
+            disabled={false}
+            onClick={[Function]}
+            onMouseEnter={[Function]}
+            onMouseLeave={[Function]}
+            type="button"
+          >
+            <span
+              aria-label="sync"
+              className="anticon anticon-sync"
+              role="img"
+            >
+              <svg
+                aria-hidden="true"
+                className=""
+                data-icon="sync"
+                fill="currentColor"
+                focusable="false"
+                height="1em"
+                viewBox="64 64 896 896"
+                width="1em"
+              >
+                <path
+                  d="M168 504.2c1-43.7 10-86.1 26.9-126 17.3-41 42.1-77.7 73.7-109.4S337 212.3 378 195c42.4-17.9 87.4-27 133.9-27s91.5 9.1 133.8 27A341.5 341.5 0 01755 268.8c9.9 9.9 19.2 20.4 27.8 31.4l-60.2 47a8 8 0 003 14.1l175.7 43c5 1.2 9.9-2.6 9.9-7.7l.8-180.9c0-6.7-7.7-10.5-12.9-6.3l-56.4 44.1C765.8 155.1 646.2 92 511.8 92 282.7 92 96.3 275.6 92 503.8a8 8 0 008 8.2h60c4.4 0 7.9-3.5 8-7.8zm756 7.8h-60c-4.4 0-7.9 3.5-8 7.8-1 43.7-10 86.1-26.9 126-17.3 41-42.1 77.8-73.7 109.4A342.45 342.45 0 01512.1 856a342.24 342.24 0 01-243.2-100.8c-9.9-9.9-19.2-20.4-27.8-31.4l60.2-47a8 8 0 00-3-14.1l-175.7-43c-5-1.2-9.9 2.6-9.9 7.7l-.7 181c0 6.7 7.7 10.5 12.9 6.3l56.4-44.1C258.2 868.9 377.8 932 512.2 932c229.2 0 415.5-183.7 419.8-411.8a8 8 0 00-8-8.2z"
+                />
+              </svg>
+            </span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ant-spin-nested-loading"
+  >
+    <div
+      className="ant-spin-container"
+    >
+      <div
+        className="ant-spin-nested-loading"
+      >
+        <div>
+          <div
+            className="ant-spin ant-spin-spinning"
+          >
+            <span
+              className="ant-spin-dot ant-spin-dot-spin"
+            >
+              <i
+                className="ant-spin-dot-item"
+              />
+              <i
+                className="ant-spin-dot-item"
+              />
+              <i
+                className="ant-spin-dot-item"
+              />
+              <i
+                className="ant-spin-dot-item"
+              />
+            </span>
+          </div>
+        </div>
+        <div
+          className="ant-spin-container ant-spin-blur"
+        >
+          <div
+            className="board__rows"
+          >
+            <div
+              className="ant-row board__row--header"
+              style={Object {}}
+            >
+              <div
+                className="ant-col board__col--header ant-col-xs-0 ant-col-sm-0 ant-col-md-0 ant-col-lg-0 ant-col-xl-5"
+                style={Object {}}
+              >
+                Solver
+              </div>
+              <div
+                className="ant-col board__col--header ant-col-xs-0 ant-col-sm-0 ant-col-md-NaN ant-col-lg-NaN ant-col-xl-NaN"
+                style={Object {}}
+              >
+                Priority
+                 
+                1
+              </div>
+            </div>
+            <div
+              className="color-white"
+            >
+              <div
+                className="ant-row board__row board__row--deactivated"
+                style={Object {}}
+              >
+                <div
+                  className="ant-col board__col board__col--first ellipsis ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-5"
+                  style={Object {}}
+                >
+                  <div
+                    className="board__col__value ellipsis"
+                  >
+                    <div
+                      className="ant-space ant-space-horizontal ant-space-align-center"
+                    >
+                      <div
+                        className="ant-space-item"
+                        style={Object {}}
+                      >
+                        <span
+                          className="strike"
+                        >
+                          Test member
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-19"
+                  style={Object {}}
+                >
+                  <div
+                    className="board__col__value ellipsis"
+                  />
+                </div>
+              </div>
+              <div
+                className="ant-row board__row board__row--deactivated"
+                style={Object {}}
+              >
+                <div
+                  className="ant-col board__col board__col--first ellipsis ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-5"
+                  style={Object {}}
+                >
+                  <div
+                    className="board__col__value ellipsis"
+                  >
+                    <div
+                      className="ant-space ant-space-horizontal ant-space-align-center"
+                    >
+                      <div
+                        className="ant-space-item"
+                        style={Object {}}
+                      >
+                        <span
+                          className="strike"
+                        >
+                          Test member2
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-19"
+                  style={Object {}}
+                >
+                  <div
+                    className="board__col__value ellipsis"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;
