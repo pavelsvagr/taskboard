@@ -55,7 +55,7 @@ class RedmineConnector {
    */
   getUsers = async (offset, limit) => {
     const redmineUsersResponse = await this.getRequest(
-      `${this.url}/users.json`, { offset, limit }
+      `${this.url}/users.json`, { offset: offset * limit, limit }
     )
 
     if (!redmineUsersResponse) {

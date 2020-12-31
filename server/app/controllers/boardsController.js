@@ -115,7 +115,7 @@ exports.getBoardAssignments = async (req, res, next) => {
   const api = createApiConnector(type, url, decryptedKey)
 
   board.addApiFilter({ name: "limit", value: limit })
-  board.addApiFilter({ name: "offset", value: offset })
+  board.addApiFilter({ name: "offset", value: offset * limit })
 
   if (board.assignment === assignmentsTypes.projects) {
     const projects = await api.getProjects(board.apiFilters || [], search)
