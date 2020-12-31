@@ -1,6 +1,8 @@
 const moment = require("moment")
 
+
 const Notification = require("../../model/entities/Notification")
+const keys = require("../../../config/keys")
 
 const notificationTypes = require("../../../../shared/constants/notificationTypes")
 const assignmentTypes = require("../../../../shared/constants/assignmentTypes")
@@ -138,7 +140,7 @@ exports.createNotification = async (type, board, user, author, { assignment, old
 
   const newNotification = await notificationsRepository.create(notification)
 
-  if (!board || board.hasEmailNotifications) {
+  if (keys.sendGridKey && (!board || board.hasEmailNotifications)) {
     const mailer = new Mailer(
       notification.title,
       [user.email],
