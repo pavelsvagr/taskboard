@@ -8,7 +8,6 @@
     "url": "git+https://github.com/pavelsvagr/taskboard.git"
   },
   "author": "Pavel Švagr",
-  "license": "Apache-2.0",
   "keywords": [
     "react",
     "node",

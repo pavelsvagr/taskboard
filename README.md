@@ -1,5 +1,5 @@
 # TaskBoard application
-TaskBoard is an application for prioritizing users tasks or projects during product creation.
+TaskBoard is an application for prioritizing tasks or projects for team members during product creation.
 It helps solve conflicts in deadlines or priorities. It can be also used as team schedule for days,
 weeks or months.
 
@@ -9,13 +9,15 @@ weeks or months.
 - node.js version >= 14.15.1,
 - npm version >= 6.14.8 
 - Google account
-- Installed MongoDB database locally or use official cloud. More details at [MongoDB web page](https://www.mongodb.com/)
-- SendGrid account (you can set it up for free). More details at [SendGrid web page](https://sendgrid.com/)
-- Registered localhost on google account developer console for oAuth2. More details at [Google DEV page](https://console.cloud.google.com/apis/credentials/oauthclient)
+- Installed MongoDB database locally or use official cloud. More details at [MongoDB web page](https://www.mongodb.com/).
+- SendGrid account  for email notifications (you can set it up for free). More details at [SendGrid web page](https://sendgrid.com/).
+- Amazon S3 file storage credentials. More details at [AWS S3 web page](https://aws.amazon.com/s3/).
+- Registered credentials in google account developer console for oAuth2. More details at [Google DEV page](https://console.cloud.google.com/apis/credentials/oauthclient).
 
 ### External data
 Application primary uses external data for tasks and projects. The current version supports only
-open source ticketing application Redmine, so its required to have its own local or cloud instance available.
+open source ticketing application Redmine. Its required to have its own local or cloud instance 
+available for accessing existing projects and issues.
 
 ### Installation
 - Edit `_dev` file in `server/config/_dev` to contain all keys and rename it to `dev`.
@@ -61,11 +63,10 @@ Client contains classic Create React app structure.
 ## Licences
 This project is part of the diploma thesis at FIT ČVUT in Prague.
  
-Used libraries are under MIT or Apache Licence Version 2.0. Both licences are permissive.
-All licences templates are stored in `/licences` folder.
+All licence templates of used libraries can be found in `licences` folder. 
 See licenses of each library inside of its own folder after running `npm install` command.
 
-Redmine logo used in this project was taken from official site of Redmine. It was transformed to black and white version.
+Redmine logo used in this project was taken from official site of Redmine. It was transformed to white version.
 Final edited images can be found at:
 - [/client/src/images/redmine-logo.png](/client/src/images/redmine-logo.png)
 - [/client/src/images/redmine-logo-bw.png](/client/src/images/redmine-logo-bw.png)
