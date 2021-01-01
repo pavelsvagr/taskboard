@@ -7,7 +7,8 @@ module.exports = (date, intervals) => {
   }
 
   const [dateFrom, dateTo] = getDateFromTo(date, intervals)
-  const fromFormat = `DD. MM.${  dateFrom.year()}` !== dateTo.year() ? ' YYYY' : ''
+  let fromFormat = "DD. MM."
+  fromFormat +=  dateFrom.year() !== dateTo.year() ? ' YYYY' : ''
 
   switch (intervals) {
     case 'weeks':

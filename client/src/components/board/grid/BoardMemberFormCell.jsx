@@ -23,7 +23,7 @@ function BoardMemberFormCell(
   }) {
 
   const initialValues = {
-    nickname: member.nickname,
+    nickname: member?.nickname,
   }
 
   const rules = {
@@ -63,10 +63,12 @@ function BoardMemberFormCell(
         {avatar}
         <Form onFinish={onSubmit} initialValues={initialValues} layout="inline" wrapperCol={24}>
           {renderAntItem('nickname', items.nickname, [], <Input />)}
-          <Button onClick={() => editNickname(null)}>
-            <CloseOutlined />
-          </Button>
-          <FormSubmit title={<CheckOutlined />} inline />
+          <Space>
+            <Button onClick={() => editNickname(null)} size="small">
+              <CloseOutlined />
+            </Button>
+            <FormSubmit size="small" title={<CheckOutlined />} inline />
+          </Space>
         </Form>
       </Space>
     </Col>

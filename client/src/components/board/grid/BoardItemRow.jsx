@@ -129,12 +129,12 @@ function BoardItemRow({
       ref={provided.innerRef ? provided.innerRef : null}
       {...provided.draggableProps}
     >
-      {editMember?._id === member._id ? (
+      {editMember && editMember?._id === member?._id ? (
         <BoardMemberFormCell
           key="user"
           className="board__col board__col--first ellipsis"
           dragButton={editMode ? <DragButton provider={provided} /> : null}
-          avatar={board.hasAvatars ? <UserAvatar user={member.user} /> : null}
+          avatar={board.hasAvatars && member?.user ? <UserAvatar user={member.user} /> : null}
           span={getColSpan(0, cols.length, false)}
         />
       ) : (

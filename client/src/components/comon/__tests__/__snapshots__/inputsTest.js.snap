@@ -162,7 +162,7 @@ exports[`Inputs Snapshot: DateSwitcher.jsx 1`] = `
 
 exports[`Inputs Snapshot: FormSubmit.jsx 1`] = `
 <div
-  className="form__submitfalse"
+  className="form__submit"
 >
   <button
     className="ant-btn ant-btn-primary"
