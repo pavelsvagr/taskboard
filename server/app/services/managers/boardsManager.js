@@ -31,7 +31,7 @@ const ConnectorError = require("../../exceptions/ConnectorError")
  * @param offset
  * @return {Promise<any>}
  */
-exports.getByUser = async (user, { search, limit, offset }) => {
+exports.getByUser = async (user, { search, limit = 25, offset = 0 }) => {
   const searchProps = {
     limit,
     offset: (offset) * limit,

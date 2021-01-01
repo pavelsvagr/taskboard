@@ -5,11 +5,10 @@ const chaiHttp = require("chai-http")
 const mongoose = require("mongoose")
 const app = require("../../index")
 const keys = require("../../config/keys")
-const UserModel = require("../../app/model/models/User")
 const NotificationModel = require("../../app/model/models/Notification")
 const notificationTypes = require("../../../shared/constants/notificationTypes")
+const { prepareTestUser, cleanTestUser } = require("../helpers/prepareTestUser")
 
-const User = mongoose.model(UserModel.SCHEMA)
 const Notification = mongoose.model(NotificationModel.SCHEMA)
 
 // Configure chai
@@ -27,7 +26,7 @@ let testNotification = {
 describe("Integration tests: Notifications endpoints", () => {
   before(async () => {
     // Treat user as test admin
-    app.request.user = await User.findOne({ email: keys.testUserAdminGmail })
+    app.request.user = await prepareTestUser('TEST', keys.testUserAdminGmail)
 
     await Notification.deleteMany({})
 
@@ -54,18 +53,19 @@ describe("Integration tests: Notifications endpoints", () => {
       .end((err, res) => {
         res.should.have.status(200)
         res.body.should.to.be.a("object")
-        res.body.should.have.property("count")
-        res.body.should.have.property("notifications")
+        res.body.should.have.property('limit')
+        res.body.should.have.property('offset')
+        res.body.should.have.property('count')
 
         res.body.count.should.be.equal(1)
 
-        res.body.notifications.should.to.be.a("array")
-        res.body.notifications.should.to.have.lengthOf(1)
-        res.body.notifications[0].should.be.a("object")
-        res.body.notifications[0]._id.should.be.equal(testNotification._id.toString())
-        res.body.notifications[0].title.should.be.equal(testNotification.title)
-        res.body.notifications[0].link.should.be.equal(testNotification.link)
-        res.body.notifications[0].message.should.be.equal(testNotification.message)
+        res.body.data.should.to.be.a("array")
+        res.body.data.should.to.have.lengthOf(1)
+        res.body.data[0].should.be.a("object")
+        res.body.data[0]._id.should.be.equal(testNotification._id.toString())
+        res.body.data[0].title.should.be.equal(testNotification.title)
+        res.body.data[0].link.should.be.equal(testNotification.link)
+        res.body.data[0].message.should.be.equal(testNotification.message)
         done()
       })
   })
@@ -105,14 +105,15 @@ describe("Integration tests: Notifications endpoints", () => {
         res.body.should.have.property("count")
         res.body.count.should.be.equal(0)
 
-        res.body.should.have.property("notifications")
-        res.body.notifications.should.to.be.a("array")
-        res.body.notifications.should.to.have.lengthOf(0)
+        res.body.should.have.property("data")
+        res.body.data.should.to.be.a("array")
+        res.body.data.should.to.have.lengthOf(0)
         done()
       })
   })
 
   after(async () => {
+    await cleanTestUser(keys.testUserAdminGmail)
     app.request.user = undefined
   })
 })

@@ -14,7 +14,7 @@ import shapes from "types"
 
 const BoardCard = ({ onClick, actions = [], search, board }) => {
   const actionsReact = []
-  for (let i = 0; i < actions.length; i++) {
+  for (let i = 0; i < actions.length; i+=1) {
     const action = actions[i]
     const props = {
       key: action.key,

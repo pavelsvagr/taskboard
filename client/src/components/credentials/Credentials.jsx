@@ -93,7 +93,6 @@ Credentials.propTypes = {
 
 Credentials.defaultProps = {
   credentials: null,
-  loading: null,
 }
 
 function mapStateToProps({ credentials, auth }) {

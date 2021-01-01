@@ -1,4 +1,4 @@
-export function getIssueTypeColor(type) {
+export default function getIssueTypeColor(type) {
   switch (type.toString().toLowerCase()) {
     case "bug":
       return "#ff7875"

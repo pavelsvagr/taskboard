@@ -43,7 +43,7 @@ export const CHANGE_BOARD_DATE = "BOARD/DATE"
 export const BOARD_TASK_ASSIGNMENT = "BOARD/ASSIGNMENT"
 export const BOARD_INITIAL_TOOLS = "BOARD/INITIAL_RULES"
 export const BOARD_TASK_SEARCH = "BOARD/TASKS/SEARCH"
-
+export const BOARD_MEMBER_EDIT = "BOARD/MEMBER/EDIT"
 // Teams
 export const FETCH_TEAMS = "GET teams"
 export const ADD_TEAM = "POST teams"

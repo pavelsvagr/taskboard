@@ -1,6 +1,6 @@
 import {
   BOARD_EDIT_MODE,
-  BOARD_INITIAL_TOOLS,
+  BOARD_INITIAL_TOOLS, BOARD_MEMBER_EDIT,
   BOARD_TASK_ASSIGNMENT,
   BOARD_TASK_SEARCH,
   CHANGE_BOARD_DATE,
@@ -14,10 +14,12 @@ const initialState = {
   boardCopy: null,
   itemCopy: null,
   assignment: null,
+  editMember: null,
   search: "",
+  date: moment()
 }
 
-export default (state = { ...initialState, date: moment() }, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case BOARD_EDIT_MODE:
       return { ...state, editMode: action.payload }
@@ -39,6 +41,9 @@ export default (state = { ...initialState, date: moment() }, action) => {
 
     case BOARD_TASK_SEARCH:
       return { ...state, search: action.search }
+
+    case BOARD_MEMBER_EDIT:
+      return { ...state, editMember: action.payload }
 
     default:
       return state

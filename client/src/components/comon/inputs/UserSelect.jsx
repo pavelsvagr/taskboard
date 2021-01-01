@@ -102,7 +102,7 @@ UserSelect.defaultProps = {
   value: null,
   onChange: null,
   users: {},
-  disabled: [],
+  disabled: {},
   loading: null,
 }
 

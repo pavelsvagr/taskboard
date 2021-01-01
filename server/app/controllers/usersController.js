@@ -14,7 +14,7 @@ const AppError = require("../exceptions/AppError")
  * @return {Promise<void>}
  * */
 exports.getUsers = async (req, res) => {
-  const { search, offset, limit, sort } = req.query
+  const { search, limit = 10, offset = 0, sort } = req.query
 
   const searchProps = {
     limit,

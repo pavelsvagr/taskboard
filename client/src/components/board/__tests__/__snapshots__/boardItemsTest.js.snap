@@ -15,7 +15,7 @@ exports[`BoardItems.jsx Snapshot: Match admin 1`] = `
       }
     >
       <div
-        className="ant-col ant-col-order-1 ant-col-xs-12 ant-col-sm-12 ant-col-md-12 ant-col-lg-6 ant-col-xl-7 ant-col-xxl-7"
+        className="ant-col ant-col-order-1 ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-6 ant-col-xl-7 ant-col-xxl-7"
         style={Object {}}
       >
         <h1
@@ -106,9 +106,9 @@ exports[`BoardItems.jsx Snapshot: Match admin 1`] = `
                     onMouseDown={[Function]}
                     placeholder="Select week"
                     readOnly={true}
-                    size={24}
-                    title="20. 12. - 26. 12. 2020"
-                    value="20. 12. - 26. 12. 2020"
+                    size={29}
+                    title="28. 12. 2020 - 03. 01. 2021"
+                    value="28. 12. 2020 - 03. 01. 2021"
                   />
                   <span
                     className="ant-picker-suffix"
@@ -175,9 +175,30 @@ exports[`BoardItems.jsx Snapshot: Match admin 1`] = `
             </div>
           </div>
         </div>
+        <div
+          className="ant-row"
+          style={Object {}}
+        >
+          <div
+            className="ant-col ant-col-24"
+            style={Object {}}
+          >
+            <button
+              className="ant-btn ant-btn-sm ant-dropdown-trigger ant-dropdown-link button--light-text m-xs"
+              onClick={[Function]}
+              onMouseDown={[Function]}
+              onTouchStart={[Function]}
+              type="button"
+            >
+              <span>
+                Change priorities
+              </span>
+            </button>
+          </div>
+        </div>
       </div>
       <div
-        className="ant-col text-right ant-col-xs-8 ant-col-xs-order-2 ant-col-sm-9 ant-col-sm-order-2 ant-col-md-12 ant-col-md-order-2 ant-col-lg-6 ant-col-lg-order-3 ant-col-xl-7 ant-col-xl-order-3 ant-col-xxl-7 ant-col-xxl-order-3"
+        className="ant-col board__toolbar__actions ant-col-xs-24 ant-col-xs-order-2 ant-col-sm-24 ant-col-sm-order-2 ant-col-md-24 ant-col-md-order-2 ant-col-lg-6 ant-col-lg-order-3 ant-col-xl-7 ant-col-xl-order-3 ant-col-xxl-7 ant-col-xxl-order-3"
         style={Object {}}
       >
         <div
@@ -279,14 +300,14 @@ exports[`BoardItems.jsx Snapshot: Match admin 1`] = `
             type="button"
           >
             <span
-              aria-label="edit"
-              className="anticon anticon-edit"
+              aria-label="pic-center"
+              className="anticon anticon-pic-center"
               role="img"
             >
               <svg
                 aria-hidden="true"
                 className=""
-                data-icon="edit"
+                data-icon="pic-center"
                 fill="currentColor"
                 focusable="false"
                 height="1em"
@@ -294,7 +315,7 @@ exports[`BoardItems.jsx Snapshot: Match admin 1`] = `
                 width="1em"
               >
                 <path
-                  d="M257.7 752c2 0 4-.2 6-.5L431.9 722c2-.4 3.9-1.3 5.3-2.8l423.9-423.9a9.96 9.96 0 000-14.1L694.9 114.9c-1.9-1.9-4.4-2.9-7.1-2.9s-5.2 1-7.1 2.9L256.8 538.8c-1.5 1.5-2.4 3.3-2.8 5.3l-29.5 168.2a33.5 33.5 0 009.4 29.8c6.6 6.4 14.9 9.9 23.8 9.9zm67.4-174.4L687.8 215l73.3 73.3-362.7 362.6-88.9 15.7 15.6-89zM880 836H144c-17.7 0-32 14.3-32 32v36c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-36c0-17.7-14.3-32-32-32z"
+                  d="M952 792H72c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h880c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm0-632H72c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h880c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zM848 660c8.8 0 16-7.2 16-16V380c0-8.8-7.2-16-16-16H176c-8.8 0-16 7.2-16 16v264c0 8.8 7.2 16 16 16h672zM232 436h560v152H232V436z"
                 />
               </svg>
             </span>
@@ -312,30 +333,8 @@ exports[`BoardItems.jsx Snapshot: Match admin 1`] = `
       <div
         className="ant-spin-nested-loading"
       >
-        <div>
-          <div
-            className="ant-spin ant-spin-spinning"
-          >
-            <span
-              className="ant-spin-dot ant-spin-dot-spin"
-            >
-              <i
-                className="ant-spin-dot-item"
-              />
-              <i
-                className="ant-spin-dot-item"
-              />
-              <i
-                className="ant-spin-dot-item"
-              />
-              <i
-                className="ant-spin-dot-item"
-              />
-            </span>
-          </div>
-        </div>
         <div
-          className="ant-spin-container ant-spin-blur"
+          className="ant-spin-container"
         >
           <div
             className="board__rows"
@@ -351,12 +350,28 @@ exports[`BoardItems.jsx Snapshot: Match admin 1`] = `
                 Solver
               </div>
               <div
-                className="ant-col board__col--header ant-col-xs-0 ant-col-sm-0 ant-col-md-NaN ant-col-lg-NaN ant-col-xl-NaN"
+                className="ant-col board__col--header ant-col-xs-0 ant-col-sm-0 ant-col-md-8 ant-col-lg-8 ant-col-xl-7"
                 style={Object {}}
               >
                 Priority
                  
                 1
+              </div>
+              <div
+                className="ant-col board__col--header ant-col-xs-0 ant-col-sm-0 ant-col-md-8 ant-col-lg-8 ant-col-xl-6"
+                style={Object {}}
+              >
+                Priority
+                 
+                2
+              </div>
+              <div
+                className="ant-col board__col--header ant-col-xs-0 ant-col-sm-0 ant-col-md-8 ant-col-lg-8 ant-col-xl-6"
+                style={Object {}}
+              >
+                Priority
+                 
+                3
               </div>
             </div>
             <div
@@ -434,41 +449,115 @@ exports[`BoardItems.jsx Snapshot: Match admin 1`] = `
                             </div>
                           </div>
                         </div>
+                      </div>
+                      <div
+                        className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-8 ant-col-xl-7"
+                        style={Object {}}
+                      >
                         <div
-                          className="board__col__toolbar"
+                          className="board__col__value ellipsis"
                         >
                           <button
-                            className="ant-btn ant-btn-circle ant-btn-icon-only ant-dropdown-trigger"
+                            className="ant-btn board__assignment"
+                            disabled={true}
                             onClick={[Function]}
-                            onMouseDown={[Function]}
-                            onTouchStart={[Function]}
                             type="button"
                           >
-                            <span
-                              aria-label="ellipsis"
-                              className="anticon anticon-ellipsis"
-                              role="img"
+                            <div
+                              className="ant-row"
+                              style={Object {}}
                             >
-                              <svg
-                                aria-hidden="true"
-                                className=""
-                                data-icon="ellipsis"
-                                fill="currentColor"
-                                focusable="false"
-                                height="1em"
-                                viewBox="64 64 896 896"
-                                width="1em"
+                              <div
+                                className="ant-col ant-col-22 ellipsis board__assignment__selected"
+                                style={Object {}}
+                              />
+                              <div
+                                className="ant-col ant-col-2"
+                                style={Object {}}
                               >
-                                <path
-                                  d="M176 511a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0z"
-                                />
-                              </svg>
-                            </span>
+                                <span
+                                  aria-label="plus-circle"
+                                  className="anticon anticon-plus-circle"
+                                  role="img"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    className=""
+                                    data-icon="plus-circle"
+                                    fill="currentColor"
+                                    focusable="false"
+                                    height="1em"
+                                    viewBox="64 64 896 896"
+                                    width="1em"
+                                  >
+                                    <path
+                                      d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+                                    />
+                                    <path
+                                      d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                                    />
+                                  </svg>
+                                </span>
+                              </div>
+                            </div>
                           </button>
                         </div>
                       </div>
                       <div
-                        className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-19"
+                        className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-8 ant-col-xl-6"
+                        style={Object {}}
+                      >
+                        <div
+                          className="board__col__value ellipsis"
+                        >
+                          <button
+                            className="ant-btn board__assignment"
+                            disabled={true}
+                            onClick={[Function]}
+                            type="button"
+                          >
+                            <div
+                              className="ant-row"
+                              style={Object {}}
+                            >
+                              <div
+                                className="ant-col ant-col-22 ellipsis board__assignment__selected"
+                                style={Object {}}
+                              />
+                              <div
+                                className="ant-col ant-col-2"
+                                style={Object {}}
+                              >
+                                <span
+                                  aria-label="plus-circle"
+                                  className="anticon anticon-plus-circle"
+                                  role="img"
+                                >
+                                  <svg
+                                    aria-hidden="true"
+                                    className=""
+                                    data-icon="plus-circle"
+                                    fill="currentColor"
+                                    focusable="false"
+                                    height="1em"
+                                    viewBox="64 64 896 896"
+                                    width="1em"
+                                  >
+                                    <path
+                                      d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+                                    />
+                                    <path
+                                      d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                                    />
+                                  </svg>
+                                </span>
+                              </div>
+                            </div>
+                          </button>
+                        </div>
+                      </div>
+                      <div
+                        className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-8 ant-col-xl-6"
                         style={Object {}}
                       >
                         <div
@@ -645,41 +734,115 @@ exports[`BoardItems.jsx Snapshot: Match admin 1`] = `
                               </div>
                             </div>
                           </div>
+                        </div>
+                        <div
+                          className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-8 ant-col-xl-7"
+                          style={Object {}}
+                        >
                           <div
-                            className="board__col__toolbar"
+                            className="board__col__value ellipsis"
                           >
                             <button
-                              className="ant-btn ant-btn-circle ant-btn-icon-only ant-dropdown-trigger"
+                              className="ant-btn board__assignment"
+                              disabled={true}
                               onClick={[Function]}
-                              onMouseDown={[Function]}
-                              onTouchStart={[Function]}
                               type="button"
                             >
-                              <span
-                                aria-label="ellipsis"
-                                className="anticon anticon-ellipsis"
-                                role="img"
+                              <div
+                                className="ant-row"
+                                style={Object {}}
                               >
-                                <svg
-                                  aria-hidden="true"
-                                  className=""
-                                  data-icon="ellipsis"
-                                  fill="currentColor"
-                                  focusable="false"
-                                  height="1em"
-                                  viewBox="64 64 896 896"
-                                  width="1em"
+                                <div
+                                  className="ant-col ant-col-22 ellipsis board__assignment__selected"
+                                  style={Object {}}
+                                />
+                                <div
+                                  className="ant-col ant-col-2"
+                                  style={Object {}}
                                 >
-                                  <path
-                                    d="M176 511a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0zm280 0a56 56 0 10112 0 56 56 0 10-112 0z"
-                                  />
-                                </svg>
-                              </span>
+                                  <span
+                                    aria-label="plus-circle"
+                                    className="anticon anticon-plus-circle"
+                                    role="img"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      className=""
+                                      data-icon="plus-circle"
+                                      fill="currentColor"
+                                      focusable="false"
+                                      height="1em"
+                                      viewBox="64 64 896 896"
+                                      width="1em"
+                                    >
+                                      <path
+                                        d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+                                      />
+                                      <path
+                                        d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                                      />
+                                    </svg>
+                                  </span>
+                                </div>
+                              </div>
                             </button>
                           </div>
                         </div>
                         <div
-                          className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-19"
+                          className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-8 ant-col-xl-6"
+                          style={Object {}}
+                        >
+                          <div
+                            className="board__col__value ellipsis"
+                          >
+                            <button
+                              className="ant-btn board__assignment"
+                              disabled={true}
+                              onClick={[Function]}
+                              type="button"
+                            >
+                              <div
+                                className="ant-row"
+                                style={Object {}}
+                              >
+                                <div
+                                  className="ant-col ant-col-22 ellipsis board__assignment__selected"
+                                  style={Object {}}
+                                />
+                                <div
+                                  className="ant-col ant-col-2"
+                                  style={Object {}}
+                                >
+                                  <span
+                                    aria-label="plus-circle"
+                                    className="anticon anticon-plus-circle"
+                                    role="img"
+                                  >
+                                    <svg
+                                      aria-hidden="true"
+                                      className=""
+                                      data-icon="plus-circle"
+                                      fill="currentColor"
+                                      focusable="false"
+                                      height="1em"
+                                      viewBox="64 64 896 896"
+                                      width="1em"
+                                    >
+                                      <path
+                                        d="M696 480H544V328c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v152H328c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h152v152c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V544h152c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z"
+                                      />
+                                      <path
+                                        d="M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z"
+                                      />
+                                    </svg>
+                                  </span>
+                                </div>
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                        <div
+                          className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-8 ant-col-xl-6"
                           style={Object {}}
                         >
                           <div
@@ -760,7 +923,7 @@ exports[`BoardItems.jsx Snapshot: Match user 1`] = `
       }
     >
       <div
-        className="ant-col ant-col-order-1 ant-col-xs-12 ant-col-sm-12 ant-col-md-12 ant-col-lg-6 ant-col-xl-7 ant-col-xxl-7"
+        className="ant-col ant-col-order-1 ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-6 ant-col-xl-7 ant-col-xxl-7"
         style={Object {}}
       >
         <h1
@@ -851,9 +1014,9 @@ exports[`BoardItems.jsx Snapshot: Match user 1`] = `
                     onMouseDown={[Function]}
                     placeholder="Select week"
                     readOnly={true}
-                    size={24}
-                    title="20. 12. - 26. 12. 2020"
-                    value="20. 12. - 26. 12. 2020"
+                    size={29}
+                    title="28. 12. 2020 - 03. 01. 2021"
+                    value="28. 12. 2020 - 03. 01. 2021"
                   />
                   <span
                     className="ant-picker-suffix"
@@ -922,7 +1085,7 @@ exports[`BoardItems.jsx Snapshot: Match user 1`] = `
         </div>
       </div>
       <div
-        className="ant-col text-right ant-col-xs-8 ant-col-xs-order-2 ant-col-sm-9 ant-col-sm-order-2 ant-col-md-12 ant-col-md-order-2 ant-col-lg-6 ant-col-lg-order-3 ant-col-xl-7 ant-col-xl-order-3 ant-col-xxl-7 ant-col-xxl-order-3"
+        className="ant-col board__toolbar__actions ant-col-xs-24 ant-col-xs-order-2 ant-col-sm-24 ant-col-sm-order-2 ant-col-md-24 ant-col-md-order-2 ant-col-lg-6 ant-col-lg-order-3 ant-col-xl-7 ant-col-xl-order-3 ant-col-xxl-7 ant-col-xxl-order-3"
         style={Object {}}
       >
         <div
@@ -970,30 +1133,8 @@ exports[`BoardItems.jsx Snapshot: Match user 1`] = `
       <div
         className="ant-spin-nested-loading"
       >
-        <div>
-          <div
-            className="ant-spin ant-spin-spinning"
-          >
-            <span
-              className="ant-spin-dot ant-spin-dot-spin"
-            >
-              <i
-                className="ant-spin-dot-item"
-              />
-              <i
-                className="ant-spin-dot-item"
-              />
-              <i
-                className="ant-spin-dot-item"
-              />
-              <i
-                className="ant-spin-dot-item"
-              />
-            </span>
-          </div>
-        </div>
         <div
-          className="ant-spin-container ant-spin-blur"
+          className="ant-spin-container"
         >
           <div
             className="board__rows"
@@ -1009,87 +1150,283 @@ exports[`BoardItems.jsx Snapshot: Match user 1`] = `
                 Solver
               </div>
               <div
-                className="ant-col board__col--header ant-col-xs-0 ant-col-sm-0 ant-col-md-NaN ant-col-lg-NaN ant-col-xl-NaN"
+                className="ant-col board__col--header ant-col-xs-0 ant-col-sm-0 ant-col-md-8 ant-col-lg-8 ant-col-xl-7"
                 style={Object {}}
               >
                 Priority
                  
                 1
               </div>
-            </div>
-            <div
-              className="color-white"
-            >
               <div
-                className="ant-row board__row board__row--deactivated"
+                className="ant-col board__col--header ant-col-xs-0 ant-col-sm-0 ant-col-md-8 ant-col-lg-8 ant-col-xl-6"
                 style={Object {}}
               >
+                Priority
+                 
+                2
+              </div>
+              <div
+                className="ant-col board__col--header ant-col-xs-0 ant-col-sm-0 ant-col-md-8 ant-col-lg-8 ant-col-xl-6"
+                style={Object {}}
+              >
+                Priority
+                 
+                3
+              </div>
+            </div>
+            <div
+              className="ant-collapse ant-collapse-icon-position-left ant-collapse-ghost"
+              role={null}
+            >
+              <div
+                className="ant-collapse-item ant-collapse-item-active color-white"
+              >
                 <div
-                  className="ant-col board__col board__col--first ellipsis ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-5"
-                  style={Object {}}
+                  aria-expanded="true"
+                  className="ant-collapse-header board__team-header"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <span
+                    aria-label="right"
+                    className="anticon anticon-right ant-collapse-arrow"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="right"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      style={
+                        Object {
+                          "msTransform": "rotate(90deg)",
+                          "transform": "rotate(90deg)",
+                        }
+                      }
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
+                      />
+                    </svg>
+                  </span>
+                  test-smoke-team
+                </div>
+                <div
+                  className="ant-collapse-content ant-collapse-content-active"
+                  role={null}
                 >
                   <div
-                    className="board__col__value ellipsis"
+                    className="ant-collapse-content-box"
                   >
                     <div
-                      className="ant-space ant-space-horizontal ant-space-align-center"
+                      className="ant-row board__row board__row--deactivated"
+                      style={Object {}}
                     >
                       <div
-                        className="ant-space-item"
+                        className="ant-col board__col board__col--first ellipsis ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-5"
                         style={Object {}}
                       >
-                        <span
-                          className="strike"
+                        <div
+                          className="board__col__value ellipsis"
                         >
-                          Test member
-                        </span>
+                          <div
+                            className="ant-space ant-space-horizontal ant-space-align-center"
+                          >
+                            <div
+                              className="ant-space-item"
+                              style={Object {}}
+                            >
+                              <span
+                                className="strike"
+                              >
+                                Test member
+                              </span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div
+                        className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-8 ant-col-xl-7"
+                        style={Object {}}
+                      >
+                        <div
+                          className="board__col__value ellipsis"
+                        />
+                      </div>
+                      <div
+                        className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-8 ant-col-xl-6"
+                        style={Object {}}
+                      >
+                        <div
+                          className="board__col__value ellipsis"
+                        />
+                      </div>
+                      <div
+                        className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-8 ant-col-xl-6"
+                        style={Object {}}
+                      >
+                        <div
+                          className="board__col__value ellipsis"
+                        />
                       </div>
                     </div>
                   </div>
                 </div>
+              </div>
+              <div
+                className="ant-collapse-item ant-collapse-item-active color-blue"
+              >
                 <div
-                  className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-19"
-                  style={Object {}}
+                  aria-expanded="true"
+                  className="ant-collapse-header board__team-header"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <span
+                    aria-label="right"
+                    className="anticon anticon-right ant-collapse-arrow"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="right"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      style={
+                        Object {
+                          "msTransform": "rotate(90deg)",
+                          "transform": "rotate(90deg)",
+                        }
+                      }
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
+                      />
+                    </svg>
+                  </span>
+                  test-smoke-team2
+                </div>
+                <div
+                  className="ant-collapse-content ant-collapse-content-active"
+                  role={null}
                 >
                   <div
-                    className="board__col__value ellipsis"
+                    className="ant-collapse-content-box"
                   />
                 </div>
               </div>
               <div
-                className="ant-row board__row board__row--deactivated"
-                style={Object {}}
+                className="ant-collapse-item ant-collapse-item-active color-white"
               >
                 <div
-                  className="ant-col board__col board__col--first ellipsis ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-5"
-                  style={Object {}}
+                  aria-expanded="true"
+                  className="ant-collapse-header board__team-header"
+                  onClick={[Function]}
+                  onKeyPress={[Function]}
+                  role="button"
+                  tabIndex={0}
+                >
+                  <span
+                    aria-label="right"
+                    className="anticon anticon-right ant-collapse-arrow"
+                    role="img"
+                  >
+                    <svg
+                      aria-hidden="true"
+                      data-icon="right"
+                      fill="currentColor"
+                      focusable="false"
+                      height="1em"
+                      style={
+                        Object {
+                          "msTransform": "rotate(90deg)",
+                          "transform": "rotate(90deg)",
+                        }
+                      }
+                      viewBox="64 64 896 896"
+                      width="1em"
+                    >
+                      <path
+                        d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"
+                      />
+                    </svg>
+                  </span>
+                  &lt;no team&gt;
+                </div>
+                <div
+                  className="ant-collapse-content ant-collapse-content-active"
+                  role={null}
                 >
                   <div
-                    className="board__col__value ellipsis"
+                    className="ant-collapse-content-box"
                   >
                     <div
-                      className="ant-space ant-space-horizontal ant-space-align-center"
+                      className="color-white"
                     >
                       <div
-                        className="ant-space-item"
+                        className="ant-row board__row board__row--deactivated"
                         style={Object {}}
                       >
-                        <span
-                          className="strike"
+                        <div
+                          className="ant-col board__col board__col--first ellipsis ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-5"
+                          style={Object {}}
                         >
-                          Test member2
-                        </span>
+                          <div
+                            className="board__col__value ellipsis"
+                          >
+                            <div
+                              className="ant-space ant-space-horizontal ant-space-align-center"
+                            >
+                              <div
+                                className="ant-space-item"
+                                style={Object {}}
+                              >
+                                <span
+                                  className="strike"
+                                >
+                                  Test member2
+                                </span>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div
+                          className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-8 ant-col-xl-7"
+                          style={Object {}}
+                        >
+                          <div
+                            className="board__col__value ellipsis"
+                          />
+                        </div>
+                        <div
+                          className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-8 ant-col-xl-6"
+                          style={Object {}}
+                        >
+                          <div
+                            className="board__col__value ellipsis"
+                          />
+                        </div>
+                        <div
+                          className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-8 ant-col-lg-8 ant-col-xl-6"
+                          style={Object {}}
+                        >
+                          <div
+                            className="board__col__value ellipsis"
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-                <div
-                  className="ant-col board__col ant-col-xs-24 ant-col-sm-24 ant-col-md-24 ant-col-lg-24 ant-col-xl-19"
-                  style={Object {}}
-                >
-                  <div
-                    className="board__col__value ellipsis"
-                  />
                 </div>
               </div>
             </div>

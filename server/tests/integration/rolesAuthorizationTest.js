@@ -2,14 +2,11 @@
 /* eslint import/no-extraneous-dependencies:0 */
 const chai = require("chai")
 const chaiHttp = require("chai-http")
-const mongoose = require("mongoose")
 const app = require("../../index")
 const keys = require("../../config/keys")
-const UserModel = require("../../app/model/models/User")
 const roleTests = require("./data/roles.access")
 const { prepareTestBoard, cleanTestBoard } = require("../helpers/prepareTestBoard")
-
-const User = mongoose.model(UserModel.SCHEMA)
+const { prepareTestUser, cleanTestUser } = require("../helpers/prepareTestUser")
 
 // Configure chai
 chai.use(chaiHttp)
@@ -78,7 +75,7 @@ const testDeleteEndpoint = (endpoint, test) => (done) => {
 
 describe("Integration tests: Role access", () => {
   before(async function() {
-    user = await User.findOne({ email: keys.testUserAdminGmail })
+    user = await prepareTestUser('TEST', keys.testUserAdminGmail)
     await prepareTestBoard(user, false, false)
   })
 
@@ -133,6 +130,7 @@ describe("Integration tests: Role access", () => {
 
   after(async function() {
     await cleanTestBoard()
+    await cleanTestUser(keys.testUserAdminGmail)
     app.request.user = undefined
   })
 })

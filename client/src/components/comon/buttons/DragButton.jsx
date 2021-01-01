@@ -17,7 +17,7 @@ function DragButton({ provider, className, size }) {
 }
 
 DragButton.propTypes = {
-  provider: PropTypes.object.isRequired,
+  provider: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object])).isRequired,
   className: PropTypes.string,
   size: PropTypes.string,
 }

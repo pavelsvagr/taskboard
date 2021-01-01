@@ -1,6 +1,5 @@
 import React from "react"
 import PropTypes from "prop-types"
-import UserAvatar from "./UserAvatar"
 
 function SiteContent({ children }) {
   return (
@@ -10,11 +9,11 @@ function SiteContent({ children }) {
   )
 }
 
-UserAvatar.propTypes = {
+SiteContent.propTypes = {
   children: PropTypes.node,
 }
 
-UserAvatar.defaultProps = {
+SiteContent.defaultProps = {
   children: null,
 }
 

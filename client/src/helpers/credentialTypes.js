@@ -10,7 +10,7 @@ export const credentialOptions = [
 ]
 
 const credentialTypes = {}
-for (let i = 0; i < credentialOptions.length; i++) {
+for (let i = 0; i < credentialOptions.length; i+=1) {
   const option = credentialOptions[i]
   credentialTypes[option.value] = option
 }

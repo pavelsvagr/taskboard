@@ -2,7 +2,7 @@ import React from "react"
 import {
   CheckCircleOutlined,
   ContainerOutlined,
-  CopyOutlined,
+  CopyOutlined, EditOutlined,
   EllipsisOutlined,
   ScissorOutlined,
   StopOutlined,
@@ -17,7 +17,7 @@ import {
   changeBoardDate,
   copyBoardRow,
   cutBoardRow,
-  deactivateBoardMember,
+  deactivateBoardMember, editMemberNickname,
   pasteBoardRow,
 } from "../../../../actions/boardToolsAction"
 import { fetchBoardSettings } from "../../../../actions"
@@ -35,18 +35,26 @@ function MemberDropdown({
   cutBoardRow: cut,
   deactivateBoardMember: deactivate,
   activateBoardMember: activate,
+  editMemberNickname: editNickname
 }) {
   const handleDeactivate = () => deactivate(board, date, member, settings)
   const handleActivate = () => activate(board, date, member, settings)
   const handleCopy = () => copy(item)
   const handleCut = () => cut(board, item)
-  const handlePaste = () => {
-    console.log(date)
-    paste(board, date, member, itemCopy, item)
-  }
+  const handlePaste = () => paste(board, date, member, itemCopy, item)
+  const handleChangeNickname = () => editNickname(member)
 
   const actions = []
   if (member?.user?.active) {
+    actions.push(
+      {
+        key: "nickname",
+        icon: <EditOutlined />,
+        name: "Change board name",
+        handler: handleChangeNickname,
+      }
+    )
+
     actions.push(
       settings?.deactivated?.includes(member?._id)
         ? {
@@ -131,6 +139,7 @@ MemberDropdown.propTypes = {
   cutBoardRow: PropTypes.func.isRequired,
   deactivateBoardMember: PropTypes.func.isRequired,
   activateBoardMember: PropTypes.func.isRequired,
+  editMemberNickname: PropTypes.func.isRequired,
   disabled: PropTypes.bool,
 }
 
@@ -158,4 +167,5 @@ export default connect(mapStateToProps, {
   activateBoardMember,
   fetchBoardSettings,
   changeBoardDate,
+  editMemberNickname
 })(MemberDropdown)

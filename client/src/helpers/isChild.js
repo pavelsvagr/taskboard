@@ -1,4 +1,5 @@
-export function isChild(element, classname) {
+
+export default function isChild(element, classname) {
   if (
     typeof element.className !== "object" &&
     element.className.split(" ").indexOf(classname) >= 0

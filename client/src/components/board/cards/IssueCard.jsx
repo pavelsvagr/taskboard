@@ -2,7 +2,7 @@ import React from "react"
 import moment from "moment"
 
 import { Card, Descriptions, Skeleton, Tag } from "antd"
-import { getIssueTypeColor } from "helpers/issueTypeColors"
+import getIssueTypeColor from "helpers/getIssueTypeColors"
 import PropTypes from "prop-types"
 
 const IssueCard = ({ issue, className = "", onClick }) => {

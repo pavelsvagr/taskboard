@@ -1,27 +1,14 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
+import React, {Component} from "react"
+import {connect} from "react-redux"
 
-import { Button, Spin, Tag, Tooltip } from "antd"
-import {
-  CrownOutlined,
-  DeleteOutlined,
-  DownSquareOutlined,
-  UpSquareOutlined,
-} from "@ant-design/icons"
-import {
-  createBoardMembers,
-  deleteBoardMember,
-  SUBJECT_BOARD_MEMBERS,
-  updateBoardMember,
-} from "actions"
+import {Button, Spin, Table, Tag, Tooltip} from "antd"
+import {CrownOutlined, DeleteOutlined, DownSquareOutlined, UpSquareOutlined,} from "@ant-design/icons"
+import {createBoardMembers, deleteBoardMember, SUBJECT_BOARD_MEMBERS, updateBoardMember,} from "actions"
 
 import Role from "@shared/security/roles"
 import BoardRole from "@shared/security/rolesBoard"
-import { higherRoleBoard, lowerRoleBoard } from "@shared/security/roleTree"
-import UserMemberForm, {
-  TYPE_BOARD_MEMBERS,
-} from "components/teams/forms/UserMemberForm"
-import EditableTable from "components/comon/grids/EditableTable"
+import {higherRoleBoard, lowerRoleBoard} from "@shared/security/roleTree"
+import UserMemberForm, {TYPE_BOARD_MEMBERS,} from "components/teams/forms/UserMemberForm"
 import getBoardRoleColor from "helpers/boardRoles"
 import EmptyData from "components/comon/data/EmptyData"
 import UnlockAccess from "components/comon/security/UnlockAccess"
@@ -38,18 +25,10 @@ class BoardMembersGrid extends Component {
       {
         dataIndex: "nickname",
         title: "Name on board",
-        editable: true,
-        onSave: (value) => {
-          const { members, board, updateBoardMember: updateMember } = this.props
-
-          const editedMember = members.find((m) => m._id === value._id)
-          if (editedMember && editedMember.nickname === value.nickname.trim()) {
-            return
-          }
-          updateMember(board.identifier, value._id, {
-            nickname: value.nickname.trim(),
-          })
-        },
+      },
+      {
+        dataIndex: ["user", "name"],
+        title: "Name",
       },
       {
         dataIndex: ["user", "email"],
@@ -148,11 +127,12 @@ class BoardMembersGrid extends Component {
             board={board}
             taken={taken}
           />
-          <EditableTable
+          <Table
             size="small"
             rowKey="_id"
             dataSource={members}
             columns={this.columns}
+            pagination={{position: ['bottomCenter']}}
             locale={{
               emptyText: (
                 <EmptyData description={`${board.name} has no member.`} />

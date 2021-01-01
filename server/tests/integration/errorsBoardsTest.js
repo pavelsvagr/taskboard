@@ -3,16 +3,13 @@
 
 const chai = require("chai")
 const chaiHttp = require("chai-http")
-const mongoose = require("mongoose")
 const app = require("../../index")
 const keys = require("../../config/keys")
-const UserModel = require("../../app/model/models/User")
 
 const testValidation = require("./data/validation.boards.js")
 
 const { prepareTestBoard, cleanTestBoard } = require("../helpers/prepareTestBoard")
-
-const User = mongoose.model(UserModel.SCHEMA)
+const { prepareTestUser, cleanTestUser } = require("../helpers/prepareTestUser")
 
 // Configure chai
 chai.use(chaiHttp)
@@ -23,7 +20,7 @@ let board
 
 describe("Integration tests: Board routes errors", () => {
   before(async function() {
-    user = await User.findOne({ email: keys.testUserAdminGmail })
+    user = await prepareTestUser('TEST', keys.testUserAdminGmail)
     board = await prepareTestBoard(user, false)
     app.request.user = user
   })
@@ -92,7 +89,8 @@ describe("Integration tests: Board routes errors", () => {
     }
   })
   after(async function() {
-    cleanTestBoard()
+    await cleanTestBoard()
+    await cleanTestUser(keys.testUserAdminGmail)
     app.request.user = undefined
   })
 })
