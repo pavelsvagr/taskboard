@@ -157,7 +157,7 @@ module.exports = (app) => {
 
   // Board settings
   /**
-   * @api {get} /api/boards/:identifier/settings/:date Get board settings
+   * @api {get} /api/boards/:identifier/settings/:date Get settings
    * @apiGroup Board
    * @apiParam (url) {String} identifier      Identifier of the board
    * @apiParam (url) {String} date            Date in ISO8601 format
@@ -181,7 +181,7 @@ module.exports = (app) => {
     BoardSettingsController.get
   )
   /**
-   * @api {delete} /api/boards/:identifier/settings/:date Delete board settings
+   * @api {delete} /api/boards/:identifier/settings/:date Delete settings
    * @apiGroup Board
    * @apiParam (url) {String} identifier      Identifier of the board
    * @apiParam (url) {String} date            Date in ISO8601 format
@@ -198,7 +198,7 @@ module.exports = (app) => {
   )
 
   /**
-   * @api {put} /api/boards/:identifier/settings/:date Replaces board settings
+   * @api {put} /api/boards/:identifier/settings/:date Replaces settings
    * @apiGroup Board
    * @apiParam (url) {String} identifier      Identifier of the board
    * @apiParam (url) {String} date            Date in ISO8601 format
@@ -220,7 +220,7 @@ module.exports = (app) => {
 
   // Items
   /**
-   * @api {get} /api/boards/:identifier/items?from=:from&to=:to Get board items
+   * @api {get} /api/boards/:identifier/items?from=:from&to=:to Get items
    * @apiGroup Board
    * @apiParam (url) {String} identifier      Identifier of the board
    * @apiParam (query) {String} from          Date in ISO8601 format
@@ -258,7 +258,7 @@ module.exports = (app) => {
   )
 
   /**
-   * @api {post} /api/boards/:identifier/items Create or copy board items
+   * @api {post} /api/boards/:identifier/items Create or copy items
    * @apiGroup Board
    * @apiParam (url) {String} identifier        Identifier of the board
    * @apiParam (query) {String} [sourceFrom]    Date in ISO8601 format
@@ -287,7 +287,7 @@ module.exports = (app) => {
   )
 
   /**
-   * @api {delete} /api/boards/:identifier/items?dateFrom=:dateFrom&dateTo=:dateTo Delete board items
+   * @api {delete} /api/boards/:identifier/items?dateFrom=:dateFrom&dateTo=:dateTo Delete items
    * @apiGroup Board
    * @apiParam (query) {String} [dateFrom]    Date in ISO8601 format
    * @apiParam (query) {String} [dateTo]      Date in ISO8601 format
@@ -306,7 +306,7 @@ module.exports = (app) => {
   )
 
   /**
-   * @api {put} /api/boards/:identifier/items/:id Replaces board item
+   * @api {put} /api/boards/:identifier/items/:id Replace item
    * @apiGroup Board
    * @apiParam (url) {String} identifier        Identifier of the board
    * @apiParam (url) {String} id                Id of the board item
@@ -353,7 +353,7 @@ module.exports = (app) => {
 
   // Members
   /**
-   * @api {get} /api/boards/:identifier/members List board members
+   * @api {get} /api/boards/:identifier/members List members
    * @apiGroup Board
    * @apiParam (url) {String} identifier        Identifier of the board
    *
@@ -369,7 +369,7 @@ module.exports = (app) => {
   )
 
   /**
-   * @api {put} /api/boards/:identifier/members Replace board members
+   * @api {put} /api/boards/:identifier/members Replace members
    * @apiGroup Board
    * @apiParam (url) {String} identifier        Identifier of the board
    * @apiParam (body) {array} body              Array of member objects.
@@ -389,7 +389,7 @@ module.exports = (app) => {
 
 
   /**
-   * @api {post} /api/boards/:identifier/members Create new board members.
+   * @api {post} /api/boards/:identifier/members Create new members.
    * @apiGroup Board
    * @apiParam (url) {String} identifier        Identifier of the board
    * @apiParam (body) {array} body              Array of user ids.
@@ -405,7 +405,7 @@ module.exports = (app) => {
   )
 
   /**
-   * @api {delete} /api/boards/:identifier/members/:id Delete board member
+   * @api {delete} /api/boards/:identifier/members/:id Delete member
    * @apiGroup Board
    * @apiParam (url) {String} identifier        Identifier of the board
    * @apiParam (url) {String} id                Id of board member
@@ -423,7 +423,7 @@ module.exports = (app) => {
   )
 
   /**
-   * @api {patch} /api/boards/:identifier/members/:id Update part of member
+   * @api {patch} /api/boards/:identifier/members/:id Update member
    * @apiGroup Board
    * @apiParam (url) {String} identifier        Identifier of the board
    * @apiParam (url) {String} id                Id of board member

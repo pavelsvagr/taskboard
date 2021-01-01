@@ -1,4 +1,4 @@
-const { param, body } = require("express-validator")
+const { param } = require("express-validator")
 
 const Role = require("../../../shared/security/roles")
 const endpoints = require("../../../shared/api/endpoints")
@@ -31,7 +31,8 @@ module.exports = (app) => {
    * @apiSuccess {array} data List of credentials.
    * @apiSuccess {Number} count Count of all records for given parameters.
    * @apiSuccessExample {json} Success-Response:
-   *  "data":[
+   * {
+   * "data":[
    *  {
    *        "_id":"512f916cb2f221c27541534b",
    *        "name":"Redmine test",
@@ -42,6 +43,7 @@ module.exports = (app) => {
    *  "limit":25,
    *  "offset":0,
    *  "count":1
+   * }
    * @apiDescription Returns paginate of all credentials from database for given parameters. Requires mod or admin role.
    */
   app.get(

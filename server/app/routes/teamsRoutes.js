@@ -28,6 +28,34 @@ module.exports = (app) => {
   )
 
   // Teams
+  /**
+   * @api {get} /api/teams List teams
+   * @apiGroup Teams
+   * @apiParam (query) {Number} [limit=10]      Limit of returned records.
+   * @apiParam (query) {Number} [offset=0]      Actual page of viewed records.
+   * @apiParam (query) {String} [search]        Searches teams names, colors and identifiers.
+   * @apiParam (query) {String} [sort]          Sort by name, identifier or color.
+   *
+   * @apiSuccess {Number} limit Number of returned records.
+   * @apiSuccess {Number} offset Page of returned records.
+   * @apiSuccess {array} data List of teams.
+   * @apiSuccess {Number} count Count of all records for given parameters.
+   * @apiSuccessExample {json} Success-Response:
+   * {
+   *  "data":[
+   *  {
+   *        "_id":"512f916cb2f221c27541534b",
+   *        "name":"Test Team",
+   *        "identifier":"test-team",
+   *        "color":"white",
+   *     }
+   *  ],
+   *  "limit":25,
+   *  "offset":0,
+   *  "count":1
+   * }
+   * @apiDescription Returns paginate of all teams from database for given parameters.
+   */
   app.get(
     urlTeams,
     requireLogin,
@@ -39,6 +67,20 @@ module.exports = (app) => {
     TeamsController.getAll
   )
 
+  /**
+   * @api {get} /api/teams/:identifier Get single team
+   * @apiGroup Teams
+   * @apiParam (url) {String} identifier      Identifier of team
+   *
+   * @apiSuccessExample {json} Success-Response:
+   * {
+   *        "_id":"512f916cb2f221c27541534b",
+   *        "name":"Test Team",
+   *        "identifier":"test-team",
+   *        "color":"white",
+   * }
+   * @apiDescription Returns single team by given identifier.
+   */
   app.get(
     urlTeam,
     requireLogin,
@@ -46,6 +88,15 @@ module.exports = (app) => {
     TeamsController.get
   )
 
+  /**
+   * @api {post} /api/teams Create team
+   * @apiGroup Teams
+   * @apiParam (body) {String} name            Name of the team.
+   * @apiParam (body) {String} identifier      Unique identifier.
+   * @apiParam (body) {String} color           Name of the team color.
+   *
+   * @apiDescription Creates new team with no member. Returns created team.
+   */
   app.post(
     urlTeams,
     requireMod,
@@ -55,6 +106,13 @@ module.exports = (app) => {
     TeamsController.create
   )
 
+  /**
+   * @api {delete} /api/teams/:identifier Delete team
+   * @apiGroup Teams
+   * @apiParam (url) {String} identifier      Identifier of team
+   *
+   * @apiDescription Deletes specified team from board with all its members.
+   */
   app.delete(urlTeam, requireMod, requireTeam(), TeamsController.delete)
   app.patch(
     urlTeam,
@@ -68,6 +126,13 @@ module.exports = (app) => {
   )
 
   // Team members
+  /**
+   * @api {get} /api/teams/:identifier/members List team members
+   * @apiGroup Teams
+   * @apiParam (url) {String} identifier      Identifier of the team
+   *
+   * @apiDescription Returns members for given team
+   */
   app.get(
     urlTeamMembers,
     requireLogin,
@@ -77,6 +142,14 @@ module.exports = (app) => {
     requireTeam(),
     TeamsController.getMembers
   )
+  /**
+   * @api {put} /api/teams/:identifier/members Replace team members
+   * @apiGroup Teams
+   * @apiParam (url) {String} identifier      Identifier of the team.
+   * @apiParam (body) {Array} body            Collection of user ids that should be in team.
+   *
+   * @apiDescription Returns members for given team
+   */
   app.put(
     urlTeamMembers,
     requireMod,
@@ -88,6 +161,13 @@ module.exports = (app) => {
   )
 
   // Board teams
+  /**
+   * @api {get} /api/boards/:identifier/teams List board teams
+   * @apiGroup Teams
+   * @apiParam (url) {String} identifier      Identifier of the board.
+   *
+   * @apiDescription Returns all teams that are on specified board.
+   */
   app.get(
     urlBoardTeams,
     requireBoardMembership(),
@@ -98,6 +178,14 @@ module.exports = (app) => {
   )
 
   // Update members of board team
+  /**
+   * @api {put} /api/boards/:boardIdentifier/teams/:teamIdentifier/members Replace board team members
+   * @apiGroup Teams
+   * @apiParam (url) {String} identifier      Identifier of the board.
+   * @apiParam (body) {Array} members         Collection of member ids that should be in team
+   *
+   * @apiDescription Replaces members of the actual board.
+   */
   app.put(
     urlBoardTeamMembers,
     requireBoardAdmin("boardIdentifier"),
