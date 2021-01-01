@@ -156,14 +156,14 @@ exports.createNotification = async (type, board, user, author, { assignment, old
 /**
  * @param {User} user
  * @param {int} limit
- * @param {int} page
+ * @param {int} offset
  * @return {Promise<any>}
  */
-exports.getByUser = async (user, limit = 10, page = 1) => {
+exports.getByUser = async (user, limit = 10, offset = 0) => {
   const searchProps = {
     sort: { createdAt: -1 },
     limit,
-    offset: (page - 1) * limit
+    offset: offset * limit
   }
 
   const response = await notificationsRepository.findByUser(user._id, { ...searchProps, lean: true })

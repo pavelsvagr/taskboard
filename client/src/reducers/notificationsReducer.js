@@ -4,8 +4,12 @@ import {
   FETCH_NOTIFICATIONS,
   NEW_NOTIFICATION,
 } from "actions/types"
+import {addToPagination, removeFromPagination} from "../helpers/paginationManipulate"
 
-export default (state = null, action) => {
+export default (state = {
+  all: null,
+  unread: null
+}, action) => {
   const { type, payload } = action
 
   switch (type) {
@@ -13,34 +17,31 @@ export default (state = null, action) => {
       return (
         {
           ...state,
-          notifications: payload.notifications,
-          count: payload.count,
+          all: payload
         } || null
       )
 
     case DELETE_NOTIFICATION:
-      if (!state) {
-        return null
+      if (state?.all) {
+        return {
+          ...state,
+          all: removeFromPagination(state.all, payload),
+        }
       }
-      return {
-        ...state,
-        notifications: state?.notifications?.filter(
-          (m) => m._id !== action.payload._id
-        ),
-        count: state?.count ? state.count - 1 : 0,
-      }
+      return { new: action.payload }
 
     case FETCH_NOTIFICATION_UNREAD_COUNT:
       return { ...state, ...{ unread: payload } }
 
     case NEW_NOTIFICATION:
-      return {
-        unread: state?.unread ? state.unread + 1 : 1,
-        count: state?.count ? state.count + 1 : 1,
-        notifications: state?.notifications
-          ? [payload, ...state.notifications.slice(0, 9)]
-          : [payload],
+      if (state?.all) {
+        return {
+          ...state,
+          all: addToPagination(state.all, payload),
+          unread: state.unread ? state.unread + 1 : 1
+        }
       }
+      return state
 
     default:
       return state

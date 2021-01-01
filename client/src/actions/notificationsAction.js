@@ -13,14 +13,15 @@ export const SUBJECT_NOTIFICATIONS = "notifications"
 
 /**
  * Get all notifications for actual user from server
- * @param {int} page
+ * @param {int} offset
+ * @param {int} limit
  * @returns {function(...[*]=)}
  */
-export const fetchNotifications = (page = 1) => async (dispatch) => {
+export const fetchNotifications = (offset = 0, limit = 10) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_NOTIFICATIONS })
 
   const res = await axios
-    .get("/api/notifications", { params: { page } })
+    .get("/api/notifications", { params: { offset, limit } })
     .catch(errorDispatch(dispatch, SUBJECT_NOTIFICATIONS))
 
   if (res) {

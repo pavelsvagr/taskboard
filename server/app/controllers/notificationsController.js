@@ -9,17 +9,14 @@ const notificationsRepository = require("../model/repositories/NotificationsRepo
  */
 exports.getNotifications = async (req, res) => {
   const { limit = 10, offset = 0 } = req.query
-
-  const page = offset + 1
-
   const count = await notificationsManager.getCountByUser(req.user)
-  const notifications = await notificationsManager.getByUser(req.user, limit, page)
-  res.send(
-    {
-      count,
-      notifications
-    }
-  )
+  const notifications = await notificationsManager.getByUser(req.user, limit, offset)
+  res.send({
+    count,
+    data: notifications,
+    offset,
+    limit,
+  })
 }
 
 /**

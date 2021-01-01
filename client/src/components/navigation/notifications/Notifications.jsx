@@ -1,20 +1,15 @@
 import "./notifications.sass"
 
-import React, { Component } from "react"
-import { connect } from "react-redux"
+import React, {Component} from "react"
+import {connect} from "react-redux"
 import PropTypes from "prop-types"
 
-import {
-  deleteNotification,
-  fetchNotifications,
-  fetchNotificationsCount,
-  SUBJECT_NOTIFICATIONS,
-} from "actions"
+import {deleteNotification, fetchNotifications, fetchNotificationsCount, SUBJECT_NOTIFICATIONS,} from "actions"
 import EmptyData from "components/comon/data/EmptyData"
-import { Modal, Pagination, Spin, Tag } from "antd"
-import LoadingShape from "types/loading"
-import NotificationShape from "types/notifications"
+import {Modal, Spin, Tag} from "antd"
 import NotificationCard from "./NotificationCard"
+import DataPagination from "../../board/forms/DataPagination"
+import shapes from "../../../types"
 
 class Notifications extends Component {
   componentDidMount() {
@@ -27,21 +22,22 @@ class Notifications extends Component {
   }
 
   componentWillUnmount() {
-    const { fetchNotificationsCount: action } = this.props
+    const {fetchNotificationsCount: action} = this.props
     action()
   }
 
-  handleChangePage = (page = 1) => {
+  handleChangePage = (page, perPage) => {
     const {
       fetchNotifications: actionAll,
       fetchNotificationsCount: actionCount,
     } = this.props
-    actionAll(page)
+    actionAll(page, perPage)
     actionCount()
   }
 
   render() {
-    const { notifications, onClose, loading, count, unread } = this.props
+    const {notifications, onClose, loading, unread} = this.props
+    const {data = [], limit = 0, offset = 0, count = 0} = notifications || {}
 
     return (
       <Modal visible closable onCancel={onClose} footer={null} width={1200}>
@@ -50,21 +46,26 @@ class Notifications extends Component {
           <div className="notifications__status-bar">
             <Tag color={unread ? "red" : "default"}>{`${unread} new`}</Tag>
           </div>
-          {notifications && notifications.length ? (
+          {data?.length ? (
             <>
               <div>
-                {notifications.map((notification) => (
+                {data.map((notification) => (
                   <NotificationCard
                     key={notification._id}
                     notification={notification}
                   />
                 ))}
               </div>
-              <Pagination
-                defaultCurrent={1}
-                total={count}
-                onChange={this.handleChangePage}
-              />
+              <div className="text-center">
+                <DataPagination
+                  search={null}
+                  count={count}
+                  limit={limit}
+                  offset={offset}
+                  onFetch={this.handleChangePage}
+                  showSizeChanger
+                />
+              </div>
             </>
           ) : (
             <EmptyData description="You have no notification now" />
@@ -79,24 +80,21 @@ Notifications.propTypes = {
   fetchNotifications: PropTypes.func.isRequired,
   fetchNotificationsCount: PropTypes.func.isRequired,
   onClose: PropTypes.func.isRequired,
-  loading: LoadingShape,
-  notifications: PropTypes.arrayOf(NotificationShape),
-  count: PropTypes.number,
+  loading: shapes.loading,
+  notifications: shapes.paginate(shapes.notifications),
   unread: PropTypes.number,
 }
 
 Notifications.defaultProps = {
   loading: null,
-  count: null,
   notifications: null,
   unread: null,
 }
 
-function mapStateToProps({ notifications, loading }) {
+function mapStateToProps({notifications, loading}) {
   return {
-    notifications: notifications.notifications,
+    notifications: notifications?.all,
     unread: notifications.unread,
-    count: notifications.count,
     loading,
   }
 }
