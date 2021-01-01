@@ -13,7 +13,7 @@ exports.update = async (req, res) => {
 
   let boardSettings = await boardSettingsRepository.findBy(
     res.locals.board,
-    date
+    new Date(`${date}T00:00:00.000Z`)
   )
   const isNew = !boardSettings
 

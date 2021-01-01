@@ -42,11 +42,15 @@ class BoardItems extends Component {
     const { search } = location
 
     let finalDate = date
+
     if (search) {
       const params = queryString.parse(search)
       finalDate = moment(params.date)
     }
-    [finalDate] = getDateFromTo(finalDate)
+    [finalDate] = getDateFromTo(finalDate, board.intervals)
+
+    console.log(date)
+    console.log(finalDate)
 
     if (date.format("YYYY-MM-DD") !== finalDate.format("YYYY-MM-DD")) {
       changeDate(board, finalDate, false)

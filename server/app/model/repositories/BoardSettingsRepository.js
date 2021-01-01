@@ -8,7 +8,7 @@ class BoardSettingsRepository extends MongooseRepository {
   /**
    *
    * @param {Board} board
-   * @param {date} date
+   * @param {Date} date
    * @returns {Promise<*>}
    */
   async findBy(board, date) {

@@ -85,6 +85,7 @@
         display: flex
         justify-content: space-between
 
+
   &__col
     display: flex
     position: relative
@@ -98,7 +99,15 @@
 
       &__option
         display: flex
-        justify-content: space-between
+        align-items: center
+        justify-content: left
+
+        div.push
+          margin-left: auto
+
+        div
+          text-overflow: ellipsis
+          overflow: hidden
 
     &--header
       padding-bottom: $space-xs

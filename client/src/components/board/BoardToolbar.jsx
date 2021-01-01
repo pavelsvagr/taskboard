@@ -39,6 +39,8 @@ class BoardToolbar extends Component {
       newSettings = { priorities, deactivated: [] }
     }
 
+    console.log(boardTools.date)
+
     updateAction(board.identifier, boardTools.date, newSettings, send)
   }
 

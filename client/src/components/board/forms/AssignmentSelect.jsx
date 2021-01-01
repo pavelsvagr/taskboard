@@ -131,27 +131,31 @@ class AssignmentSelect extends Component {
               label={assignment.title}
             >
               <div className="board__col__inline-edit__option">
-                <span>{assignment.title}</span>
+                <div>{assignment.title}</div>
                 {selected &&
                   selected[assignment.id] &&
                   value?.id !== assignment.id && (
-                    <Tag className={`color-${color}`}>
-                      p
-                      {selected[assignment.id]}
-                    </Tag>
+                    <div className="push">
+                      <Tag className={`color-${color}`}>
+                        p
+                        {selected[assignment.id]}
+                      </Tag>
+                    </div>
                   )}
-                <Dropdown
-                  trigger={['click']}
-                  overlay={
+                <div className={selected && selected[assignment.id] && value?.id !== assignment.id ? "" : "push"}>
+                  <Dropdown
+                    trigger={['click']}
+                    overlay={
                     board.assignment === "projects" ? (
                       <ProjectCard project={assignment} className="shadow" onClick={e => e.stopPropagation()} />
                     ) : (
                       <IssueCard issue={assignment} className="shadow" onClick={e => e.stopPropagation()} />
                     )
-                  }
-                >
-                  <EyeOutlined className="ant-dropdown-link" onClick={e => e.stopPropagation()} />
-                </Dropdown>
+                    }
+                  >
+                    <EyeOutlined className="ant-dropdown-link" onClick={e => e.stopPropagation()} />
+                  </Dropdown>
+                </div>
               </div>
             </Select.Option>
           ))}
