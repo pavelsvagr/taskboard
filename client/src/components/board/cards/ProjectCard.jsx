@@ -6,7 +6,7 @@ import PropTypes from "prop-types"
 
 const ProjectCard = ({ project, className = "", onClick }) => {
   return project ? (
-    <Card title={project.title} className={className} onClick={onClick}>
+    <Card title={project.title} className={`card--full-content ${className}`} onClick={onClick}>
       <Descriptions size="small" column={1}>
         <Descriptions.Item key="id" label="ID">
           {project.id}
