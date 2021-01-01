@@ -16,7 +16,16 @@ import shapes from "../../types"
 import { fetchCredentials, SUBJECT_CREDENTIALS } from "../../actions"
 import DataPagination from "../board/forms/DataPagination"
 
-const CredentialsBox = ({ onCardClick, onNew, gutter, sizing, data, actions, loading, fetchCredentials: fetch }) => {
+const CredentialsBox = ({
+  onCardClick,
+  onNew,
+  gutter,
+  sizing,
+  data,
+  actions,
+  loading,
+  fetchCredentials: fetch,
+}) => {
   const { data: credentials = [], offset = 0, limit = 0, count = 0 } = data
   const [search, handleSetSearch] = useState("")
 
@@ -103,9 +112,17 @@ CredentialsBox.propTypes = {
   onNew: PropTypes.func,
   loading: shapes.loading,
   actions: PropTypes.arrayOf(PropTypes.object),
-  gutter: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
-  sizing: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
-  data: shapes.paginate(shapes.credentials)
+  gutter: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
+  sizing: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
+  data: shapes.paginate(shapes.credentials),
 }
 
 CredentialsBox.defaultProps = {
@@ -115,9 +132,8 @@ CredentialsBox.defaultProps = {
   data: {},
   gutter: null,
   sizing: null,
-  loading: null
+  loading: null,
 }
-
 
 function mapStateToProps({ credentials, loading }) {
   return { data: credentials?.all, loading }

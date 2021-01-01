@@ -1,7 +1,12 @@
 import moment from "moment"
 
 export default {
-  auth: { _id: "test-user", email: "test@example.org", name: "Test", role: "user" },
+  auth: {
+    _id: "test-user",
+    email: "test@example.org",
+    name: "Test",
+    role: "user",
+  },
   boards: {
     board: {
       _id: "test-smoke",
@@ -10,7 +15,7 @@ export default {
       name: "test-smoke",
       owner: "test-member",
       assignment: "projects",
-      intervals: "weeks"
+      intervals: "weeks",
     },
     all: [
       {
@@ -20,8 +25,8 @@ export default {
         name: "test-smoke",
         owner: "test-member",
         assignment: "projects",
-        intervals: "weeks"
-      }
+        intervals: "weeks",
+      },
     ],
     members: [
       {
@@ -30,7 +35,12 @@ export default {
         board: "test-smoke",
         order: 1,
         role: "member",
-        user: { _id: "test-user", email: "test@example.org", name: "Test", role: "user" }
+        user: {
+          _id: "test-user",
+          email: "test@example.org",
+          name: "Test",
+          role: "user",
+        },
       },
       {
         _id: "test-member2",
@@ -38,10 +48,10 @@ export default {
         board: "test-smoke",
         order: 2,
         role: "member",
-        user: { email: "test2@example.org", name: "Test", role: "user" }
-      }
+        user: { email: "test2@example.org", name: "Test", role: "user" },
+      },
     ],
-    teams: []
+    teams: [],
   },
   boardItems: [
     {
@@ -51,10 +61,10 @@ export default {
         {
           id: "test-a",
           title: "test-priority-1",
-          url: "https://fit.cvut.cz"
-        }
-      ]
-    }
+          url: "https://fit.cvut.cz",
+        },
+      ],
+    },
   ],
   teams: {
     all: [
@@ -62,25 +72,24 @@ export default {
         _id: "test-smoke-team",
         identifier: "test-smoke-team",
         name: "test-smoke-team",
-        color: "white"
+        color: "white",
       },
       {
         _id: "test-smoke-team2",
         identifier: "test-smoke-team2",
         name: "test-smoke-team2",
-        color: "blue"
-      }
-    ]
+        color: "blue",
+      },
+    ],
   },
   boardTools: {
     editMode: false,
     boardCopy: null,
     itemCopy: null,
-    assignment: null
+    assignment: null,
   },
   credentials: {
-    all: []
-  }
-  ,
-  boardAssignments: []
+    all: [],
+  },
+  boardAssignments: [],
 }

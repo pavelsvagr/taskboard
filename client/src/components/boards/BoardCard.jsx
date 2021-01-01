@@ -52,7 +52,7 @@ const BoardCard = ({ onClick, actions = [], search, board }) => {
         size="small"
         column={1}
         colon={false}
-        className={`descriptions--iconic  card-${  board.credentials.type}`}
+        className={`descriptions--iconic  card-${board.credentials.type}`}
       >
         <Descriptions.Item
           key="identifier"
@@ -105,14 +105,14 @@ BoardCard.propTypes = {
   onClick: PropTypes.func,
   actions: PropTypes.arrayOf(PropTypes.object),
   search: PropTypes.string,
-  board: shapes.board
+  board: shapes.board,
 }
 
 BoardCard.defaultProps = {
   onClick: null,
   actions: [],
   search: null,
-  board: null
+  board: null,
 }
 
 export default BoardCard

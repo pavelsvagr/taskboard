@@ -13,7 +13,7 @@ function IntervalsSlider(props) {
   let value = 1
   const step = Math.floor(100 / (intervalsOptions.length - 1))
 
-  for (let i = 0; i < intervalsOptions.length; i+=1) {
+  for (let i = 0; i < intervalsOptions.length; i += 1) {
     marks[i * step] = intervalsOptions[i].label
     values[i * step] = intervalsOptions[i].value
     if (intervalsOptions[i].value === selected) {

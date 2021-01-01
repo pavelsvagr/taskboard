@@ -15,10 +15,10 @@ const ConfirmNameModal = (props) => {
         if (value === confirmName) {
           return Promise.resolve()
         }
-        return Promise.reject(new Error(`Not same as ${  confirmName}`))
+        return Promise.reject(new Error(`Not same as ${confirmName}`))
       },
-      message: `Not same as ${  confirmName}`
-    }
+      message: `Not same as ${confirmName}`,
+    },
   ]
 
   return (
@@ -53,11 +53,11 @@ const ConfirmNameModal = (props) => {
 ConfirmNameModal.propTypes = {
   confirmName: PropTypes.string.isRequired,
   onCancel: PropTypes.func,
-  onOk:PropTypes.func,
+  onOk: PropTypes.func,
   title: PropTypes.string,
-  text:PropTypes.node,
+  text: PropTypes.node,
   visible: PropTypes.bool,
-  danger: PropTypes.bool
+  danger: PropTypes.bool,
 }
 
 ConfirmNameModal.defaultProps = {
@@ -66,7 +66,7 @@ ConfirmNameModal.defaultProps = {
   title: "",
   text: "",
   visible: false,
-  danger: false
+  danger: false,
 }
 
 export default ConfirmNameModal

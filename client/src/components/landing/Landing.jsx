@@ -36,7 +36,13 @@ class Landing extends Component {
             >
               <Col span={24}>
                 <Row>
-                  <Col xs={24} sm={24} md={6} lg={8} className="landing__logo-container">
+                  <Col
+                    xs={24}
+                    sm={24}
+                    md={6}
+                    lg={8}
+                    className="landing__logo-container"
+                  >
                     <div className="landing__logo" />
                   </Col>
                   <Col xs={24} sm={24} md={16} lg={12} xl={10}>
@@ -46,12 +52,13 @@ class Landing extends Component {
                       {authErrors && (
                         <>
                           <div className="landing__title--error">
-                            {authErrors.message}
-                            {" "}
+                            {authErrors.message} 
+                            {' '}
                             <FrownOutlined />
                           </div>
                           <div className="landing__title--error-description">
-                            Contact administrator or log in with another account.
+                            Contact administrator or log in with another
+                            account.
                           </div>
                         </>
                       )}
@@ -73,16 +80,19 @@ class Landing extends Component {
 Landing.propTypes = {
   auth: PropTypes.oneOfType([UserShape, PropTypes.bool]),
   authErrors: PropTypes.objectOf(PropTypes.string),
-  fetchAuthErrors: PropTypes.func.isRequired
+  fetchAuthErrors: PropTypes.func.isRequired,
 }
 
 Landing.defaultProps = {
   auth: null,
-  authErrors: null
+  authErrors: null,
 }
 
 function mapStateToProps({ auth, authErrors }) {
   return { auth, authErrors }
 }
 
-export default connect(mapStateToProps, { fetchUser: fetchLoggedUser, fetchAuthErrors })(Landing)
+export default connect(mapStateToProps, {
+  fetchUser: fetchLoggedUser,
+  fetchAuthErrors,
+})(Landing)

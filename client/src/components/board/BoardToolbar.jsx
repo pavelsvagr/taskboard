@@ -2,7 +2,13 @@ import React, { Component } from "react"
 import { Route } from "react-router-dom"
 import { Button, Col, Row, Tooltip } from "antd"
 import DateSwitcher from "components/comon/inputs/DateSwitcher"
-import { ContainerOutlined, CopyOutlined, EditOutlined, SettingOutlined, SyncOutlined } from "@ant-design/icons"
+import {
+  ContainerOutlined,
+  CopyOutlined,
+  EditOutlined,
+  SettingOutlined,
+  SyncOutlined,
+} from "@ant-design/icons"
 import { getIntervalTypeColor } from "helpers/intervalTypes"
 import { connect } from "react-redux"
 import PropTypes from "prop-types"
@@ -22,12 +28,17 @@ import {
   changeEditMode,
   copyBoardTasks,
   pasteBoardTasks,
-  reloadTaskBoard
+  reloadTaskBoard,
 } from "../../actions/boardToolsAction"
 
 class BoardToolbar extends Component {
   changePriorities = (priorities, send) => {
-    const { settings, board, updateBoardSettings: updateAction, boardTools } = this.props
+    const {
+      settings,
+      board,
+      updateBoardSettings: updateAction,
+      boardTools,
+    } = this.props
 
     let newSettings
     if (settings) {
@@ -58,7 +69,12 @@ class BoardToolbar extends Component {
   }
 
   handleCopyBoard = () => {
-    const { copyBoardTasks: copyTasks, boardTools, board, settings } = this.props
+    const {
+      copyBoardTasks: copyTasks,
+      boardTools,
+      board,
+      settings,
+    } = this.props
     copyTasks(board, boardTools.date, settings)
   }
 
@@ -68,8 +84,8 @@ class BoardToolbar extends Component {
   }
 
   handleReload = () => {
-      const { reloadTaskBoard: reload, boardTools, board } = this.props
-      reload(board, boardTools.date)
+    const { reloadTaskBoard: reload, boardTools, board } = this.props
+    reload(board, boardTools.date)
   }
 
   handleDateChange = (date) => {
@@ -78,12 +94,14 @@ class BoardToolbar extends Component {
   }
 
   render() {
-    const { disabled, board, settings, boardTools} = this.props
+    const { disabled, board, settings, boardTools } = this.props
 
     const { editMode, boardCopy, date } = boardTools
 
-    const hasCopy = boardCopy &&
-      boardCopy?.fromDate.format("YYYY-MM-DD") !== getDateFromTo(date, board.intervals)[0].format("YYYY-MM-DD")
+    const hasCopy =
+      boardCopy &&
+      boardCopy?.fromDate.format("YYYY-MM-DD") !==
+        getDateFromTo(date, board.intervals)[0].format("YYYY-MM-DD")
 
     const tagColor = board
       ? getAssignmentTypeColor(board.assignment)
@@ -101,7 +119,7 @@ class BoardToolbar extends Component {
           className="board__toolbar__head"
           style={{
             margin: 0,
-            background: `linear-gradient(to right, ${tagColor}, ${tagIntervalColor})`
+            background: `linear-gradient(to right, ${tagColor}, ${tagIntervalColor})`,
           }}
         >
           <Col xs={24} sm={24} md={24} lg={6} xl={7} xxl={7} order={1}>
@@ -121,7 +139,7 @@ class BoardToolbar extends Component {
               buttonProps={{
                 className: "button--light",
                 ghost: true,
-                shape: "circle"
+                shape: "circle",
               }}
               disabled={!!disabled}
               selected={date}
@@ -175,9 +193,15 @@ class BoardToolbar extends Component {
                     />
                   </Tooltip>
                 )}
-                <Tooltip title={`${editMode ? "Turn off " : "Turn on "}edit mode`}>
+                <Tooltip
+                  title={`${editMode ? "Turn off " : "Turn on "}edit mode`}
+                >
                   <Button
-                    className={editMode ? "button--light button--active" : "button--light "}
+                    className={
+                      editMode
+                        ? "button--light button--active"
+                        : "button--light "
+                    }
                     icon={<EditOutlined />}
                     onClick={this.handleChangeMode}
                     {...buttonProps}
@@ -193,7 +217,8 @@ class BoardToolbar extends Component {
             path="/board/:identifier/settings"
             render={({ match }) => (
               <BoardSettingsModal
-                onClose={() => history.push(`/board/${match.params.identifier}`)}
+                onClose={() =>
+                  history.push(`/board/${match.params.identifier}`)}
                 onReload={this.handleReload}
               />
             )}
@@ -234,25 +259,31 @@ BoardToolbar.propTypes = {
     date: MomentPropTypes.momentObj.isRequired,
     editMode: PropTypes.bool.isRequired,
     boardCopy: PropTypes.shape({
-      fromDate: PropTypes.oneOfType([MomentPropTypes.momentObj, PropTypes.object]),
-      toDate: PropTypes.oneOfType([MomentPropTypes.momentObj, PropTypes.object]),
-      settings: SettingsShape
-    })
+      fromDate: PropTypes.oneOfType([
+        MomentPropTypes.momentObj,
+        PropTypes.object,
+      ]),
+      toDate: PropTypes.oneOfType([
+        MomentPropTypes.momentObj,
+        PropTypes.object,
+      ]),
+      settings: SettingsShape,
+    }),
   }).isRequired,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 }
 
 BoardToolbar.defaultProps = {
   board: null,
   settings: null,
-  disabled: false
+  disabled: false,
 }
 
 function mapStateToProps({ boardSettings, boards, boardTools }) {
   return {
     settings: boardSettings,
     boards: boards?.board,
-    boardTools
+    boardTools,
   }
 }
 

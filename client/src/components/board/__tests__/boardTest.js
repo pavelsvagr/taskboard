@@ -5,7 +5,7 @@ import fetchMock from "fetch-mock"
 import thunk from "redux-thunk"
 import configureMockStore from "redux-mock-store"
 import { Provider } from "react-redux"
-import { MemoryRouter } from 'react-router-dom'
+import { MemoryRouter } from "react-router-dom"
 import Board from "../Board"
 import testStore from "../../../helpers/tests/testAdminStore"
 import windowMedia from "../../../helpers/tests/windowMedia"
@@ -19,18 +19,17 @@ describe("Board.jsx", () => {
   })
 
   it("SMOKE: render", () => {
-    Object.defineProperty(window, 'matchMedia', windowMedia)
+    Object.defineProperty(window, "matchMedia", windowMedia)
     const store = mockStore(testStore)
 
     const div = document.createElement("div")
     ReactDOM.render(
       <Provider store={store}>
         <MemoryRouter>
-          <Board
-            identifier="test-smoke"
-            location={{ search: "" }}
-          />
+          <Board identifier="test-smoke" location={{ search: "" }} />
         </MemoryRouter>
-      </Provider>, div)
+      </Provider>,
+      div
+    )
   })
 })

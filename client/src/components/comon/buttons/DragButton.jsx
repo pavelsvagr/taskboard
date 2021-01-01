@@ -3,7 +3,7 @@ import { Button } from "antd"
 import { MenuOutlined } from "@ant-design/icons"
 import PropTypes from "prop-types"
 
-function DragButton({provider, className, size}) {
+function DragButton({ provider, className, size }) {
   return (
     <Button
       className={className}
@@ -19,12 +19,12 @@ function DragButton({provider, className, size}) {
 DragButton.propTypes = {
   provider: PropTypes.object.isRequired,
   className: PropTypes.string,
-  size: PropTypes.string
+  size: PropTypes.string,
 }
 
 DragButton.defaultProps = {
   className: null,
-  size: null
+  size: null,
 }
 
 export default DragButton

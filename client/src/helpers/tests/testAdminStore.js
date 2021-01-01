@@ -1,7 +1,12 @@
 import moment from "moment"
 
 export default {
-  auth: { _id: "test-user", email: "test@example.org", name: "Test", role: "admin" },
+  auth: {
+    _id: "test-user",
+    email: "test@example.org",
+    name: "Test",
+    role: "admin",
+  },
   boards: {
     board: {
       _id: "test-smoke",
@@ -10,7 +15,7 @@ export default {
       name: "test-smoke",
       owner: "test-member",
       assignment: "projects",
-      intervals: "weeks"
+      intervals: "weeks",
     },
     members: [
       {
@@ -19,7 +24,12 @@ export default {
         board: "test-smoke",
         order: 1,
         role: "owner",
-        user: { _id: "test-user", email: "test@example.org", name: "Test", role: "admin" }
+        user: {
+          _id: "test-user",
+          email: "test@example.org",
+          name: "Test",
+          role: "admin",
+        },
       },
       {
         _id: "test-member2",
@@ -27,8 +37,13 @@ export default {
         board: "test-smoke2",
         order: 1,
         role: "member",
-        user: { _id: "test-user2", email: "test2@example.org", name: "Test2", role: "user" }
-      }
+        user: {
+          _id: "test-user2",
+          email: "test2@example.org",
+          name: "Test2",
+          role: "user",
+        },
+      },
     ],
     teams: [
       {
@@ -36,15 +51,15 @@ export default {
         identifier: "test-smoke-team",
         name: "test-smoke-team",
         color: "white",
-        members: ["test-member"]
+        members: ["test-member"],
       },
       {
         _id: "test-smoke-team2",
         identifier: "test-smoke-team2",
         name: "test-smoke-team2",
         color: "blue",
-        members: []
-      }
+        members: [],
+      },
     ],
     all: [
       {
@@ -54,9 +69,9 @@ export default {
         name: "test-smoke",
         owner: "test-user",
         assignment: "projects",
-        intervals: "weeks"
-      }
-    ]
+        intervals: "weeks",
+      },
+    ],
   },
   teams: {
     all: [
@@ -64,9 +79,9 @@ export default {
         _id: "test-smoke-team",
         identifier: "test-smoke-team",
         name: "test-smoke-team",
-        color: "white"
-      }
-    ]
+        color: "white",
+      },
+    ],
   },
   boardItems: [
     {
@@ -76,19 +91,24 @@ export default {
         {
           id: "test-a",
           title: "test-priority-1",
-          url: "https://fit.cvut.cz"
-        }
-      ]
-    }
+          url: "https://fit.cvut.cz",
+        },
+      ],
+    },
   ],
   users: [
-    { _id: "test-user", email: "test@example.org", name: "Test", role: "admin" }
+    {
+      _id: "test-user",
+      email: "test@example.org",
+      name: "Test",
+      role: "admin",
+    },
   ],
   boardTools: {
     editMode: true,
     boardCopy: null,
     itemCopy: null,
-    assignment: null
+    assignment: null,
   },
   credentials: {
     all: [
@@ -98,8 +118,8 @@ export default {
         name: "test-credentials",
         type: "redmine",
         creator: "test-user",
-      }
-    ]
+      },
+    ],
   },
-  boardAssignments: []
+  boardAssignments: [],
 }

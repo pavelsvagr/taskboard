@@ -15,14 +15,14 @@ class TeamSelectGrid extends Component {
       dataIndex: "name",
       title: "Name",
       sorter: lexicalSort(false, (item) => item.name),
-      showSorterTooltip: false
+      showSorterTooltip: false,
     },
     {
       dataIndex: "identifier",
       title: "Identifier",
       sorter: lexicalSort(false, (item) => item.identifier),
       showSorterTooltip: false,
-      responsive: ["md"]
+      responsive: ["md"],
     },
     {
       dataIndex: "color",
@@ -35,7 +35,7 @@ class TeamSelectGrid extends Component {
           shape="circle"
           icon={<span />}
         />
-      )
+      ),
     },
     {
       key: "actions",
@@ -49,15 +49,14 @@ class TeamSelectGrid extends Component {
             onClick={() => this.handleDeleteTeam(record)}
           />
         </Space>
-      )
-    }
+      ),
+    },
   ]
-
 
   constructor(props) {
     super(props)
     this.state = {
-      selectedTeams: []
+      selectedTeams: [],
     }
   }
 
@@ -77,7 +76,7 @@ class TeamSelectGrid extends Component {
 
     const newTeams = []
     for (const id of selectedTeams) {
-      newTeams.push(teams.find(t => t._id === id))
+      newTeams.push(teams.find((t) => t._id === id))
     }
 
     onChange([...value, ...newTeams])
@@ -89,7 +88,7 @@ class TeamSelectGrid extends Component {
     const { selectedTeams } = this.state
 
     const disabled = {}
-    for(const v of value) {
+    for (const v of value) {
       disabled[v._id] = true
     }
 
@@ -118,7 +117,7 @@ class TeamSelectGrid extends Component {
           footer={null}
           pagination={false}
           locale={{
-            emptyText: <EmptyData description="Board uses no team." />
+            emptyText: <EmptyData description="Board uses no team." />,
           }}
         />
       </div>
@@ -129,17 +128,17 @@ class TeamSelectGrid extends Component {
 TeamSelectGrid.propTypes = {
   value: PropTypes.arrayOf(shapes.team),
   onChange: PropTypes.func,
-  teams: PropTypes.arrayOf(shapes.team)
+  teams: PropTypes.arrayOf(shapes.team),
 }
 
 TeamSelectGrid.defaultProps = {
   value: null,
   onChange: null,
-  teams: []
+  teams: [],
 }
 
 function mapStateToProps({ teams }) {
-  return {teams: teams?.all?.data}
+  return { teams: teams?.all?.data }
 }
 
-export default connect(mapStateToProps, {fetchTeams})(TeamSelectGrid)
+export default connect(mapStateToProps, { fetchTeams })(TeamSelectGrid)

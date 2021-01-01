@@ -1,6 +1,11 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { createBoardMembers, fetchUsers, SUBJECT_USERS, updateTeamMembers } from "actions"
+import {
+  createBoardMembers,
+  fetchUsers,
+  SUBJECT_USERS,
+  updateTeamMembers,
+} from "actions"
 
 import { Button, Col, Form, Row, Spin } from "antd"
 import UserSelect from "components/comon/inputs/UserSelect"
@@ -19,15 +24,15 @@ class UserMemberForm extends Component {
   formRef = React.createRef()
 
   initialValues = {
-    members: []
+    members: [],
   }
 
   // Items for form inputs
   items = {
     members: {
       name: "members",
-      rules: []
-    }
+      rules: [],
+    },
   }
 
   componentDidMount() {
@@ -43,13 +48,16 @@ class UserMemberForm extends Component {
       board,
       updateTeamMembers: postTeamMembers,
       createBoardMembers: postBoardMembers,
-      onSubmit
+      onSubmit,
     } = this.props
 
     const previous = taken || []
 
     if (type === TYPE_TEAM_MEMBERS) {
-      const newMembers = [...previous.map((item) => item._id), ...values.members]
+      const newMembers = [
+        ...previous.map((item) => item._id),
+        ...values.members,
+      ]
       postTeamMembers(team.identifier, newMembers)
     } else {
       postBoardMembers(board.identifier, values.members)
@@ -87,12 +95,17 @@ class UserMemberForm extends Component {
         >
           <Row gutter={[6, 0]}>
             <Col span={18}>
-              {renderAntItem("members", this.items.members, error,
+              {renderAntItem(
+                "members",
+                this.items.members,
+                error,
                 <UserSelect disabled={disabled} />
               )}
             </Col>
             <Col span={6}>
-              <Button htmlType="submit" type="primary" className="full-width">Add</Button>
+              <Button htmlType="submit" type="primary" className="full-width">
+                Add
+              </Button>
             </Col>
           </Row>
         </Form>
@@ -116,7 +129,7 @@ UserMemberForm.propTypes = {
   type: PropTypes.oneOf([TYPE_BOARD_MEMBERS, TYPE_TEAM_MEMBERS]).isRequired,
   fetchUsers: PropTypes.func.isRequired,
   createBoardMembers: PropTypes.func.isRequired,
-  updateTeamMembers: PropTypes.func.isRequired
+  updateTeamMembers: PropTypes.func.isRequired,
 }
 
 UserMemberForm.defaultProps = {
@@ -125,11 +138,11 @@ UserMemberForm.defaultProps = {
   loading: null,
   taken: [],
   team: null,
-  board: null
+  board: null,
 }
 
 export default connect(mapStateToProps, {
   updateTeamMembers,
   createBoardMembers,
-  fetchUsers
+  fetchUsers,
 })(UserMemberForm)

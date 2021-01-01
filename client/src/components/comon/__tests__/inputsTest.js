@@ -34,11 +34,7 @@ describe("Inputs", () => {
 
   it("Snapshot: FormSubmit.jsx", () => {
     Object.defineProperty(window, "matchMedia", windowMedia)
-    const tree = renderer
-      .create(
-        <FormSubmit title="test submit" />
-      )
-      .toJSON()
+    const tree = renderer.create(<FormSubmit title="test submit" />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 

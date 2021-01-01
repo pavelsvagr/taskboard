@@ -10,25 +10,26 @@ import BoardItemEditCell from "./BoardItemEditCell"
 import AssignmentButton from "../buttons/AssignmentButton"
 import UserAvatar from "../../comon/UserAvatar"
 import DragButton from "../../comon/buttons/DragButton"
-import { changeEditMode, showCellAssignment } from "../../../actions/boardToolsAction"
+import {
+  changeEditMode,
+  showCellAssignment,
+} from "../../../actions/boardToolsAction"
 import MemberDropdown from "./specials/MemberDropdown"
 import shapes from "../../../types"
 import { fetchBoardSettings } from "../../../actions"
 
-function BoardItemRow(
-  {
-    board,
-    member,
-    items,
-    cols,
-    settings,
-    index,
-    team,
-    editMode,
-    assignment,
-    showCellAssignment: onAssign
-  }
-) {
+function BoardItemRow({
+  board,
+  member,
+  items,
+  cols,
+  settings,
+  index,
+  team,
+  editMode,
+  assignment,
+  showCellAssignment: onAssign,
+}) {
   const memberItem = items[member._id] || null
   const assignments = memberItem ? memberItem.assignments : []
 
@@ -44,7 +45,9 @@ function BoardItemRow(
     }
   }
 
-  const disabled = !member?.user?.active || (settings && settings.deactivated.includes(member._id))
+  const disabled =
+    !member?.user?.active ||
+    (settings && settings.deactivated.includes(member._id))
   let rowClass = disabled ? "board__row board__row--deactivated" : "board__row"
   rowClass += board.hasAvatars ? " board__row--large" : ""
 
@@ -61,13 +64,21 @@ function BoardItemRow(
       <BoardItemCell
         key="user"
         className="board__col board__col--first ellipsis"
-        title={member.user.active ? member.nickname : <span className="strike">{member.nickname}</span>}
+        title={
+          member.user.active ? (
+            member.nickname
+          ) : (
+            <span className="strike">{member.nickname}</span>
+          )
+        }
         dragButton={editMode ? <DragButton provider={provided} /> : null}
-        toolbox={member.user.active && <MemberDropdown member={member} board={board} item={memberItem} />}
+        toolbox={
+          member.user.active && (
+            <MemberDropdown member={member} board={board} item={memberItem} />
+          )
+        }
         disabled={disabled}
-        avatar={board.hasAvatars ?
-          <UserAvatar user={member.user} />
-          : null}
+        avatar={board.hasAvatars ? <UserAvatar user={member.user} /> : null}
         span={getColSpan(0, cols.length, false)}
       />
       {cols.map((col) =>
@@ -82,7 +93,7 @@ function BoardItemRow(
             disabled={disabled}
             cellProps={{
               className: "board__col",
-              span: getColSpan(col + 1, cols.length, false)
+              span: getColSpan(col + 1, cols.length, false),
             }}
           />
         ) : rowItems[col] ? (
@@ -93,14 +104,24 @@ function BoardItemRow(
           >
             <UnlockForBoardAdmin
               lock={(
-                <AssignmentButton disabled={disabled} assignment={rowItems[col]} type="see" />
+                <AssignmentButton
+                  disabled={disabled}
+                  assignment={rowItems[col]}
+                  type="see"
+                />
               )}
             >
               <AssignmentButton
                 disabled={disabled}
                 assignment={rowItems[col]}
                 type="select"
-                onClick={() => onAssign(member._id, team?._id, rowItems[col].priority, memberItem)}
+                onClick={() =>
+                  onAssign(
+                    member._id,
+                    team?._id,
+                    rowItems[col].priority,
+                    memberItem
+                  )}
               />
             </UnlockForBoardAdmin>
           </BoardItemCell>
@@ -114,7 +135,8 @@ function BoardItemRow(
               <AssignmentButton
                 disabled={disabled}
                 type="add"
-                onClick={() => onAssign(member._id, team?._id, col + 1, memberItem)}
+                onClick={() =>
+                  onAssign(member._id, team?._id, col + 1, memberItem)}
               />
             </UnlockForBoardAdmin>
           </BoardItemCell>
@@ -142,7 +164,7 @@ BoardItemRow.propTypes = {
   cols: PropTypes.arrayOf(PropTypes.number).isRequired,
   index: PropTypes.number.isRequired,
   team: shapes.team,
-  assignment: shapes.assignment
+  assignment: shapes.assignment,
 }
 
 BoardItemRow.defaultProps = {
@@ -150,15 +172,24 @@ BoardItemRow.defaultProps = {
   editMode: false,
   items: [],
   team: null,
-  assignment: null
+  assignment: null,
 }
 
-function mapStateToProps({ boardTools, boardSettings: settings, boardAssignments }) {
-  return { editMode: boardTools.editMode, assignment: boardTools.assignment, settings, boardAssignments }
+function mapStateToProps({
+  boardTools,
+  boardSettings: settings,
+  boardAssignments,
+}) {
+  return {
+    editMode: boardTools.editMode,
+    assignment: boardTools.assignment,
+    settings,
+    boardAssignments,
+  }
 }
 
 export default connect(mapStateToProps, {
   changeEditMode,
   fetchBoardSettings,
-  showCellAssignment
+  showCellAssignment,
 })(BoardItemRow)

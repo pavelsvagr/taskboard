@@ -30,7 +30,9 @@ describe("Navigation.jsx", () => {
         <MemoryRouter>
           <Navigation location={{ pathname: "" }} />
         </MemoryRouter>
-      </Provider>, div)
+      </Provider>,
+      div
+    )
   })
 
   it("Snapshot: Match admin", () => {

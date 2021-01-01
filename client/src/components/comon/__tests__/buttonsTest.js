@@ -11,40 +11,40 @@ import ActionButtons from "../buttons/ActionButtons"
 describe("Buttons", () => {
   it("Snapshot: AddButton.jsx", () => {
     Object.defineProperty(window, "matchMedia", windowMedia)
-    const tree = renderer
-      .create(<AddButton onClick={jest.fn()} />)
-      .toJSON()
+    const tree = renderer.create(<AddButton onClick={jest.fn()} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it("Snapshot: DragButton.jsx", () => {
     Object.defineProperty(window, "matchMedia", windowMedia)
     const tree = renderer
-      .create(<DragButton provider={{ dragHandleProps: {} }} onClick={jest.fn()} />)
+      .create(
+        <DragButton provider={{ dragHandleProps: {} }} onClick={jest.fn()} />
+      )
       .toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it("Snapshot: GoogleLoginButton.jsx", () => {
     Object.defineProperty(window, "matchMedia", windowMedia)
-    const tree = renderer
-      .create(<GoogleLoginButton />)
-      .toJSON()
+    const tree = renderer.create(<GoogleLoginButton />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it("Snapshot: HelpButton.jsx", () => {
     Object.defineProperty(window, "matchMedia", windowMedia)
-    const tree = renderer
-      .create(<HelpButton onClick={jest.fn()} />)
-      .toJSON()
+    const tree = renderer.create(<HelpButton onClick={jest.fn()} />).toJSON()
     expect(tree).toMatchSnapshot()
   })
 
   it("Snapshot: ActionButtons.jsx", () => {
     Object.defineProperty(window, "matchMedia", windowMedia)
     const tree = renderer
-      .create(<ActionButtons><button type="submit">test button</button></ActionButtons>)
+      .create(
+        <ActionButtons>
+          <button type="submit">test button</button>
+        </ActionButtons>
+      )
       .toJSON()
     expect(tree).toMatchSnapshot()
   })

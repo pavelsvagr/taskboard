@@ -1,7 +1,7 @@
 const { createProxyMiddleware } = require("http-proxy-middleware")
 const {
   PORT_DEFAULT,
-  URL_API_NAMESPACE
+  URL_API_NAMESPACE,
 } = require("../../shared/constants/http")
 
 // Registers middleware for redirect to our apps in dev mode
@@ -12,9 +12,9 @@ module.exports = (app) => {
     createProxyMiddleware({
       target: `http://localhost:${PORT_DEFAULT}`,
       headers: {
-        "Connection": "keep-alive",
-        "Cache-Control": "no-transform"
-      }
+        Connection: "keep-alive",
+        "Cache-Control": "no-transform",
+      },
     })
   )
 }

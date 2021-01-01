@@ -1,6 +1,11 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { fetchCredentials, sendBoard, SUBJECT_BOARD, SUBJECT_CREDENTIALS } from "actions"
+import {
+  fetchCredentials,
+  sendBoard,
+  SUBJECT_BOARD,
+  SUBJECT_CREDENTIALS,
+} from "actions"
 
 import { Form, Input, Radio, Skeleton, Spin, Switch, Typography } from "antd"
 
@@ -24,7 +29,7 @@ class BoardForm extends Component {
     assignment: ASSIGNMENT_PROJECT,
     credentials: null,
     priorities: 3,
-    synchronize: false
+    synchronize: false,
   }
 
   // Rules for form validation
@@ -33,7 +38,7 @@ class BoardForm extends Component {
       { type: "string", message: "Name must be a valid string." },
       { required: true, message: "Name is required." },
       { min: 5, message: "Name must be at least 5 chars long." },
-      { max: 100, message: "Name must be max 100 chars long." }
+      { max: 100, message: "Name must be max 100 chars long." },
     ],
     identifier: [
       { type: "string", message: "Identifier must be a valid string." },
@@ -42,37 +47,37 @@ class BoardForm extends Component {
       { max: 100, message: "Identifier must be max 100 chars long." },
       {
         pattern: /^[a-zA-Z]/,
-        message: "Identifier must start with letter"
+        message: "Identifier must start with letter",
       },
       {
         pattern: /[a-zA-Z0-9]$/,
-        message: "Identifier must end with letter or number"
+        message: "Identifier must end with letter or number",
       },
       {
         pattern: /^([a-zA-Z0-9-])*$/,
-        message: "Identifier can contains only letters, numbers and -"
-      }
+        message: "Identifier can contains only letters, numbers and -",
+      },
     ],
     timeInterval: [
       {
         type: "enum",
         enum: ["days", "weeks", "months"],
-        message: "Interval must be days, weeks or months."
+        message: "Interval must be days, weeks or months.",
       },
-      { required: true, message: "Interval is required." }
+      { required: true, message: "Interval is required." },
     ],
     assignment: [
       {
         type: "enum",
         enum: ["projects", "issues"],
-        message: "Assignment must be projects or issues."
+        message: "Assignment must be projects or issues.",
       },
-      { required: true, message: "Assignment is required." }
+      { required: true, message: "Assignment is required." },
     ],
     credentials: [
       {
         required: true,
-        message: "Please select or create credentials to support app."
+        message: "Please select or create credentials to support app.",
       },
       {
         validator: (rule, value) => {
@@ -86,16 +91,16 @@ class BoardForm extends Component {
               "Given credentials are not valid, please select valid credentials."
             )
           )
-        }
-      }
+        },
+      },
     ],
     synchronize: [
       {
         type: "boolean",
-        message: "Synchronize must be true or false"
+        message: "Synchronize must be true or false",
       },
-      { required: true, message: "Synchronize is required." }
-    ]
+      { required: true, message: "Synchronize is required." },
+    ],
   }
 
   // Items for form inputs
@@ -104,43 +109,43 @@ class BoardForm extends Component {
       label: "Board name",
       name: "name",
       rules: this.rules.name,
-      hasFeedback: true
+      hasFeedback: true,
     },
     identifier: {
       label: "Identifier",
       name: "identifier",
       dependencies: ["name"],
       rules: this.rules.identifier,
-      hasFeedback: true
+      hasFeedback: true,
     },
     intervals: {
       label: "Intervals",
       name: "intervals",
-      rules: this.rules.intervals
+      rules: this.rules.intervals,
     },
     assignment: {
       label: "Task type",
       name: "assignment",
-      rules: this.rules.assignment
+      rules: this.rules.assignment,
     },
     priorities: {
       label: "Default number of priorities",
-      name: "priorities"
+      name: "priorities",
     },
     credentials: {
       label: "Credentials to external App",
       name: "credentials",
-      rules: this.rules.credentials
+      rules: this.rules.credentials,
     },
     synchronize: {
       label: "Import members from external App",
       name: "synchronize",
-      valuePropName: "checked"
+      valuePropName: "checked",
     },
     teams: {
       label: "Teams on board",
-      name: "teams"
-    }
+      name: "teams",
+    },
   }
 
   componentDidMount() {
@@ -171,10 +176,11 @@ class BoardForm extends Component {
     const { error, data, credentials: credentialsData, loading } = this.props
     const defaults = data || this.initialValues
 
-    const spinning = (loading.states[SUBJECT_CREDENTIALS] || loading.states[SUBJECT_BOARD])
+    const spinning =
+      loading.states[SUBJECT_CREDENTIALS] || loading.states[SUBJECT_BOARD]
     const message = spinning?.message
 
-    return credentialsData  ? (
+    return credentialsData ? (
       <Spin spinning={!!spinning} tip={message}>
         <Form
           ref={this.formRef}
@@ -185,38 +191,52 @@ class BoardForm extends Component {
           onFinish={this.handleSubmit}
           initialValues={defaults}
         >
-          {renderAntItem("name", this.items.name, error,
+          {renderAntItem(
+            "name",
+            this.items.name,
+            error,
             <Input onChange={this.handleChangeName} />
           )}
-          {renderAntItem("identifier", this.items.identifier, error,
-            <Input />
-          )}
-          {renderAntItem("intervals", this.items.intervals, error,
+          {renderAntItem("identifier", this.items.identifier, error, <Input />)}
+          {renderAntItem(
+            "intervals",
+            this.items.intervals,
+            error,
             <Radio.Group options={intervalsOptions} />
           )}
-          {renderAntItem("assignment", this.items.assignment, error,
+          {renderAntItem(
+            "assignment",
+            this.items.assignment,
+            error,
             <Radio.Group
               options={assignmentOptions}
               optionType="button"
               buttonStyle="solid"
             />
           )}
-          {renderAntItem("priorities", this.items.priorities, error,
+          {renderAntItem(
+            "priorities",
+            this.items.priorities,
+            error,
             <PrioritiesSelect width={300} />
           )}
-          {renderAntItem("credentials", this.items.credentials, error,
+          {renderAntItem(
+            "credentials",
+            this.items.credentials,
+            error,
             <CredentialsSelect data={credentialsData} />
           )}
-          {renderAntItem("synchronize", this.items.synchronize, error,
+          {renderAntItem(
+            "synchronize",
+            this.items.synchronize,
+            error,
             <Switch />
           )}
-          {renderAntItem("teams", this.items.teams, error,
-            <TeamSelect />
-           )}
+          {renderAntItem("teams", this.items.teams, error, <TeamSelect />)}
           {error && !error.fields && (
             <Typography.Text type="danger">{error.message}</Typography.Text>
           )}
-          <FormSubmit title='Create' />
+          <FormSubmit title="Create" />
         </Form>
       </Spin>
     ) : (
@@ -253,5 +273,5 @@ function mapStateToProps({ teams, loading, credentials, errors }) {
 
 export default connect(mapStateToProps, {
   sendBoard,
-  fetchCredentials
+  fetchCredentials,
 })(BoardForm)

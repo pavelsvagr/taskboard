@@ -16,7 +16,7 @@ class Board extends Component {
     const {
       identifier,
       fetchBoard: fetchAction,
-      initialBoardToolsState: setInitialState
+      initialBoardToolsState: setInitialState,
     } = this.props
 
     fetchAction(identifier)
@@ -28,7 +28,7 @@ class Board extends Component {
     const {
       identifier,
       fetchBoard: fetchAction,
-      initialBoardToolsState: setInitialState
+      initialBoardToolsState: setInitialState,
     } = this.props
 
     if (prevProps.identifier !== identifier) {
@@ -63,12 +63,12 @@ Board.propTypes = {
   fetchBoard: PropTypes.func.isRequired,
   initialBoardToolsState: PropTypes.func.isRequired,
   identifier: PropTypes.string.isRequired,
-  location: PropTypes.objectOf(PropTypes.string).isRequired
+  location: PropTypes.objectOf(PropTypes.string).isRequired,
 }
 
 Board.defaultProps = {
   board: null,
-  loading: null
+  loading: null,
 }
 
 function mapStateToProps({ boards, loading }) {
@@ -78,4 +78,6 @@ function mapStateToProps({ boards, loading }) {
   return { loading }
 }
 
-export default connect(mapStateToProps, { fetchBoard, initialBoardToolsState })(Board)
+export default connect(mapStateToProps, { fetchBoard, initialBoardToolsState })(
+  Board
+)

@@ -18,7 +18,15 @@ import shapes from "../../types"
 import DataPagination from "../board/forms/DataPagination"
 import { fetchBoards } from "../../actions"
 
-const BoardsBox = ({ onCardClick, onNew, gutter, sizing, data, actions, fetchBoards: fetch }) => {
+const BoardsBox = ({
+  onCardClick,
+  onNew,
+  gutter,
+  sizing,
+  data,
+  actions,
+  fetchBoards: fetch,
+}) => {
   const { data: boards = [], offset = 0, limit = 0, count = 0 } = data
   const [search, handleSetSearch] = useState("")
 
@@ -99,16 +107,24 @@ BoardsBox.propTypes = {
   onNew: PropTypes.func.isRequired,
   fetchBoards: PropTypes.func.isRequired,
   actions: PropTypes.arrayOf(PropTypes.object),
-  gutter: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
-  sizing: PropTypes.oneOfType([PropTypes.array, PropTypes.object, PropTypes.string]),
-  data: shapes.paginate(shapes.board)
+  gutter: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
+  sizing: PropTypes.oneOfType([
+    PropTypes.array,
+    PropTypes.object,
+    PropTypes.string,
+  ]),
+  data: shapes.paginate(shapes.board),
 }
 
 BoardsBox.defaultProps = {
   actions: [],
   data: {},
   gutter: null,
-  sizing: null
+  sizing: null,
 }
 
 function mapStateToProps({ boards }) {

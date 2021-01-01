@@ -8,25 +8,32 @@ import UserShape from "types/user"
 import MemberShape from "types/member"
 import { changeEditMode } from "../../../actions/boardToolsAction"
 
-const UnlockAccess = ({ children, globalRoles, boardRoles, lock, user, member, checkSelf, editMode }) => {
-  const permission = isAuthorized(globalRoles, boardRoles, user, member) || (checkSelf === user._id)
+const UnlockAccess = ({
+  children,
+  globalRoles,
+  boardRoles,
+  lock,
+  user,
+  member,
+  checkSelf,
+  editMode,
+}) => {
+  const permission =
+    isAuthorized(globalRoles, boardRoles, user, member) ||
+    checkSelf === user._id
 
-  if (! permission && editMode) {
+  if (!permission && editMode) {
     changeEditMode(false)
   }
 
-  return (
-    <>
-      {permission ? children : lock}
-    </>
-  )
+  return <>{permission ? children : lock}</>
 }
 
 function mapStateToProps({ auth, boards, boardTools }) {
   const props = {
     user: auth || null,
     member: null,
-    editMode: boardTools.editMode
+    editMode: boardTools.editMode,
   }
 
   if (boards && boards.members && auth) {
@@ -43,7 +50,7 @@ UnlockAccess.propTypes = {
   user: UserShape,
   member: MemberShape,
   checkSelf: PropTypes.string,
-  editMode: PropTypes.bool.isRequired
+  editMode: PropTypes.bool.isRequired,
 }
 
 UnlockAccess.defaultProps = {
@@ -53,9 +60,11 @@ UnlockAccess.defaultProps = {
   user: null,
   member: null,
   checkSelf: null,
-  children: undefined
+  children: undefined,
 }
 
-export default connect(mapStateToProps, { fetchUser: fetchLoggedUser, fetchBoardMembers, changeEditMode })(
-  UnlockAccess
-)
+export default connect(mapStateToProps, {
+  fetchUser: fetchLoggedUser,
+  fetchBoardMembers,
+  changeEditMode,
+})(UnlockAccess)

@@ -13,7 +13,15 @@ import { fetchUsers } from "../../actions"
 import DataPagination from "../board/forms/DataPagination"
 import { isAntColSorted } from "../../helpers/sorting"
 
-function UsersGrid({ users, empty, onDetail, onEdit, userId, search, fetchUsers: handleFetch }) {
+function UsersGrid({
+  users,
+  empty,
+  onDetail,
+  onEdit,
+  userId,
+  search,
+  fetchUsers: handleFetch,
+}) {
   const searchRenderer = (text) => (
     <Highlighter
       highlightStyle={{ backgroundColor: "#40a9ff", padding: 0 }}
@@ -26,7 +34,9 @@ function UsersGrid({ users, empty, onDetail, onEdit, userId, search, fetchUsers:
   const { data = [], limit = 0, offset = 0, count = 0, sort = {} } = users || {}
 
   const handleTableChange = (pagination, filters, sorter) => {
-    const sorting = sorter?.order ? `${sorter.field},${sorter.order === "ascend" ? "ASC" : "DESC"}` : null
+    const sorting = sorter?.order
+      ? `${sorter.field},${sorter.order === "ascend" ? "ASC" : "DESC"}`
+      : null
     handleFetch(search, offset, limit, sorting)
   }
 
@@ -35,36 +45,35 @@ function UsersGrid({ users, empty, onDetail, onEdit, userId, search, fetchUsers:
       dataIndex: "name",
       title: "Name",
       sorter: true,
-      sortOrder: isAntColSorted(sort,"name"),
+      sortOrder: isAntColSorted(sort, "name"),
       showSorterTooltip: false,
-      render: searchRenderer
+      render: searchRenderer,
     },
     {
       dataIndex: "email",
       title: "Email",
       sorter: true,
-      sortOrder: isAntColSorted(sort,"email"),
+      sortOrder: isAntColSorted(sort, "email"),
       showSorterTooltip: false,
-      render: searchRenderer
+      render: searchRenderer,
     },
     {
       dataIndex: "active",
       title: "Active",
       sorter: true,
-      sortOrder: isAntColSorted(sort,"active"),
+      sortOrder: isAntColSorted(sort, "active"),
       showSorterTooltip: false,
       responsive: ["md"],
-      render: (active) => active ?
-        <Badge status="processing" /> :
-        <Badge status="error" />
+      render: (active) =>
+        active ? <Badge status="processing" /> : <Badge status="error" />,
     },
     {
       dataIndex: "role",
       title: "Role",
-      sortOrder: isAntColSorted(sort,"role"),
+      sortOrder: isAntColSorted(sort, "role"),
       sorter: true,
       showSorterTooltip: false,
-      render: (role) => <Tag color={getRoleColor(role)}>{role}</Tag>
+      render: (role) => <Tag color={getRoleColor(role)}>{role}</Tag>,
     },
     {
       title: "Actions",
@@ -96,14 +105,14 @@ function UsersGrid({ users, empty, onDetail, onEdit, userId, search, fetchUsers:
                   shape="circle"
                   icon={<CheckOutlined />}
                   onClick={() => onEdit({ _id: record._id, active: true })}
-                  type='primary'
+                  type="primary"
                 />
               )}
             </Tooltip>
           )}
         </div>
-      )
-    }
+      ),
+    },
   ]
 
   return (
@@ -115,7 +124,7 @@ function UsersGrid({ users, empty, onDetail, onEdit, userId, search, fetchUsers:
         onChange={handleTableChange}
         columns={columns}
         locale={{
-          emptyText: empty
+          emptyText: empty,
         }}
       />
       <div className="text-center p-sm">
@@ -140,13 +149,13 @@ UsersGrid.propTypes = {
   onEdit: PropTypes.func.isRequired,
   onDetail: PropTypes.func.isRequired,
   search: PropTypes.string,
-  empty: PropTypes.element
+  empty: PropTypes.element,
 }
 
 UsersGrid.defaultProps = {
   empty: null,
   search: "",
-  users: {}
+  users: {},
 }
 
 function mapStateToProps({ users }) {

@@ -3,5 +3,5 @@ import MomentPropTypes from "react-moment-proptypes"
 
 export default PropTypes.shape({
   id: MomentPropTypes.momentObj,
-  redirect: PropTypes.string
+  redirect: PropTypes.string,
 })

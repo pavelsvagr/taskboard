@@ -21,7 +21,9 @@ const CredentialsSelect = ({ value = {}, onChange, data }) => {
           width={1500}
         >
           <CredentialsBox
-            onNew={data?.data?.length ? null : () => history.push("/credentials/new")}
+            onNew={
+              data?.data?.length ? null : () => history.push("/credentials/new")
+            }
             onCardClick={(credentials) => {
               setShowModal(false)
               onChange(credentials)

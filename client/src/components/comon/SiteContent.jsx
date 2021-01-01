@@ -15,7 +15,7 @@ UserAvatar.propTypes = {
 }
 
 UserAvatar.defaultProps = {
-  children: null
+  children: null,
 }
 
 export default SiteContent

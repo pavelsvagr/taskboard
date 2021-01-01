@@ -11,7 +11,6 @@ export function checkErrorForItem(error, item) {
   return null
 }
 
-
 export function errorAttrs(item, errors) {
   if (Array.isArray(errors)) {
     for (const error of errors) {
@@ -30,6 +29,6 @@ export function errorAttrs(item, errors) {
 }
 
 export function renderAntItem(name, itemProps, errors, component) {
-  const itemPropsWithErrors = {...itemProps,...errorAttrs(name, errors)}
+  const itemPropsWithErrors = { ...itemProps, ...errorAttrs(name, errors) }
   return React.createElement(Form.Item, itemPropsWithErrors, component)
 }

@@ -23,7 +23,7 @@ class Users extends Component {
     super(props)
 
     this.state = {
-      search: ""
+      search: "",
     }
   }
 
@@ -92,7 +92,9 @@ class Users extends Component {
               style={{ width: 250 }}
               allowClear
             />
-            <Button onClick={this.handleReload} icon={<SyncOutlined />}>Refresh</Button>
+            <Button onClick={this.handleReload} icon={<SyncOutlined />}>
+              Refresh
+            </Button>
           </div>
           <UsersGrid
             userId={auth?._id}
@@ -119,17 +121,21 @@ Users.propTypes = {
   loading: LoadingShape,
   fetchUsers: PropTypes.func.isRequired,
   updateUser: PropTypes.func.isRequired,
-  auth: shapes.user
+  auth: shapes.user,
 }
 
 Users.defaultProps = {
   auth: null,
   users: null,
-  loading: null
+  loading: null,
 }
 
 function mapStateToProps({ auth, users, loading }) {
   return { auth, users: users.all, loading }
 }
 
-export default connect(mapStateToProps, { fetchUsers, updateUser, fetchUser: fetchLoggedUser })(Users)
+export default connect(mapStateToProps, {
+  fetchUsers,
+  updateUser,
+  fetchUser: fetchLoggedUser,
+})(Users)

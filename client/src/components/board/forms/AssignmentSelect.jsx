@@ -79,7 +79,8 @@ class AssignmentSelect extends Component {
         onSearch={this.handleSearch}
         optionFilterProp="children"
         size="large"
-        filterOption={(input, option) => option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0}
+        filterOption={(input, option) =>
+          option.label.toLowerCase().indexOf(input.toLowerCase()) >= 0}
         dropdownRender={(menu) => (
           <div className="assignment-select">
             {dataWithSelected ? (
@@ -142,18 +143,37 @@ class AssignmentSelect extends Component {
                       </Tag>
                     </div>
                   )}
-                <div className={selected && selected[assignment.id] && value?.id !== assignment.id ? "" : "push"}>
+                <div
+                  className={
+                    selected &&
+                    selected[assignment.id] &&
+                    value?.id !== assignment.id
+                      ? ""
+                      : "push"
+                  }
+                >
                   <Dropdown
-                    trigger={['click']}
+                    trigger={["click"]}
                     overlay={
-                    board.assignment === "projects" ? (
-                      <ProjectCard project={assignment} className="shadow" onClick={e => e.stopPropagation()} />
-                    ) : (
-                      <IssueCard issue={assignment} className="shadow" onClick={e => e.stopPropagation()} />
-                    )
+                      board.assignment === "projects" ? (
+                        <ProjectCard
+                          project={assignment}
+                          className="shadow"
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      ) : (
+                        <IssueCard
+                          issue={assignment}
+                          className="shadow"
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      )
                     }
                   >
-                    <EyeOutlined className="ant-dropdown-link" onClick={e => e.stopPropagation()} />
+                    <EyeOutlined
+                      className="ant-dropdown-link"
+                      onClick={(e) => e.stopPropagation()}
+                    />
                   </Dropdown>
                 </div>
               </div>

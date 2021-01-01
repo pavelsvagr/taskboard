@@ -28,14 +28,16 @@ class BoardSettingsForm extends Component {
             }
             if (!filter.value) {
               return Promise.reject(
-                new Error(`Filter ${i + 1}: ${filter.name} must have some value`)
+                new Error(
+                  `Filter ${i + 1}: ${filter.name} must have some value`
+                )
               )
             }
           }
           return Promise.resolve()
-        }
-      }
-    ]
+        },
+      },
+    ],
   }
 
   // Items for form inputs
@@ -43,8 +45,8 @@ class BoardSettingsForm extends Component {
     apiFilters: {
       name: "apiFilters",
       rules: this.rules.apiFilters,
-      validateTrigger: "onSubmit"
-    }
+      validateTrigger: "onSubmit",
+    },
   }
 
   handleSubmit = (values) => {
@@ -66,7 +68,7 @@ class BoardSettingsForm extends Component {
           <Col span={18}>
             <h3>
               {board.credentials.type.toUpperCase()}
-              {" "}
+              {' '}
               API filters
             </h3>
           </Col>
@@ -81,10 +83,13 @@ class BoardSettingsForm extends Component {
           onFinish={this.handleSubmit}
           initialValues={defaults}
         >
-          {renderAntItem("apiFilters",this.items.apiFilters, error,
+          {renderAntItem(
+            "apiFilters",
+            this.items.apiFilters,
+            error,
             <FiltersInput />
-            )}
-          <FormSubmit title='Save' size="large" />
+          )}
+          <FormSubmit title="Save" size="large" />
         </Form>
       </Spin>
     )
@@ -95,16 +100,16 @@ BoardSettingsForm.propTypes = {
   board: shapes.board.isRequired,
   loading: shapes.loading,
   error: shapes.errors,
-  updateBoard: PropTypes.func.isRequired
+  updateBoard: PropTypes.func.isRequired,
 }
 
 BoardSettingsForm.defaultProps = {
   loading: null,
-  error: null
+  error: null,
 }
 
 function mapStateToProps({ loading, errors }) {
-  return { loading, error: errors?.error}
+  return { loading, error: errors?.error }
 }
 
 export default connect(mapStateToProps, { updateBoard })(BoardSettingsForm)

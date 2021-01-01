@@ -2,13 +2,25 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 
 import { Button, Spin, Tag, Tooltip } from "antd"
-import { CrownOutlined, DeleteOutlined, DownSquareOutlined, UpSquareOutlined } from "@ant-design/icons"
-import { createBoardMembers, deleteBoardMember, SUBJECT_BOARD_MEMBERS, updateBoardMember } from "actions"
+import {
+  CrownOutlined,
+  DeleteOutlined,
+  DownSquareOutlined,
+  UpSquareOutlined,
+} from "@ant-design/icons"
+import {
+  createBoardMembers,
+  deleteBoardMember,
+  SUBJECT_BOARD_MEMBERS,
+  updateBoardMember,
+} from "actions"
 
 import Role from "@shared/security/roles"
 import BoardRole from "@shared/security/rolesBoard"
 import { higherRoleBoard, lowerRoleBoard } from "@shared/security/roleTree"
-import UserMemberForm, { TYPE_BOARD_MEMBERS } from "components/teams/forms/UserMemberForm"
+import UserMemberForm, {
+  TYPE_BOARD_MEMBERS,
+} from "components/teams/forms/UserMemberForm"
 import EditableTable from "components/comon/grids/EditableTable"
 import getBoardRoleColor from "helpers/boardRoles"
 import EmptyData from "components/comon/data/EmptyData"
@@ -34,17 +46,19 @@ class BoardMembersGrid extends Component {
           if (editedMember && editedMember.nickname === value.nickname.trim()) {
             return
           }
-          updateMember(board.identifier, value._id, { nickname: value.nickname.trim() })
-        }
+          updateMember(board.identifier, value._id, {
+            nickname: value.nickname.trim(),
+          })
+        },
       },
       {
         dataIndex: ["user", "email"],
-        title: "Email"
+        title: "Email",
       },
       {
         dataIndex: "role",
         title: "Role",
-        render: (text) => <Tag color={getBoardRoleColor(text)}>{text}</Tag>
+        render: (text) => <Tag color={getBoardRoleColor(text)}>{text}</Tag>,
       },
       {
         title: "Actions",
@@ -100,8 +114,8 @@ class BoardMembersGrid extends Component {
               </Tooltip>
             </div>
           )
-        }
-      }
+        },
+      },
     ]
   }
 
@@ -142,7 +156,7 @@ class BoardMembersGrid extends Component {
             locale={{
               emptyText: (
                 <EmptyData description={`${board.name} has no member.`} />
-              )
+              ),
             }}
           />
         </Spin>
@@ -162,7 +176,7 @@ BoardMembersGrid.propTypes = {
 BoardMembersGrid.defaultProps = {
   board: null,
   loading: null,
-  members: []
+  members: [],
 }
 
 function mapStateToProps({ loading, boards }) {
@@ -175,5 +189,5 @@ function mapStateToProps({ loading, boards }) {
 export default connect(mapStateToProps, {
   createBoardMembers,
   deleteBoardMember,
-  updateBoardMember
+  updateBoardMember,
 })(BoardMembersGrid)

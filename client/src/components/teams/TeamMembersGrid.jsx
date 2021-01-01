@@ -1,6 +1,11 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { fetchTeam, fetchTeamMembers, SUBJECT_TEAM_MEMBERS, updateTeamMembers } from "actions"
+import {
+  fetchTeam,
+  fetchTeamMembers,
+  SUBJECT_TEAM_MEMBERS,
+  updateTeamMembers,
+} from "actions"
 
 import { Button, Space, Spin, Table, Tooltip } from "antd"
 
@@ -22,18 +27,22 @@ class TeamMembersGrid extends Component {
       dataIndex: "email",
       title: "Email",
       sorter: lexicalSort(false, (item) => item.email),
-      showSorterTooltip: false
+      showSorterTooltip: false,
     },
     {
       dataIndex: "name",
       title: "Name",
       sorter: lexicalSort(false, (item) => item.name),
-      showSorterTooltip: false
-    }
+      showSorterTooltip: false,
+    },
   ]
 
   componentDidMount() {
-    const { fetchTeamMembers: fetchMembers, fetchTeam: fetch, identifier } = this.props
+    const {
+      fetchTeamMembers: fetchMembers,
+      fetchTeam: fetch,
+      identifier,
+    } = this.props
     fetch(identifier)
     fetchMembers(identifier)
   }
@@ -73,15 +82,13 @@ class TeamMembersGrid extends Component {
               </Tooltip>
             </Space>
           )
-        }
+        },
       })
     }
 
-    const spinning = !team || !!(
-      loading.states[SUBJECT_TEAM_MEMBERS] ||
-      loading.states[SUBJECT_TEAM]
-    )
-
+    const spinning =
+      !team ||
+      !!(loading.states[SUBJECT_TEAM_MEMBERS] || loading.states[SUBJECT_TEAM])
 
     return (
       <div>
@@ -102,9 +109,7 @@ class TeamMembersGrid extends Component {
             columns={columns}
             pagination={{ position: ["bottomCenter"] }}
             locale={{
-              emptyText: (
-                <EmptyData description="Team has no member." />
-              )
+              emptyText: <EmptyData description="Team has no member." />,
             }}
           />
         </Spin>
@@ -121,14 +126,14 @@ TeamMembersGrid.propTypes = {
   identifier: PropTypes.string.isRequired,
   fetchTeam: PropTypes.func.isRequired,
   fetchTeamMembers: PropTypes.func.isRequired,
-  updateTeamMembers: PropTypes.func.isRequired
+  updateTeamMembers: PropTypes.func.isRequired,
 }
 
 TeamMembersGrid.defaultProps = {
   loading: null,
   user: null,
   members: [],
-  team: null
+  team: null,
 }
 
 function mapStateToProps({ loading, teams, auth }) {
@@ -140,5 +145,5 @@ export default connect(mapStateToProps, {
   fetchTeam,
   fetchUser: fetchLoggedUser,
   fetchTeamMembers,
-  updateTeamMembers
+  updateTeamMembers,
 })(TeamMembersGrid)

@@ -1,7 +1,18 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
 
-import { Button, Col, Divider, Form, Input, Row, Spin, Switch, Tag, Typography } from "antd"
+import {
+  Button,
+  Col,
+  Divider,
+  Form,
+  Input,
+  Row,
+  Spin,
+  Switch,
+  Tag,
+  Typography,
+} from "antd"
 import { deleteBoard, SUBJECT_BOARD, updateBoard } from "actions"
 import { getAssignmentTypeColor } from "helpers/assignmentTypes"
 import { getIntervalTypeColor } from "helpers/intervalTypes"
@@ -22,7 +33,7 @@ class BoardSettingsForm extends Component {
       { type: "string", message: "Name must be a valid string." },
       { required: true, message: "Name is required." },
       { min: 5, message: "Name must be at least 5 chars long." },
-      { max: 100, message: "Name must be max 100 chars long." }
+      { max: 100, message: "Name must be max 100 chars long." },
     ],
     identifier: [
       { type: "string", message: "Identifier must be a valid string." },
@@ -31,17 +42,17 @@ class BoardSettingsForm extends Component {
       { max: 100, message: "Identifier must be max 100 chars long." },
       {
         pattern: /^[a-zA-Z]/,
-        message: "Identifier must start with letter"
+        message: "Identifier must start with letter",
       },
       {
         pattern: /[a-zA-Z0-9]$/,
-        message: "Identifier must end with letter or number"
+        message: "Identifier must end with letter or number",
       },
       {
         pattern: /^[a-z0-9]+(?:-[a-z0-9]+)*$/,
-        message: "Identifier can contains only letters, numbers and -"
-      }
-    ]
+        message: "Identifier can contains only letters, numbers and -",
+      },
+    ],
   }
 
   // Items for form inputs
@@ -50,46 +61,46 @@ class BoardSettingsForm extends Component {
       label: "Board name",
       name: "name",
       rules: this.rules.name,
-      hasFeedback: true
+      hasFeedback: true,
     },
     identifier: {
       label: "Identifier",
       name: "identifier",
       dependencies: ["name"],
       rules: this.rules.identifier,
-      hasFeedback: true
+      hasFeedback: true,
     },
     hasAvatars: {
       label: "Avatars",
       name: "hasAvatars",
-      valuePropName: "checked"
+      valuePropName: "checked",
     },
     hasInlineEdit: {
       label: "Inline editing",
       name: "hasInlineEdit",
-      valuePropName: "checked"
+      valuePropName: "checked",
     },
     hasEmailNotifications: {
       label: "Email notifications",
       name: "hasEmailNotifications",
-      valuePropName: "checked"
+      valuePropName: "checked",
     },
     priorities: {
       label: "Default priorities",
-      name: "priorities"
-    }
+      name: "priorities",
+    },
   }
 
   constructor(props) {
     super(props)
 
     this.state = {
-      deleteModal: false
+      deleteModal: false,
     }
   }
 
   handleToggleDeleteModal = () => {
-    const {deleteModal} = this.state
+    const { deleteModal } = this.state
     this.setState({ deleteModal: !deleteModal })
   }
 
@@ -155,10 +166,16 @@ class BoardSettingsForm extends Component {
               </div>
             </Col>
             <Col lg={14} xs={24} sm={24} md={14}>
-              {renderAntItem("name", this.items.name, error,
+              {renderAntItem(
+                "name",
+                this.items.name,
+                error,
                 <Input onChange={this.handleChangeName} />
               )}
-              {renderAntItem("identifier", this.items.identifier, error,
+              {renderAntItem(
+                "identifier",
+                this.items.identifier,
+                error,
                 <Input />
               )}
               <Row gutter={[24, 24]}>
@@ -205,9 +222,24 @@ class BoardSettingsForm extends Component {
               </div>
             </Col>
             <Col lg={14} xs={24} sm={24} md={14}>
-              {renderAntItem("priorities", this.items.priorities, error, <PrioritiesSelect width={250} />)}
-              {renderAntItem("hasAvatars", this.items.hasAvatars, error, <Switch />)}
-              {renderAntItem("hasInlineEdit", this.items.hasInlineEdit, error, <Switch />)}
+              {renderAntItem(
+                "priorities",
+                this.items.priorities,
+                error,
+                <PrioritiesSelect width={250} />
+              )}
+              {renderAntItem(
+                "hasAvatars",
+                this.items.hasAvatars,
+                error,
+                <Switch />
+              )}
+              {renderAntItem(
+                "hasInlineEdit",
+                this.items.hasInlineEdit,
+                error,
+                <Switch />
+              )}
             </Col>
           </Row>
           <Divider />
@@ -222,7 +254,10 @@ class BoardSettingsForm extends Component {
               </div>
             </Col>
             <Col lg={14} xs={24} sm={24} md={14}>
-              {renderAntItem("hasEmailNotifications", this.items.hasEmailNotifications, error,
+              {renderAntItem(
+                "hasEmailNotifications",
+                this.items.hasEmailNotifications,
+                error,
                 <Switch />
               )}
             </Col>
@@ -243,7 +278,7 @@ class BoardSettingsForm extends Component {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  justifyContent: "center"
+                  justifyContent: "center",
                 }}
               >
                 <Button
@@ -260,7 +295,7 @@ class BoardSettingsForm extends Component {
           {error && !error.fields && (
             <Typography.Text type="danger">{error.message}</Typography.Text>
           )}
-          <FormSubmit title='Save' size="large" />
+          <FormSubmit title="Save" size="large" />
         </Form>
       </Spin>
     )
@@ -278,7 +313,7 @@ BoardSettingsForm.propTypes = {
 BoardSettingsForm.defaultProps = {
   loading: null,
   board: null,
-  error: null
+  error: null,
 }
 
 function mapStateToProps({ loading, errors }) {
@@ -287,5 +322,5 @@ function mapStateToProps({ loading, errors }) {
 
 export default connect(mapStateToProps, {
   updateBoard,
-  deleteBoard
+  deleteBoard,
 })(BoardSettingsForm)

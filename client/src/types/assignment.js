@@ -6,5 +6,5 @@ export default PropTypes.shape({
   memberId: PropTypes.string,
   board: PropTypes.string,
   boardItem,
-  priority: PropTypes.number
+  priority: PropTypes.number,
 })

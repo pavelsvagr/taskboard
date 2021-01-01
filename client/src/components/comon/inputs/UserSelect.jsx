@@ -15,10 +15,9 @@ class UserSelect extends Component {
     this.handleFetch = debounce(props.fetchUsers, 600)
 
     this.state = {
-      search: ""
+      search: "",
     }
   }
-
 
   handleSearch = (search) => {
     const { users } = this.props
@@ -28,7 +27,14 @@ class UserSelect extends Component {
   }
 
   render() {
-    const { value, onChange, users, disabled, loading, fetchUsers: fetchAction } = this.props
+    const {
+      value,
+      onChange,
+      users,
+      disabled,
+      loading,
+      fetchUsers: fetchAction,
+    } = this.props
     const { limit = 0, count = 0, offset = 0, data = [] } = users
     const { search } = this.state
 
@@ -49,7 +55,13 @@ class UserSelect extends Component {
                 {menu}
                 {limit < count && (
                   <div className="text-center p-md">
-                    <DataPagination limit={limit} offset={offset} count={count} search={search} onFetch={fetchAction} />
+                    <DataPagination
+                      limit={limit}
+                      offset={offset}
+                      count={count}
+                      search={search}
+                      onFetch={fetchAction}
+                    />
                   </div>
                 )}
               </>
@@ -67,8 +79,8 @@ class UserSelect extends Component {
             label={user.name}
             search={`${user.email}${user.name}`}
           >
-            {user.email}
-            {" "}
+            {user.email} 
+            {' '}
             {user.name}
           </Select.Option>
         ))}
@@ -83,7 +95,7 @@ UserSelect.propTypes = {
   users: shapes.paginate(shapes.user),
   disabled: PropTypes.objectOf(PropTypes.bool),
   fetchUsers: PropTypes.func.isRequired,
-  loading: shapes.loading
+  loading: shapes.loading,
 }
 
 UserSelect.defaultProps = {
@@ -91,7 +103,7 @@ UserSelect.defaultProps = {
   onChange: null,
   users: {},
   disabled: [],
-  loading: null
+  loading: null,
 }
 
 function mapStateToProps({ users, loading }) {

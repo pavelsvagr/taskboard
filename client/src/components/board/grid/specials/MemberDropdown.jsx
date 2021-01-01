@@ -5,7 +5,7 @@ import {
   CopyOutlined,
   EllipsisOutlined,
   ScissorOutlined,
-  StopOutlined
+  StopOutlined,
 } from "@ant-design/icons"
 import { Button, Dropdown, Menu } from "antd"
 import PropTypes from "prop-types"
@@ -18,26 +18,24 @@ import {
   copyBoardRow,
   cutBoardRow,
   deactivateBoardMember,
-  pasteBoardRow
+  pasteBoardRow,
 } from "../../../../actions/boardToolsAction"
 import { fetchBoardSettings } from "../../../../actions"
 
-function MemberDropdown(
-  {
-    board,
-    member,
-    settings,
-    item,
-    date,
-    disabled,
-    itemCopy,
-    pasteBoardRow: paste,
-    copyBoardRow: copy,
-    cutBoardRow: cut,
-    deactivateBoardMember: deactivate,
-    activateBoardMember: activate
-  }
-) {
+function MemberDropdown({
+  board,
+  member,
+  settings,
+  item,
+  date,
+  disabled,
+  itemCopy,
+  pasteBoardRow: paste,
+  copyBoardRow: copy,
+  cutBoardRow: cut,
+  deactivateBoardMember: deactivate,
+  activateBoardMember: activate,
+}) {
   const handleDeactivate = () => deactivate(board, date, member, settings)
   const handleActivate = () => activate(board, date, member, settings)
   const handleCopy = () => copy(item)
@@ -52,30 +50,40 @@ function MemberDropdown(
     actions.push(
       settings?.deactivated?.includes(member?._id)
         ? {
-          key: "activate",
-          icon: <CheckCircleOutlined />,
-          name: "Activate",
-          handler: handleActivate
-        }
+            key: "activate",
+            icon: <CheckCircleOutlined />,
+            name: "Activate",
+            handler: handleActivate,
+          }
         : {
-          key: "deactivate",
-          icon: <StopOutlined />,
-          name: "Deactivate",
-          handler: handleDeactivate
-        }
+            key: "deactivate",
+            icon: <StopOutlined />,
+            name: "Deactivate",
+            handler: handleDeactivate,
+          }
     )
   }
 
   if (item) {
-    actions.push({ key: "copy", icon: <CopyOutlined />, name: "Copy tasks", handler: handleCopy })
-    actions.push({ key: "cut", icon: <ScissorOutlined />, name: "Cut tasks", handler: handleCut })
+    actions.push({
+      key: "copy",
+      icon: <CopyOutlined />,
+      name: "Copy tasks",
+      handler: handleCopy,
+    })
+    actions.push({
+      key: "cut",
+      icon: <ScissorOutlined />,
+      name: "Cut tasks",
+      handler: handleCut,
+    })
   }
   if (itemCopy) {
     actions.push({
       key: "paste",
       icon: <ContainerOutlined />,
       name: "Paste tasks",
-      handler: handlePaste
+      handler: handlePaste,
     })
   }
 
@@ -89,14 +97,16 @@ function MemberDropdown(
                 ? actionDefinition(member, settings)
                 : actionDefinition
 
-            return action && (
-              <Menu.Item
-                key={action.key}
-                icon={action.icon}
-                onClick={() => action.handler(member, item)}
-              >
-                {action.name}
-              </Menu.Item>
+            return (
+              action && (
+                <Menu.Item
+                  key={action.key}
+                  icon={action.icon}
+                  onClick={() => action.handler(member, item)}
+                >
+                  {action.name}
+                </Menu.Item>
+              )
             )
           })}
         </Menu>
@@ -104,11 +114,7 @@ function MemberDropdown(
       trigger={["click"]}
       placement="bottomRight"
     >
-      <Button
-        shape="circle"
-        icon={<EllipsisOutlined />}
-        disabled={disabled}
-      />
+      <Button shape="circle" icon={<EllipsisOutlined />} disabled={disabled} />
     </Dropdown>
   )
 }
@@ -125,7 +131,7 @@ MemberDropdown.propTypes = {
   cutBoardRow: PropTypes.func.isRequired,
   deactivateBoardMember: PropTypes.func.isRequired,
   activateBoardMember: PropTypes.func.isRequired,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 }
 
 MemberDropdown.defaultProps = {
@@ -133,14 +139,14 @@ MemberDropdown.defaultProps = {
   itemCopy: null,
   date: null,
   item: null,
-  disabled: false
+  disabled: false,
 }
 
 function mapStateToProps({ boardSettings: settings, boardTools }) {
   return {
     settings,
     date: boardTools.date,
-    itemCopy: boardTools.itemCopy
+    itemCopy: boardTools.itemCopy,
   }
 }
 
@@ -151,5 +157,5 @@ export default connect(mapStateToProps, {
   deactivateBoardMember,
   activateBoardMember,
   fetchBoardSettings,
-  changeBoardDate
+  changeBoardDate,
 })(MemberDropdown)

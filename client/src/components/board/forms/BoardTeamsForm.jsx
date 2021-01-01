@@ -16,14 +16,14 @@ class BoardSettingsForm extends Component {
   items = {
     teams: {
       labelCol: { span: 24 },
-      name: "teams"
-    }
+      name: "teams",
+    },
   }
 
   handleSubmit = (values) => {
     const { board, updateBoard: update } = this.props
     const newBoard = { ...board, ...values }
-    newBoard.teams = newBoard.teams.map(t => t._id)
+    newBoard.teams = newBoard.teams.map((t) => t._id)
     update(board.identifier, newBoard)
   }
 
@@ -35,7 +35,7 @@ class BoardSettingsForm extends Component {
     const spinning =
       loading.active !== 0 &&
       (loading.states[SUBJECT_BOARD] || loading.states[SUBJECT_TEAM]) !==
-      undefined
+        undefined
 
     return (
       <Spin spinning={spinning}>
@@ -45,10 +45,8 @@ class BoardSettingsForm extends Component {
           onFinish={this.handleSubmit}
           initialValues={defaults}
         >
-          {renderAntItem("teams", this.items.teams, error,
-            <TeamSelectGrid />
-          )}
-          <FormSubmit title='Save' size="large" />
+          {renderAntItem("teams", this.items.teams, error, <TeamSelectGrid />)}
+          <FormSubmit title="Save" size="large" />
         </Form>
       </Spin>
     )
@@ -60,18 +58,23 @@ BoardSettingsForm.propTypes = {
   loading: shapes.loading,
   error: shapes.errors,
   updateBoard: PropTypes.func.isRequired,
-  boardTeams: PropTypes.arrayOf(shapes.team)
+  boardTeams: PropTypes.arrayOf(shapes.team),
 }
 
 BoardSettingsForm.defaultProps = {
   board: null,
   loading: null,
   boardTeams: [],
-  error: null
+  error: null,
 }
 
 function mapStateToProps({ boards, loading, errors }) {
-  return { loading, error: errors?.error, board: boards?.board, boardTeams: boards?.teams }
+  return {
+    loading,
+    error: errors?.error,
+    board: boards?.board,
+    boardTeams: boards?.teams,
+  }
 }
 
 export default connect(mapStateToProps, { updateBoard })(BoardSettingsForm)

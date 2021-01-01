@@ -18,39 +18,40 @@ const FiltersInput = ({ onChange, value }) => {
 
   return (
     <div>
-      {value && value.map((filter, i) => (
-        <Row key={i} gutter={[20, 10]}>
-          <Col span={10}>
-            <Input
-              value={filter.name}
-              placeholder="Parameter name"
-              onChange={(e) =>
-                handleEditFilter(i, {
-                  name: e.target.value,
-                  value: filter.value,
-                })}
-            />
-          </Col>
-          <Col span={10}>
-            <Input
-              value={filter.value}
-              placeholder="Filter value"
-              onChange={(e) =>
-                handleEditFilter(i, {
-                  name: filter.name,
-                  value: e.target.value,
-                })}
-            />
-          </Col>
-          <Col span={4}>
-            <Button
-              icon={<DeleteOutlined />}
-              onClick={() =>
-                onChange([...value.filter((f, index) => index !== i)])}
-            />
-          </Col>
-        </Row>
-      ))}
+      {value &&
+        value.map((filter, i) => (
+          <Row key={i} gutter={[20, 10]}>
+            <Col span={10}>
+              <Input
+                value={filter.name}
+                placeholder="Parameter name"
+                onChange={(e) =>
+                  handleEditFilter(i, {
+                    name: e.target.value,
+                    value: filter.value,
+                  })}
+              />
+            </Col>
+            <Col span={10}>
+              <Input
+                value={filter.value}
+                placeholder="Filter value"
+                onChange={(e) =>
+                  handleEditFilter(i, {
+                    name: filter.name,
+                    value: e.target.value,
+                  })}
+              />
+            </Col>
+            <Col span={4}>
+              <Button
+                icon={<DeleteOutlined />}
+                onClick={() =>
+                  onChange([...value.filter((f, index) => index !== i)])}
+              />
+            </Col>
+          </Row>
+        ))}
       <Row gutter={[20, 30]}>
         {value?.length ? (
           <Col span={4} offset={20}>
@@ -79,7 +80,7 @@ DataPagination.propTypes = {
 
 DataPagination.defaultProps = {
   onChange: null,
-  value: null
+  value: null,
 }
 
 export default FiltersInput

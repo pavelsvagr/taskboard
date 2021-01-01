@@ -20,14 +20,14 @@ EmptyData.propTypes = {
   onClick: PropTypes.func,
   title: PropTypes.string,
   description: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 }
 
 EmptyData.defaultProps = {
   onClick: null,
   title: null,
   description: null,
-  children: null
+  children: null,
 }
 
 export default EmptyData

@@ -16,14 +16,14 @@ const EditableRow = ({ index, ...props }) => {
 }
 
 const EditableCell = ({
-                        title,
-                        editable,
-                        children,
-                        dataIndex,
-                        record,
-                        handleSave,
-                        ...restProps
-                      }) => {
+  title,
+  editable,
+  children,
+  dataIndex,
+  record,
+  handleSave,
+  ...restProps
+}) => {
   const [editing, setEditing] = useState(false)
   const inputRef = useRef()
   const form = useContext(EditableContext)
@@ -36,7 +36,7 @@ const EditableCell = ({
   const toggleEdit = () => {
     setEditing(!editing)
     form.setFieldsValue({
-      [dataIndex]: record[dataIndex]
+      [dataIndex]: record[dataIndex],
     })
   }
 
@@ -79,8 +79,8 @@ const EditableTable = ({ columns, ...props }) => {
   const components = {
     body: {
       row: EditableRow,
-      cell: EditableCell
-    }
+      cell: EditableCell,
+    },
   }
   const editableColumns = columns.map((col) => {
     if (!col.editable) {
@@ -93,8 +93,8 @@ const EditableTable = ({ columns, ...props }) => {
         editable: col.editable,
         dataIndex: col.dataIndex,
         title: col.title,
-        handleSave: col.onSave
-      })
+        handleSave: col.onSave,
+      }),
     }
   })
   return (

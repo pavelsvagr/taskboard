@@ -9,9 +9,9 @@ const getColSpan = (col, maxCol, isHeader) => {
 
   const smallSize = Math.floor(24 / maxCol)
   const largeSize = Math.floor(19 / maxCol)
-  let xl, lg, md
-  lg = md = col > smallModulo ? smallSize : smallSize + 1
-  xl = col > largeModulo ? largeSize : largeSize + 1
+  const lg = col > smallModulo ? smallSize : smallSize + 1
+  const md = lg
+  const xl = col > largeModulo ? largeSize : largeSize + 1
 
   return isHeader
     ? { xl, lg, md, sm: 0, xs: 0 }

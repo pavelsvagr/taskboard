@@ -14,7 +14,6 @@ import DataPagination from "../board/forms/DataPagination"
 import { isAntColSorted } from "../../helpers/sorting"
 
 class TeamsGrid extends Component {
-
   searchRenderer = (text) => {
     const { search } = this.props
 
@@ -32,7 +31,9 @@ class TeamsGrid extends Component {
     const { teams, search, fetchTeams: handleFetch } = this.props
     const { offset = 0, limit = 0 } = teams
 
-    const sorting = sorter?.order ? `${sorter.field},${sorter.order === "ascend" ? "ASC" : "DESC"}` : null
+    const sorting = sorter?.order
+      ? `${sorter.field},${sorter.order === "ascend" ? "ASC" : "DESC"}`
+      : null
     handleFetch(search, offset, limit, sorting)
   }
 
@@ -47,7 +48,7 @@ class TeamsGrid extends Component {
         sorter: true,
         sortOrder: isAntColSorted(sort, "name"),
         showSorterTooltip: false,
-        render: this.searchRenderer
+        render: this.searchRenderer,
       },
       {
         dataIndex: "identifier",
@@ -56,7 +57,7 @@ class TeamsGrid extends Component {
         sortOrder: isAntColSorted(sort, "identifier"),
         showSorterTooltip: false,
         responsive: ["md"],
-        render: this.searchRenderer
+        render: this.searchRenderer,
       },
       {
         dataIndex: "color",
@@ -70,7 +71,7 @@ class TeamsGrid extends Component {
             shape="circle"
             icon={<span />}
           />
-        )
+        ),
       },
       {
         title: "Actions",
@@ -106,10 +107,9 @@ class TeamsGrid extends Component {
               </UnlockAccess>
             </div>
           )
-        }
-      }
+        },
+      },
     ]
-
 
     return (
       <>
@@ -120,7 +120,7 @@ class TeamsGrid extends Component {
           onChange={this.handleTableChange}
           columns={columns}
           locale={{
-            emptyText: empty
+            emptyText: empty,
           }}
         />
         <div className="text-center p-sm">
@@ -139,7 +139,6 @@ class TeamsGrid extends Component {
   }
 }
 
-
 TeamsGrid.propTypes = {
   teams: shapes.paginate(shapes.team),
   fetchTeams: PropTypes.func.isRequired,
@@ -147,13 +146,13 @@ TeamsGrid.propTypes = {
   search: PropTypes.string,
   onShowMembers: PropTypes.func.isRequired,
   onEdit: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired
+  onDelete: PropTypes.func.isRequired,
 }
 
 TeamsGrid.defaultProps = {
   teams: {},
   search: "",
-  empty: null
+  empty: null,
 }
 
 function mapStateToProps({ teams, loading }) {

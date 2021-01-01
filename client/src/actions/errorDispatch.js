@@ -8,7 +8,12 @@ import { ERROR_CLIENT, ERROR_DATA, ERROR_SERVER } from "./types"
  */
 export default (dispatch, subject) => (error) => {
   if (error.response) {
-    dispatch({ type: ERROR_DATA, status: error.response.status, errors: error.response?.data?.errors, subject })
+    dispatch({
+      type: ERROR_DATA,
+      status: error.response.status,
+      errors: error.response?.data?.errors,
+      subject,
+    })
   } else if (error.request) {
     dispatch({ type: ERROR_SERVER })
   } else {

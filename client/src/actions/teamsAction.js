@@ -10,7 +10,7 @@ import {
   REDIRECT,
   UPDATE_BOARD_TEAM_MEMBERS,
   UPDATE_TEAM,
-  FETCH_TEAM
+  FETCH_TEAM,
 } from "./types"
 import { SUBJECT_BOARD_TEAMS } from "./boardsAction"
 import errorDispatch from "./errorDispatch"
@@ -23,11 +23,17 @@ export const SUBJECT_TEAM_MEMBERS = "teamMembers"
  * Get teams from server
  * @returns {function(...[*]=)}
  */
-export const fetchTeams = (search, offset = 0, limit = 10, sort = null) => async (dispatch) => {
+export const fetchTeams = (
+  search,
+  offset = 0,
+  limit = 10,
+  sort = null
+) => async (dispatch) => {
   search = search || null
 
   dispatch({ type: LOADING, subject: SUBJECT_TEAMS })
-  const res = await axios.get("/api/teams", { params: { search, limit, offset, sort } })
+  const res = await axios
+    .get("/api/teams", { params: { search, limit, offset, sort } })
     .catch(errorDispatch(dispatch, SUBJECT_TEAM))
 
   if (res) {
@@ -42,7 +48,8 @@ export const fetchTeams = (search, offset = 0, limit = 10, sort = null) => async
  */
 export const fetchTeam = (id) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_TEAM })
-  const res = await axios.get(`/api/teams/${id}`)
+  const res = await axios
+    .get(`/api/teams/${id}`)
     .catch(errorDispatch(dispatch, SUBJECT_TEAM))
 
   if (res) {
@@ -59,19 +66,30 @@ export const fetchTeam = (id) => async (dispatch) => {
  * @param {boolean} wait
  * @returns {function(...[*]=)}
  */
-export const updateBoardTeamMembers = (boardIdentifier, teamIdentifier, values, wait = false) =>
-  async (dispatch) => {
-    if (wait) dispatch({ type: LOADING, subject: SUBJECT_BOARD_TEAMS })
+export const updateBoardTeamMembers = (
+  boardIdentifier,
+  teamIdentifier,
+  values,
+  wait = false
+) => async (dispatch) => {
+  if (wait) dispatch({ type: LOADING, subject: SUBJECT_BOARD_TEAMS })
 
-    const promise = axios.put(`/api/boards/${boardIdentifier}/teams/${teamIdentifier}/members`, values)
-      .catch(errorDispatch(dispatch, SUBJECT_BOARD_TEAMS))
+  const promise = axios
+    .put(
+      `/api/boards/${boardIdentifier}/teams/${teamIdentifier}/members`,
+      values
+    )
+    .catch(errorDispatch(dispatch, SUBJECT_BOARD_TEAMS))
 
-    if (wait) await promise
+  if (wait) await promise
 
-    dispatch({ type: UPDATE_BOARD_TEAM_MEMBERS, payload: { team: teamIdentifier, members: values } })
+  dispatch({
+    type: UPDATE_BOARD_TEAM_MEMBERS,
+    payload: { team: teamIdentifier, members: values },
+  })
 
-    if (wait) dispatch({ type: LOADING_DONE, subject: SUBJECT_BOARD_TEAMS })
-  }
+  if (wait) dispatch({ type: LOADING_DONE, subject: SUBJECT_BOARD_TEAMS })
+}
 
 /**
  * Create new team
@@ -81,13 +99,17 @@ export const updateBoardTeamMembers = (boardIdentifier, teamIdentifier, values, 
 export const sendTeam = (values) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_TEAM })
 
-  const res = await axios.post("/api/teams", values)
-    .catch(errorDispatch(dispatch, SUBJECT_TEAM ))
+  const res = await axios
+    .post("/api/teams", values)
+    .catch(errorDispatch(dispatch, SUBJECT_TEAM))
 
   if (res) {
     dispatch({ type: ADD_TEAM, payload: res.data })
     dispatch({ type: FEEDBACK_SUCCESS, title: "Team was created" })
-    dispatch({ type: REDIRECT, redirect: `/teams/${res.data.identifier}/members` })
+    dispatch({
+      type: REDIRECT,
+      redirect: `/teams/${res.data.identifier}/members`,
+    })
   }
 
   dispatch({ type: LOADING_DONE, subject: SUBJECT_TEAM })
@@ -102,12 +124,16 @@ export const sendTeam = (values) => async (dispatch) => {
 export const updateTeam = (identifier, values) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_TEAM })
 
-  const res = await axios.patch(`/api/teams/${identifier}`, values)
+  const res = await axios
+    .patch(`/api/teams/${identifier}`, values)
     .catch(errorDispatch(dispatch, SUBJECT_TEAM))
 
   if (res) {
     dispatch({ type: UPDATE_TEAM, payload: res.data })
-    dispatch({ type: FEEDBACK_SUCCESS, title: `Team "${res.data.identifier}" was updated` })
+    dispatch({
+      type: FEEDBACK_SUCCESS,
+      title: `Team "${res.data.identifier}" was updated`,
+    })
     dispatch({ type: REDIRECT, redirect: "/teams" })
   }
   dispatch({ type: LOADING_DONE, subject: SUBJECT_TEAM })
@@ -121,15 +147,18 @@ export const updateTeam = (identifier, values) => async (dispatch) => {
 export const deleteTeam = (identifier) => async (dispatch) => {
   dispatch({ type: LOADING, progress: 0, subject: SUBJECT_TEAM })
 
-  const res = await axios.delete(`/api/teams/${identifier}`)
+  const res = await axios
+    .delete(`/api/teams/${identifier}`)
     .catch(errorDispatch(dispatch, SUBJECT_TEAM))
 
   if (res) {
     dispatch({ type: DELETE_TEAM, payload: res.data })
-    dispatch({ type: FEEDBACK_SUCCESS, title: `Team "${identifier}" was deleted` })
+    dispatch({
+      type: FEEDBACK_SUCCESS,
+      title: `Team "${identifier}" was deleted`,
+    })
   }
   dispatch({ type: LOADING_DONE, subject: SUBJECT_TEAM })
-
 }
 
 /**
@@ -140,7 +169,8 @@ export const deleteTeam = (identifier) => async (dispatch) => {
 export const fetchTeamMembers = (identifier) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_TEAM_MEMBERS })
 
-  const res = await axios.get(`/api/teams/${identifier}/members`)
+  const res = await axios
+    .get(`/api/teams/${identifier}/members`)
     .catch(errorDispatch(dispatch, SUBJECT_TEAM_MEMBERS))
 
   if (res) {
@@ -159,7 +189,8 @@ export const fetchTeamMembers = (identifier) => async (dispatch) => {
 export const updateTeamMembers = (identifier, members) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_TEAM_MEMBERS })
 
-  const res = await axios.put(`/api/teams/${identifier}/members`, members)
+  const res = await axios
+    .put(`/api/teams/${identifier}/members`, members)
     .catch(errorDispatch(dispatch, SUBJECT_TEAM_MEMBERS))
 
   if (res) {

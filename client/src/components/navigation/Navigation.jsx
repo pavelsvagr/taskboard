@@ -10,7 +10,7 @@ import {
   MenuOutlined,
   PoweroffOutlined,
   TeamOutlined,
-  UserOutlined
+  UserOutlined,
 } from "@ant-design/icons"
 import PropTypes from "prop-types"
 
@@ -32,7 +32,7 @@ class Navigation extends Component {
 
     this.state = {
       notificationsModal: false,
-      visible: false
+      visible: false,
     }
   }
 
@@ -92,10 +92,12 @@ class Navigation extends Component {
       auth && (
         <>
           {collapsed && (
-            <Affix
-              className="nav__button"
-            >
-              <Button type="primary" size="large" onClick={this.handleToggleVisible}>
+            <Affix className="nav__button">
+              <Button
+                type="primary"
+                size="large"
+                onClick={this.handleToggleVisible}
+              >
                 {notificationsCount ? (
                   <Badge style={{ boxShadow: "none" }} dot>
                     <MenuOutlined />
@@ -117,7 +119,7 @@ class Navigation extends Component {
               height: "100vh",
               position: "fixed",
               left: 0,
-              zIndex: 90
+              zIndex: 90,
             }}
           >
             <Affix
@@ -129,10 +131,7 @@ class Navigation extends Component {
                 <CloseOutlined />
               </Button>
             </Affix>
-            <div
-              className="text-center"
-              style={{ margin: 10 }}
-            >
+            <div className="text-center" style={{ margin: 10 }}>
               <Link to="/boards" onClick={this.handleHide}>
                 <div className="logo" />
               </Link>
@@ -144,42 +143,39 @@ class Navigation extends Component {
               theme="dark"
               onClick={this.handleHide}
             >
-              <Menu.Item
-                key="/boards"
-                icon={<AppstoreOutlined />}
-              >
+              <Menu.Item key="/boards" icon={<AppstoreOutlined />}>
                 <NavLink to="/boards">Boards</NavLink>
               </Menu.Item>
-              <Menu.Item
-                key="/teams"
-                icon={<TeamOutlined />}
-              >
+              <Menu.Item key="/teams" icon={<TeamOutlined />}>
                 <NavLink to="/teams">Teams</NavLink>
               </Menu.Item>
 
               {isAuthorized([Role.Admin, Role.Mod], [], auth) && (
-                <Menu.Item
-                  key="/users"
-                  icon={<UserOutlined />}
-                >
+                <Menu.Item key="/users" icon={<UserOutlined />}>
                   <NavLink to="/users">Users</NavLink>
                 </Menu.Item>
               )}
               {isAuthorized([Role.Admin, Role.Mod], [], auth) && (
-                <Menu.Item
-                  key="/credentials"
-                  icon={<KeyOutlined />}
-                >
+                <Menu.Item key="/credentials" icon={<KeyOutlined />}>
                   <NavLink to="/credentials">Credentials</NavLink>
                 </Menu.Item>
               )}
 
               <div style={{ margin: 10 }} className="text-center">
-                <UserAvatar user={auth} className={`nav__avatar ${visible ? "size-lg" : ""}`} />
+                <UserAvatar
+                  user={auth}
+                  className={`nav__avatar ${visible ? "size-lg" : ""}`}
+                />
               </div>
               <Menu.Item
                 key="/notifications"
-                icon={<NotificationBell count={visible || notificationsModal ? null : notificationsCount} />}
+                icon={(
+                  <NotificationBell
+                    count={
+                      visible || notificationsModal ? null : notificationsCount
+                    }
+                  />
+                )}
                 onClick={this.handleToggleNotifications}
               >
                 {notificationsCount ? (
@@ -211,24 +207,27 @@ class Navigation extends Component {
 
 Navigation.propTypes = {
   location: PropTypes.shape({
-    pathname: PropTypes.string.isRequired
+    pathname: PropTypes.string.isRequired,
   }).isRequired,
   auth: PropTypes.oneOfType([UserShape, PropTypes.bool]),
   notificationsCount: PropTypes.number,
-  fetchNotificationsCount: PropTypes.func.isRequired
+  fetchNotificationsCount: PropTypes.func.isRequired,
 }
 
 Navigation.defaultProps = {
   auth: null,
-  notificationsCount: null
+  notificationsCount: null,
 }
 
 function mapStateToProps({ auth, notifications }) {
   return { auth, notificationsCount: notifications?.unread }
 }
 
-export default compose(withRouter, connect(mapStateToProps, {
-  fetchUser: fetchLoggedUser,
-  newNotification,
-  fetchNotificationsCount
-}))(Navigation)
+export default compose(
+  withRouter,
+  connect(mapStateToProps, {
+    fetchUser: fetchLoggedUser,
+    newNotification,
+    fetchNotificationsCount,
+  })
+)(Navigation)

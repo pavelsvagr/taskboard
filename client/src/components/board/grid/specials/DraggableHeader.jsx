@@ -4,24 +4,35 @@ import { Space } from "antd"
 import PropTypes from "prop-types"
 import DragButton from "../../../comon/buttons/DragButton"
 
-function DraggableHeader({ header, droppableKey, isDragDisabled, index, children, headerClass = "", className, ...otherProps }) {
+function DraggableHeader({
+  header,
+  droppableKey,
+  isDragDisabled,
+  index,
+  children,
+  headerClass = "",
+  className,
+  ...otherProps
+}) {
   const content = (provided = {}, snapshot = {}) => (
     <div
       {...provided.draggableProps}
       {...otherProps}
       ref={provided.innerRef}
-      className={
-        `draggable-content${
-          snapshot.isDragging ? " dragging " : " "
-        }${className}`
-      }
+      className={`draggable-content${
+        snapshot.isDragging ? " dragging " : " "
+      }${className}`}
     >
       <div
         className={`draggable-content__header ${headerClass}`}
         ref={provided.innerRef}
       >
         <Space>
-          <DragButton provider={provided} className="board__col__toolbar__button" size='small' />
+          <DragButton
+            provider={provided}
+            className="board__col__toolbar__button"
+            size="small"
+          />
           <span>{header}</span>
         </Space>
       </div>
@@ -44,13 +55,13 @@ function DraggableHeader({ header, droppableKey, isDragDisabled, index, children
 }
 
 DraggableHeader.propTypes = {
-  header: PropTypes.oneOfType([PropTypes.node,PropTypes.string]),
+  header: PropTypes.oneOfType([PropTypes.node, PropTypes.string]),
   droppableKey: PropTypes.string.isRequired,
   isDragDisabled: PropTypes.bool,
   index: PropTypes.number.isRequired,
   children: PropTypes.node,
   headerClass: PropTypes.string,
-  className: PropTypes.string
+  className: PropTypes.string,
 }
 
 DraggableHeader.defaultProps = {
@@ -58,7 +69,7 @@ DraggableHeader.defaultProps = {
   isDragDisabled: false,
   children: null,
   headerClass: "",
-  className: ""
+  className: "",
 }
 
 export default DraggableHeader

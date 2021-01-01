@@ -2,23 +2,46 @@ import React from "react"
 import { Slider } from "antd"
 import PropTypes from "prop-types"
 
-const PrioritiesSelect = ({ onChange, value, disabled, onAfterChange, className, width, label }) => {
+const PrioritiesSelect = ({
+  onChange,
+  value,
+  disabled,
+  onAfterChange,
+  className,
+  width,
+  label,
+}) => {
   const widthStyle = width || 400
 
-  const otherProps = onAfterChange ? {onAfterChange} : {}
+  const otherProps = onAfterChange ? { onAfterChange } : {}
   return (
-    <div className={className || "text-center"} style={{ display: "flex", alignItems: "center", justifyContent: label ? "right" : "space-between"}}>
-
+    <div
+      className={className || "text-center"}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: label ? "right" : "space-between",
+      }}
+    >
       {label && (
         <div
-          style={{ display: "inline-block", padding: "0 40px", fontWeight: 600 }}
+          style={{
+            display: "inline-block",
+            padding: "0 40px",
+            fontWeight: 600,
+          }}
         >
           {label}
         </div>
       )}
 
       <div
-        style={{ maxWidth: widthStyle, width: widthStyle, display: "inline-block", padding: "0 20px" }}
+        style={{
+          maxWidth: widthStyle,
+          width: widthStyle,
+          display: "inline-block",
+          padding: "0 20px",
+        }}
       >
         <Slider
           disabled={disabled}
@@ -42,7 +65,7 @@ PrioritiesSelect.propTypes = {
   onAfterChange: PropTypes.func,
   className: PropTypes.string,
   width: PropTypes.number,
-  label: PropTypes.string
+  label: PropTypes.string,
 }
 
 PrioritiesSelect.defaultProps = {
@@ -52,7 +75,7 @@ PrioritiesSelect.defaultProps = {
   onAfterChange: null,
   className: null,
   width: null,
-  label: null
+  label: null,
 }
 
 export default PrioritiesSelect

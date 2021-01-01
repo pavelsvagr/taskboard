@@ -28,12 +28,11 @@ describe("BoardItems.jsx", () => {
     ReactDOM.render(
       <Provider store={store}>
         <MemoryRouter>
-          <BoardItems
-            identifier="test-smoke"
-            location={{ search: "" }}
-          />
+          <BoardItems identifier="test-smoke" location={{ search: "" }} />
         </MemoryRouter>
-      </Provider>, div)
+      </Provider>,
+      div
+    )
   })
 
   it("Snapshot: Match admin", () => {
@@ -44,10 +43,7 @@ describe("BoardItems.jsx", () => {
       .create(
         <Provider store={store}>
           <MemoryRouter>
-            <BoardItems
-              identifier="test-smoke"
-              location={{ search: "" }}
-            />
+            <BoardItems identifier="test-smoke" location={{ search: "" }} />
           </MemoryRouter>
         </Provider>
       )
@@ -64,10 +60,7 @@ describe("BoardItems.jsx", () => {
       .create(
         <Provider store={store}>
           <MemoryRouter>
-            <BoardItems
-              identifier="test-smoke"
-              location={{ search: "" }}
-            />
+            <BoardItems identifier="test-smoke" location={{ search: "" }} />
           </MemoryRouter>
         </Provider>
       )

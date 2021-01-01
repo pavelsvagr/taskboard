@@ -11,7 +11,7 @@ import {
   LOADING,
   LOADING_DONE,
   REDIRECT,
-  REORDER_BOARD_TEAMS
+  REORDER_BOARD_TEAMS,
 } from "./types"
 import errorDispatch from "./errorDispatch"
 import { fetchBoardMembers, SUBJECT_BOARD_MEMBERS } from "./boardMembersAction"
@@ -25,11 +25,14 @@ export const SUBJECT_BOARD_ASSIGNMENTS = "boardAssignments"
  * Fetch all boards
  * @returns {function(...[*]=)}
  */
-export const fetchBoards = (search, offset = 0, limit = 25) => async (dispatch) => {
+export const fetchBoards = (search, offset = 0, limit = 25) => async (
+  dispatch
+) => {
   dispatch({ type: LOADING, subject: SUBJECT_BOARDS })
 
   search = search || null
-  const res = await axios.get("/api/boards", {params: {search, offset, limit}})
+  const res = await axios
+    .get("/api/boards", { params: { search, offset, limit } })
     .catch(errorDispatch(dispatch, SUBJECT_BOARDS))
 
   if (res) {
@@ -46,7 +49,8 @@ export const fetchBoards = (search, offset = 0, limit = 25) => async (dispatch) 
 export const fetchBoard = (identifier) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_BOARD })
 
-  const res = await axios.get(`/api/boards/${identifier}`)
+  const res = await axios
+    .get(`/api/boards/${identifier}`)
     .catch(errorDispatch(dispatch, SUBJECT_BOARDS))
 
   if (res) {
@@ -63,7 +67,8 @@ export const fetchBoard = (identifier) => async (dispatch) => {
 export const fetchBoardTeams = (identifier) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_BOARD_TEAMS })
 
-  const res = await axios.get(`/api/boards/${identifier}/teams`)
+  const res = await axios
+    .get(`/api/boards/${identifier}/teams`)
     .catch(errorDispatch(dispatch, SUBJECT_BOARD_TEAMS))
 
   if (res) {
@@ -79,7 +84,8 @@ export const fetchBoardTeams = (identifier) => async (dispatch) => {
  * @returns {function(...[*]=)}
  */
 export const reorderBoardTeams = (identifier, values) => (dispatch) => {
-  axios.patch(`/api/boards/${identifier}`, { teams: values.map(t => t._id) })
+  axios
+    .patch(`/api/boards/${identifier}`, { teams: values.map((t) => t._id) })
     .catch(errorDispatch(dispatch, SUBJECT_BOARD_MEMBERS))
 
   dispatch({ type: REORDER_BOARD_TEAMS, payload: values })
@@ -94,7 +100,8 @@ export const reorderBoardTeams = (identifier, values) => (dispatch) => {
 export const updateBoard = (identifier, values) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_BOARD })
 
-  const res = await axios.patch(`/api/boards/${identifier}`, values)
+  const res = await axios
+    .patch(`/api/boards/${identifier}`, values)
     .catch(errorDispatch(dispatch, SUBJECT_BOARD))
 
   if (res) {
@@ -102,7 +109,8 @@ export const updateBoard = (identifier, values) => async (dispatch) => {
   }
 
   const newIdentifier = values.identifier ? values.identifier : identifier
-  const resTeams = await axios.get(`/api/boards/${newIdentifier}/teams`)
+  const resTeams = await axios
+    .get(`/api/boards/${newIdentifier}/teams`)
     .catch(errorDispatch(dispatch, SUBJECT_BOARD))
 
   if (resTeams) {
@@ -110,7 +118,10 @@ export const updateBoard = (identifier, values) => async (dispatch) => {
   }
 
   if (res && resTeams) {
-    dispatch({ type: FEEDBACK_SUCCESS, title: "Board was successfully updated" })
+    dispatch({
+      type: FEEDBACK_SUCCESS,
+      title: "Board was successfully updated",
+    })
     dispatch({ type: REDIRECT, redirect: `/board/${newIdentifier}` })
   }
   dispatch({ type: LOADING_DONE, subject: SUBJECT_BOARD })
@@ -123,16 +134,21 @@ export const updateBoard = (identifier, values) => async (dispatch) => {
  * @param {int} offset
  * @param {int} limit
  */
-export const fetchBoardAssignments = (search, offset = 0, limit = 10) => async (dispatch, getState) => {
+export const fetchBoardAssignments = (search, offset = 0, limit = 10) => async (
+  dispatch,
+  getState
+) => {
   dispatch({ type: LOADING, subject: SUBJECT_BOARD_ASSIGNMENTS })
 
   search = search || null
 
-  const {identifier} = getState().boards?.board || {}
+  const { identifier } = getState().boards?.board || {}
 
-  const res = await axios.get(`/api/boards/${identifier}/assignments`, {
-    params: {search, offset, limit}
-  }).catch(errorDispatch(dispatch, SUBJECT_BOARD_ASSIGNMENTS))
+  const res = await axios
+    .get(`/api/boards/${identifier}/assignments`, {
+      params: { search, offset, limit },
+    })
+    .catch(errorDispatch(dispatch, SUBJECT_BOARD_ASSIGNMENTS))
 
   if (res) {
     dispatch({ type: FETCH_BOARD_ASSIGNMENTS, payload: res.data })
@@ -146,12 +162,15 @@ export const fetchBoardAssignments = (search, offset = 0, limit = 10) => async (
  * @returns {function(...[*]=)}
  */
 export const importBoardMembers = (identifier) => async (dispatch) => {
-  dispatch({ type: LOADING, subject: SUBJECT_BOARD, message: "Importing users" })
+  dispatch({
+    type: LOADING,
+    subject: SUBJECT_BOARD,
+    message: "Importing users",
+  })
 
-  const res = await axios.patch(
-    `/api/boards/${identifier}`,
-    {lastSynchronized: moment()}
-  ).catch(errorDispatch(dispatch, SUBJECT_BOARD))
+  const res = await axios
+    .patch(`/api/boards/${identifier}`, { lastSynchronized: moment() })
+    .catch(errorDispatch(dispatch, SUBJECT_BOARD))
 
   if (res) {
     dispatch({ type: FETCH_BOARD, payload: res.data })
@@ -169,7 +188,8 @@ export const importBoardMembers = (identifier) => async (dispatch) => {
 export const sendBoard = (values, synchronize = false) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_BOARD, message: "Creating board" })
 
-  const res = await axios.post("/api/boards", values)
+  const res = await axios
+    .post("/api/boards", values)
     .catch(errorDispatch(dispatch, SUBJECT_BOARD))
 
   if (res) {
@@ -178,7 +198,10 @@ export const sendBoard = (values, synchronize = false) => async (dispatch) => {
     }
 
     dispatch({ type: ADD_BOARD, payload: res.data })
-    dispatch({ type: FEEDBACK_SUCCESS, title: "Board was successfully created" })
+    dispatch({
+      type: FEEDBACK_SUCCESS,
+      title: "Board was successfully created",
+    })
     dispatch({ type: REDIRECT, redirect: "/boards" })
   }
   dispatch({ type: LOADING_DONE, subject: SUBJECT_BOARD })
@@ -192,12 +215,16 @@ export const sendBoard = (values, synchronize = false) => async (dispatch) => {
 export const deleteBoard = (identifier) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_BOARD })
 
-  const res = await axios.delete(`/api/boards/${identifier}`)
+  const res = await axios
+    .delete(`/api/boards/${identifier}`)
     .catch(errorDispatch(dispatch, SUBJECT_BOARD))
 
   if (res) {
     dispatch({ type: DELETE_BOARD, payload: res.data })
-    dispatch({ type: FEEDBACK_SUCCESS, title: "Board was successfully deleted" })
+    dispatch({
+      type: FEEDBACK_SUCCESS,
+      title: "Board was successfully deleted",
+    })
     dispatch({ type: REDIRECT, redirect: "/boards" })
   }
   dispatch({ type: LOADING_DONE, subject: SUBJECT_BOARD })

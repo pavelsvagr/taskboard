@@ -23,7 +23,6 @@ import Credentials from "./credentials/Credentials"
 import history from "../helpers/history"
 import Users from "./users/Users"
 
-
 const indicator = (
   <Loading3QuartersOutlined
     style={{ fontSize: 40 }}
@@ -44,15 +43,21 @@ class AppRoutes extends Component {
     const { feedback, redirect, errors } = this.props
 
     // Check feedback
-    if (feedback && (!prevProps.feedback || feedback.id !== prevProps.feedback.id)) {
+    if (
+      feedback &&
+      (!prevProps.feedback || feedback.id !== prevProps.feedback.id)
+    ) {
       notification[feedback.type]({
         message: feedback.title,
-        description: feedback.description
+        description: feedback.description,
       })
     }
 
     // Check redirects
-    if (redirect && (!prevProps.redirect || redirect.id !== prevProps.redirect.id)) {
+    if (
+      redirect &&
+      (!prevProps.redirect || redirect.id !== prevProps.redirect.id)
+    ) {
       history.push(redirect.url)
     }
 
@@ -63,13 +68,13 @@ class AppRoutes extends Component {
           for (const e of errors.errors) {
             notification.error({
               message: "Authorization error",
-              description: e.msg
+              description: e.msg,
             })
           }
         } else {
           notification.error({
             message: "Authorization error",
-            description: errors.errors.msg
+            description: errors.errors.msg,
           })
         }
       } else if (Array.isArray(errors.errors)) {
@@ -181,7 +186,7 @@ AppRoutes.propTypes = {
   feedback: FeedbackShape,
   errors: ErrorsShape,
   authErrors: PropTypes.objectOf(PropTypes.string),
-  fetchUser: PropTypes.func.isRequired
+  fetchUser: PropTypes.func.isRequired,
 }
 
 AppRoutes.defaultProps = {
@@ -189,7 +194,7 @@ AppRoutes.defaultProps = {
   auth: null,
   errors: null,
   authErrors: null,
-  feedback: null
+  feedback: null,
 }
 
 function mapStateToProps(state) {

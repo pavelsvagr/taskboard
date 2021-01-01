@@ -4,8 +4,13 @@ import { connect } from "react-redux"
 import { Modal } from "antd"
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons"
 import PropTypes from "prop-types"
-import { deleteCredentials, fetchCredentials, fetchLoggedUser, sendCredentials, updateCredentials } from "../../actions"
-
+import {
+  deleteCredentials,
+  fetchCredentials,
+  fetchLoggedUser,
+  sendCredentials,
+  updateCredentials,
+} from "../../actions"
 
 import CredentialsForm from "./forms/CredentialsForm"
 import CredentialsBox from "./CredentialsBox"
@@ -38,45 +43,41 @@ class Credentials extends Component {
     return (
       <>
         <h1>Credentials</h1>
-        {
-          data && (
-            <Route
-              exact
-              path="/credentials/:id"
-              render={({ match }) => {
-                const { id } = match.params
-                const edit = id === "new" ? null : id
-                return (
-                  <Modal
-                    title={
-                      edit === null ? "New credentials" : "Edit credentials"
-                    }
-                    visible
-                    footer={null}
-                    closable
-                    onCancel={() => history.push("/credentials")}
-                  >
-                    <CredentialsForm edit={edit} />
-                  </Modal>
-                )
-              }}
-            />
-          )
-        }
+        {data && (
+          <Route
+            exact
+            path="/credentials/:id"
+            render={({ match }) => {
+              const { id } = match.params
+              const edit = id === "new" ? null : id
+              return (
+                <Modal
+                  title={edit === null ? "New credentials" : "Edit credentials"}
+                  visible
+                  footer={null}
+                  closable
+                  onCancel={() => history.push("/credentials")}
+                >
+                  <CredentialsForm edit={edit} />
+                </Modal>
+              )
+            }}
+          />
+        )}
         <CredentialsBox
           onNew={() => this.handleShowForm(null)}
           sizing={{ xs: 24, sm: 24, xl: 6, md: 12 }}
           gutter={[
             { xs: 8, sm: 16, md: 24, lg: 32 },
-            { xs: 8, sm: 16, md: 24, lg: 32 }
+            { xs: 8, sm: 16, md: 24, lg: 32 },
           ]}
           actions={[
             { key: "edit", icon: EditOutlined, onClick: this.handleShowForm },
             {
               key: "edit",
               icon: DeleteOutlined,
-              onClick: this.handleDeleteCredentials
-            }
+              onClick: this.handleDeleteCredentials,
+            },
           ]}
         />
       </>
@@ -87,12 +88,12 @@ class Credentials extends Component {
 Credentials.propTypes = {
   fetchCredentials: PropTypes.func.isRequired,
   deleteCredentials: PropTypes.func.isRequired,
-  credentials: PropTypes.arrayOf(shapes.credentials)
+  credentials: PropTypes.arrayOf(shapes.credentials),
 }
 
 Credentials.defaultProps = {
   credentials: null,
-  loading: null
+  loading: null,
 }
 
 function mapStateToProps({ credentials, auth }) {
@@ -104,5 +105,5 @@ export default connect(mapStateToProps, {
   fetchCredentials,
   sendCredentials,
   updateCredentials,
-  deleteCredentials
+  deleteCredentials,
 })(Credentials)

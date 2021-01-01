@@ -34,9 +34,9 @@ const BoardItemCell = React.forwardRef(
         <UnlockForBoardAdmin>
           {toolbox && (
             <div
-              className={
-                `board__col__toolbar${toolboxType === "absolute" ? "--absolute" : ""}`
-              }
+              className={`board__col__toolbar${
+                toolboxType === "absolute" ? "--absolute" : ""
+              }`}
             >
               {toolbox}
             </div>
@@ -47,16 +47,17 @@ const BoardItemCell = React.forwardRef(
   }
 )
 
-
 BoardItemCell.propTypes = {
   dragButton: PropTypes.node,
   toolbox: PropTypes.node,
-  span: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  span: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  ),
   title: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
   disabled: PropTypes.bool,
   avatar: PropTypes.node,
   children: PropTypes.node,
-  toolboxType: PropTypes.string
+  toolboxType: PropTypes.string,
 }
 
 BoardItemCell.defaultProps = {
@@ -67,7 +68,7 @@ BoardItemCell.defaultProps = {
   disabled: false,
   avatar: null,
   children: null,
-  toolboxType: "dropdown"
+  toolboxType: "dropdown",
 }
 
 export default BoardItemCell

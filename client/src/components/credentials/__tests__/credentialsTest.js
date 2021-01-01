@@ -30,7 +30,9 @@ describe("Credentials.jsx", () => {
         <MemoryRouter>
           <Credentials />
         </MemoryRouter>
-      </Provider>, div)
+      </Provider>,
+      div
+    )
   })
 
   it("Snapshot: Match admin", () => {

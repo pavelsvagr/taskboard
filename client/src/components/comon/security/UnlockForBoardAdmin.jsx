@@ -4,7 +4,6 @@ import PropTypes from "prop-types"
 import rolesBoardModerator from "@shared/security/rolesBoardModerator"
 import UnlockAccess from "./UnlockAccess"
 
-
 function UnlockForBoardAdmin({ children, ...props }) {
   return (
     <UnlockAccess
@@ -18,11 +17,11 @@ function UnlockForBoardAdmin({ children, ...props }) {
 }
 
 UnlockForBoardAdmin.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
 }
 
 UnlockForBoardAdmin.defaultProps = {
-  children: null
+  children: null,
 }
 
 export default UnlockForBoardAdmin

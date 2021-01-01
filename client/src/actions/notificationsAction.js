@@ -5,7 +5,7 @@ import {
   FETCH_NOTIFICATIONS,
   LOADING,
   LOADING_DONE,
-  NEW_NOTIFICATION
+  NEW_NOTIFICATION,
 } from "./types"
 import errorDispatch from "./errorDispatch"
 
@@ -19,16 +19,14 @@ export const SUBJECT_NOTIFICATIONS = "notifications"
 export const fetchNotifications = (page = 1) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_NOTIFICATIONS })
 
-  const res = await axios.get("/api/notifications",
-    {params: { page }}
-    )
+  const res = await axios
+    .get("/api/notifications", { params: { page } })
     .catch(errorDispatch(dispatch, SUBJECT_NOTIFICATIONS))
 
   if (res) {
     dispatch({ type: FETCH_NOTIFICATIONS, payload: res.data })
   }
   dispatch({ type: LOADING_DONE, subject: SUBJECT_NOTIFICATIONS })
-
 }
 
 /**
@@ -37,7 +35,8 @@ export const fetchNotifications = (page = 1) => async (dispatch) => {
  * @returns {function(...[*]=)}
  */
 export const deleteNotification = (id) => (dispatch) => {
-  axios.delete(`/api/notifications/${id}`)
+  axios
+    .delete(`/api/notifications/${id}`)
     .catch(errorDispatch(dispatch, SUBJECT_NOTIFICATIONS))
 
   dispatch({ type: DELETE_NOTIFICATION, payload: { _id: id } })
@@ -48,7 +47,8 @@ export const deleteNotification = (id) => (dispatch) => {
  * @returns {function(...[*]=)}
  */
 export const fetchNotificationsCount = () => async (dispatch) => {
-  const res = await axios.get("/api/notifications/unread/count")
+  const res = await axios
+    .get("/api/notifications/unread/count")
     .catch(errorDispatch(dispatch, SUBJECT_NOTIFICATIONS))
 
   if (res) {

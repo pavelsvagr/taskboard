@@ -3,7 +3,6 @@ import { Layout, Spin } from "antd"
 import { Loading3QuartersOutlined } from "@ant-design/icons"
 import AppRoutes from "./AppRoutes"
 
-
 const indicator = (
   <Loading3QuartersOutlined
     style={{ fontSize: 40 }}

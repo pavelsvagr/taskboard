@@ -8,7 +8,12 @@ function HelpModal({ children, title }) {
 
   return (
     <>
-      <Modal onCancel={() => setShowed(false)} visible={showed} title={title} footer={null}>
+      <Modal
+        onCancel={() => setShowed(false)}
+        visible={showed}
+        title={title}
+        footer={null}
+      >
         {children}
       </Modal>
       <HelpButton onClick={() => setShowed(!showed)} />
@@ -18,11 +23,11 @@ function HelpModal({ children, title }) {
 
 HelpModal.propTypes = {
   children: PropTypes.node.isRequired,
-  title: PropTypes.string
+  title: PropTypes.string,
 }
 
 HelpModal.defaultProps = {
-  title: "help"
+  title: "help",
 }
 
 export default HelpModal

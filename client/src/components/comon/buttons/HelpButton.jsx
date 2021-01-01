@@ -7,7 +7,7 @@ function HelpButton({ size, onClick }) {
   return (
     <Button
       shape="circle"
-      type='dashed'
+      type="dashed"
       size={size}
       icon={<QuestionOutlined />}
       onClick={onClick}
@@ -17,11 +17,11 @@ function HelpButton({ size, onClick }) {
 
 HelpButton.propTypes = {
   size: PropTypes.string,
-  onClick: PropTypes.func.isRequired
+  onClick: PropTypes.func.isRequired,
 }
 
 HelpButton.defaultProps = {
-  size: "large"
+  size: "large",
 }
 
 export default HelpButton

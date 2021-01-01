@@ -5,8 +5,8 @@ export const credentialOptions = [
   {
     value: credentials.Redmine,
     label: "Redmine",
-    logo: redmineLogo
-  }
+    logo: redmineLogo,
+  },
 ]
 
 const credentialTypes = {}

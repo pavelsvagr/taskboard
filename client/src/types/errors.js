@@ -5,5 +5,5 @@ export default PropTypes.shape({
   id: PropTypes.instanceOf(moment),
   type: PropTypes.string.isRequired,
   subject: PropTypes.string,
-  errors: PropTypes.arrayOf(PropTypes.object)
+  errors: PropTypes.arrayOf(PropTypes.object),
 })

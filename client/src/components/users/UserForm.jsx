@@ -16,7 +16,7 @@ class UserForm extends Component {
   initialValues = {
     name: "",
     email: "",
-    role: Roles.User
+    role: Roles.User,
   }
 
   // Rules for form validation
@@ -25,19 +25,17 @@ class UserForm extends Component {
       { type: "string", message: "Name must be a valid string." },
       { required: true, message: "Name is required." },
       { min: 3, message: "Name must be at least 3 chars long." },
-      { max: 300, message: "Name must be max 300 chars long." }
+      { max: 300, message: "Name must be max 300 chars long." },
     ],
     email: [
       { type: "email", message: "Email must be a valid email." },
-      { required: true, message: "Email is required." }
+      { required: true, message: "Email is required." },
     ],
-    photo: [
-      { type: "url", message: "Photo href must be a valid URL." }
-    ],
+    photo: [{ type: "url", message: "Photo href must be a valid URL." }],
     role: [
       { type: "string", message: "Role must be a valid role." },
-      { required: true, message: "Role is required." }
-    ]
+      { required: true, message: "Role is required." },
+    ],
   }
 
   // Items for form inputs
@@ -46,25 +44,25 @@ class UserForm extends Component {
       label: "Full name",
       name: "name",
       rules: this.rules.name,
-      hasFeedback: true
+      hasFeedback: true,
     },
     email: {
       label: "Email",
       name: "email",
       rules: this.rules.email,
-      hasFeedback: true
+      hasFeedback: true,
     },
     photo: {
       label: "Avatar url",
       name: "photo",
       rules: this.rules.avatar,
-      hasFeedback: true
+      hasFeedback: true,
     },
     role: {
       label: "Role",
       name: "role",
-      rules: this.rules.role
-    }
+      rules: this.rules.role,
+    },
   }
 
   componentDidMount() {
@@ -76,7 +74,12 @@ class UserForm extends Component {
   }
 
   handleSubmit = (values) => {
-    const { user, edit, updateUser: updateAction, createUser: createAction } = this.props
+    const {
+      user,
+      edit,
+      updateUser: updateAction,
+      createUser: createAction,
+    } = this.props
 
     if (user && edit) {
       updateAction(user._id, values)
@@ -89,7 +92,7 @@ class UserForm extends Component {
     const { user, loading, error, edit } = this.props
     const defaults = edit ? user || this.initialValues : this.initialValues
 
-    const rolesOptions = Object.values(Roles).map(o => {
+    const rolesOptions = Object.values(Roles).map((o) => {
       return { label: o, value: o }
     })
 
@@ -98,7 +101,7 @@ class UserForm extends Component {
 
     return (
       <Spin spinning={spinning}>
-        {(!edit || (user && user._id === edit)) ? (
+        {!edit || (user && user._id === edit) ? (
           <Form
             ref={this.formRef}
             labelCol={{ span: 18 }}
@@ -111,13 +114,16 @@ class UserForm extends Component {
             {renderAntItem("name", this.items.name, error, <Input />)}
             {renderAntItem("email", this.items.email, error, <Input />)}
             {renderAntItem("photo", this.items.photo, error, <Input />)}
-            {renderAntItem("role", this.items.role, error, (
+            {renderAntItem(
+              "role",
+              this.items.role,
+              error,
               <Radio.Group
                 options={rolesOptions}
                 optionType="button"
                 buttonStyle="solid"
               />
-            ))}
+            )}
             <FormSubmit title={edit ? "Save" : "Create"} />
           </Form>
         ) : (
@@ -135,16 +141,15 @@ UserForm.propTypes = {
   fetchUser: PropTypes.func.isRequired,
   createUser: PropTypes.func.isRequired,
   updateUser: PropTypes.func.isRequired,
-  error: shapes.errors
+  error: shapes.errors,
 }
 
 UserForm.defaultProps = {
   loading: null,
   user: null,
   edit: null,
-  error: null
+  error: null,
 }
-
 
 function mapStateToProps({ users, loading, errors }) {
   return { loading, users: users.all, user: users.user, error: errors?.errors }

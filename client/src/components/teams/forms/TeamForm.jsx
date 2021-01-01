@@ -19,7 +19,7 @@ class TeamForm extends Component {
   initialValues = {
     name: "",
     identifier: "",
-    color: "white"
+    color: "white",
   }
 
   // Rules for form validation
@@ -28,7 +28,7 @@ class TeamForm extends Component {
       { type: "string", message: "Name must be a valid string." },
       { required: true, message: "Name is required." },
       { min: 5, message: "Name must be at least 5 chars long." },
-      { max: 100, message: "Name must be max 100 chars long." }
+      { max: 100, message: "Name must be max 100 chars long." },
     ],
     identifier: [
       { type: "string", message: "Identifier must be a valid string." },
@@ -37,25 +37,25 @@ class TeamForm extends Component {
       { max: 100, message: "Identifier must be max 100 chars long." },
       {
         pattern: /^[a-zA-Z]/,
-        message: "Identifier must start with letter"
+        message: "Identifier must start with letter",
       },
       {
         pattern: /[a-zA-Z0-9]$/,
-        message: "Identifier must end with letter or number"
+        message: "Identifier must end with letter or number",
       },
       {
         pattern: /^([a-zA-Z0-9-])*$/,
-        message: "Identifier can contains only letters, numbers and -"
-      }
+        message: "Identifier can contains only letters, numbers and -",
+      },
     ],
     color: [
       {
         type: "enum",
         enum: boardColors,
-        message: "This color is not supported by TaskBoard."
+        message: "This color is not supported by TaskBoard.",
       },
-      { required: true, message: "Color is required." }
-    ]
+      { required: true, message: "Color is required." },
+    ],
   }
 
   // Items for form inputs
@@ -64,20 +64,20 @@ class TeamForm extends Component {
       label: "Team name",
       name: "name",
       rules: this.rules.name,
-      hasFeedback: true
+      hasFeedback: true,
     },
     identifier: {
       label: "Team identifier",
       name: "identifier",
       dependencies: ["name"],
       rules: this.rules.identifier,
-      hasFeedback: true
+      hasFeedback: true,
     },
     color: {
       label: "Team color",
       name: "color",
-      rules: this.rules.color
-    }
+      rules: this.rules.color,
+    },
   }
 
   componentDidMount() {
@@ -99,7 +99,12 @@ class TeamForm extends Component {
   }
 
   handleSubmit = (values) => {
-    const { team, edit, updateTeam: updateAction, sendTeam: sendAction } = this.props
+    const {
+      team,
+      edit,
+      updateTeam: updateAction,
+      sendTeam: sendAction,
+    } = this.props
 
     if (edit && team?.identifier === edit) {
       updateAction(team.identifier, values)
@@ -110,13 +115,14 @@ class TeamForm extends Component {
 
   render() {
     const { error, edit, team, loading } = this.props
-    const defaults = edit && edit === team?.identifier ? team : this.initialValues
+    const defaults =
+      edit && edit === team?.identifier ? team : this.initialValues
 
     const spinning = !!loading?.states[SUBJECT_TEAM]
 
     return (
       <Spin spinning={spinning}>
-        {!edit || (edit === team?.identifier) ? (
+        {!edit || edit === team?.identifier ? (
           <Form
             ref={this.formRef}
             labelCol={{ span: 18 }}
@@ -126,19 +132,28 @@ class TeamForm extends Component {
             onFinish={this.handleSubmit}
             initialValues={defaults}
           >
-            {renderAntItem("name", this.items.name, error,
+            {renderAntItem(
+              "name",
+              this.items.name,
+              error,
               <Input onChange={this.handleChangeName} />
             )}
-            {renderAntItem("identifier", this.items.identifier, error,
+            {renderAntItem(
+              "identifier",
+              this.items.identifier,
+              error,
               <Input />
             )}
-            {renderAntItem("color", this.items.color, error,
+            {renderAntItem(
+              "color",
+              this.items.color,
+              error,
               <ColorPicker data={boardColors} />
             )}
             {error && !error.fields && (
               <Typography.Text type="danger">{error.message}</Typography.Text>
             )}
-            <FormSubmit title='Save' />
+            <FormSubmit title="Save" />
           </Form>
         ) : (
           <EmptyForm />
@@ -155,14 +170,14 @@ TeamForm.propTypes = {
   team: shapes.team,
   sendTeam: PropTypes.func.isRequired,
   updateTeam: PropTypes.func.isRequired,
-  fetchTeam: PropTypes.func.isRequired
+  fetchTeam: PropTypes.func.isRequired,
 }
 
 TeamForm.defaultProps = {
   error: null,
   loading: null,
   team: null,
-  edit: false
+  edit: false,
 }
 
 function mapStateToProps({ loading, errors, teams }) {
@@ -174,4 +189,6 @@ function mapStateToProps({ loading, errors, teams }) {
   return newProps
 }
 
-export default connect(mapStateToProps, { fetchTeam, sendTeam, updateTeam })(TeamForm)
+export default connect(mapStateToProps, { fetchTeam, sendTeam, updateTeam })(
+  TeamForm
+)

@@ -13,7 +13,6 @@ import boardItem from "./boardItem"
 import paginate from "./paginate"
 import assignment from "./assignment"
 
-
 export default {
   board,
   errors,
@@ -28,5 +27,5 @@ export default {
   user,
   boardItem,
   paginate,
-  assignment
+  assignment,
 }

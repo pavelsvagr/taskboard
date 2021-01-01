@@ -1,4 +1,3 @@
-
 import React, { useState } from "react"
 
 import { Button, Col, Modal, Row } from "antd"
@@ -8,7 +7,7 @@ const ColorPicker = ({ value, onChange, data }) => {
   const [showModal, setShowModal] = useState()
 
   const handleChange = (color) => {
-      setShowModal(false)
+    setShowModal(false)
     if (onChange) {
       onChange(color)
     }
@@ -71,7 +70,7 @@ ColorPicker.propTypes = {
 ColorPicker.defaultProps = {
   value: null,
   data: [],
-  onChange: null
+  onChange: null,
 }
 
 export default ColorPicker

@@ -16,11 +16,11 @@ function AddButton({ onClick, type = "primary", ...otherProps }) {
 
 AddButton.propTypes = {
   onClick: PropTypes.func.isRequired,
-  type: PropTypes.string
+  type: PropTypes.string,
 }
 
 AddButton.defaultProps = {
-  type: "primary"
+  type: "primary",
 }
 
 export default AddButton

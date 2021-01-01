@@ -9,7 +9,12 @@ import App from "./components/AppRoutes"
 import store from "./store"
 
 moment.updateLocale("en", {
-  week: { dow: 1 }
+  week: { dow: 1 },
 })
 
-ReactDOM.render(<Provider store={store}><App /></Provider>, document.getElementById("root"))
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById("root")
+)

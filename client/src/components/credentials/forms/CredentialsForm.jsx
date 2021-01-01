@@ -1,6 +1,10 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
-import { sendCredentials, SUBJECT_CREDENTIALS, updateCredentials } from "actions"
+import {
+  sendCredentials,
+  SUBJECT_CREDENTIALS,
+  updateCredentials,
+} from "actions"
 
 import { Form, Input, Select, Spin, Typography } from "antd"
 import redmineLogo from "images/redmine-logo.png"
@@ -16,7 +20,7 @@ class CredentialsForm extends Component {
     name: "",
     type: null,
     url: "",
-    apiKey: ""
+    apiKey: "",
   }
 
   typeOptions = [{ label: "Redmine", value: "redmine", logo: redmineLogo }]
@@ -26,25 +30,25 @@ class CredentialsForm extends Component {
       { type: "string", message: "Name must be a valid string." },
       { required: true, message: "Please give a name to your credentials." },
       { min: 5, message: "Name must be at least 5 chars long." },
-      { max: 100, message: "Name must be max 100 chars long." }
+      { max: 100, message: "Name must be max 100 chars long." },
     ],
     type: [
       {
         type: "enum",
         enum: ["redmine"],
-        message: "Type must be a valid string."
+        message: "Type must be a valid string.",
       },
-      { required: true, message: "Chose a type." }
+      { required: true, message: "Chose a type." },
     ],
     url: [
       { type: "url", message: "URL to redmine app must be a valid URL." },
-      { required: true, message: "URL to redmine app is required." }
+      { required: true, message: "URL to redmine app is required." },
     ],
     apiKey: [
       { type: "string", message: "API key must be a valid string." },
       { len: 40, message: "Redmine API key must be 40 chars long." },
-      { required: true, message: "Redmine API key is required." }
-    ]
+      { required: true, message: "Redmine API key is required." },
+    ],
   }
 
   items = {
@@ -52,25 +56,25 @@ class CredentialsForm extends Component {
       label: "Credentials name",
       name: "name",
       rules: this.rules.name,
-      hasFeedback: true
+      hasFeedback: true,
     },
     type: {
       label: "Type",
       name: "type",
-      rules: this.rules.type
+      rules: this.rules.type,
     },
     url: {
       label: "URL",
       name: "url",
       rules: this.rules.url,
-      hasFeedback: true
+      hasFeedback: true,
     },
     apiKey: {
       label: "API key",
       name: "apiKey",
       rules: this.rules.apiKey,
-      hasFeedback: true
-    }
+      hasFeedback: true,
+    },
   }
 
   constructor(props) {
@@ -81,8 +85,8 @@ class CredentialsForm extends Component {
         name: "",
         type: "",
         url: "",
-        apiKey: ""
-      }
+        apiKey: "",
+      },
     }
   }
 
@@ -107,7 +111,12 @@ class CredentialsForm extends Component {
   }
 
   handleSubmit = (values) => {
-    const { credentials, edit, sendCredentials: send, updateCredentials: update } = this.props
+    const {
+      credentials,
+      edit,
+      sendCredentials: send,
+      updateCredentials: update,
+    } = this.props
 
     if (credentials && edit) {
       update(credentials._id, { name: values.name })
@@ -118,17 +127,19 @@ class CredentialsForm extends Component {
 
   render() {
     const { error, credentials, edit, loading } = this.props
-    const defaults = edit ? (credentials || this.initialValues) : this.initialValues
+    const defaults = edit
+      ? credentials || this.initialValues
+      : this.initialValues
 
     const { credentials: data } = this.state
 
-    const selectedType = edit ? (data?.type || credentials?.type) : data?.type
+    const selectedType = edit ? data?.type || credentials?.type : data?.type
 
     const spinning = !!loading?.states[SUBJECT_CREDENTIALS]
 
     return (
       <Spin spinning={spinning}>
-        {(!edit || (edit === credentials?._id)) ? (
+        {!edit || edit === credentials?._id ? (
           <Form
             labelCol={{ span: 18 }}
             wrapperCol={{ span: 24 }}
@@ -137,10 +148,11 @@ class CredentialsForm extends Component {
             onFinish={this.handleSubmit}
             initialValues={defaults}
           >
-            {renderAntItem("name", this.items.name, error,
-              <Input />
-            )}
-            {renderAntItem("type", this.items.type, error,
+            {renderAntItem("name", this.items.name, error, <Input />)}
+            {renderAntItem(
+              "type",
+              this.items.type,
+              error,
               <Select
                 onChange={this.handleChangeType}
                 placeholder="Please select credentials app"
@@ -152,7 +164,11 @@ class CredentialsForm extends Component {
                     key={item.value}
                     placeholder="Credential type"
                   >
-                    <img alt={`${item.value} logo`} src={item.logo} className="credentials__logo" />
+                    <img
+                      alt={`${item.value} logo`}
+                      src={item.logo}
+                      className="credentials__logo"
+                    />
                     <span className="credentials__label">{item.label}</span>
                   </Select.Option>
                 ))}
@@ -160,14 +176,18 @@ class CredentialsForm extends Component {
             )}
             {selectedType === "redmine" && (
               <>
-                {renderAntItem("url", this.items.url, error,
+                {renderAntItem(
+                  "url",
+                  this.items.url,
+                  error,
                   <Input disabled={edit} />
                 )}
-                {!edit && renderAntItem("apiKey", this.items.apiKey, error,
-                  <Input />
-                )}
+                {!edit &&
+                  renderAntItem("apiKey", this.items.apiKey, error, <Input />)}
                 {error && !error.fields && (
-                  <Typography.Text type="danger">{error.message}</Typography.Text>
+                  <Typography.Text type="danger">
+                    {error.message}
+                  </Typography.Text>
                 )}
               </>
             )}
@@ -188,20 +208,26 @@ CredentialsForm.propTypes = {
   fetchSingleCredentials: PropTypes.func.isRequired,
   loading: shapes.loading,
   credentials: shapes.credentials,
-  error: shapes.errors
+  error: shapes.errors,
 }
 
 CredentialsForm.defaultProps = {
   edit: null,
   loading: null,
   credentials: null,
-  error: null
+  error: null,
 }
 
 function mapStateToProps({ loading, errors, credentials }) {
-  return { loading, error: errors?.errors, credentials: credentials?.credentials }
+  return {
+    loading,
+    error: errors?.errors,
+    credentials: credentials?.credentials,
+  }
 }
 
-export default connect(mapStateToProps, { sendCredentials, updateCredentials, fetchSingleCredentials })(
-  CredentialsForm
-)
+export default connect(mapStateToProps, {
+  sendCredentials,
+  updateCredentials,
+  fetchSingleCredentials,
+})(CredentialsForm)

@@ -30,7 +30,9 @@ describe("Teams.jsx", () => {
         <MemoryRouter>
           <Teams />
         </MemoryRouter>
-      </Provider>, div)
+      </Provider>,
+      div
+    )
   })
 
   it("Snapshot: Match admin", () => {

@@ -8,7 +8,7 @@ import {
   SUBJECT_BOARD_ITEMS,
   SUBJECT_BOARD_MEMBERS,
   SUBJECT_BOARD_SETTINGS,
-  SUBJECT_BOARD_TEAMS
+  SUBJECT_BOARD_TEAMS,
 } from "../../../actions"
 import BoardItemRow from "./BoardItemRow"
 import DroppableSpace from "./specials/DroppableSpace"
@@ -18,7 +18,7 @@ import shapes from "../../../types"
 
 class BoardItemsGrid extends Component {
   onDragEnd = (result) => {
-    const {otherMembers, onReorder, teams} = this.props
+    const { otherMembers, onReorder, teams } = this.props
     const { destination, source } = result
 
     // dropped outside the list or same index
@@ -37,15 +37,18 @@ class BoardItemsGrid extends Component {
       targetIndex = members[destination.index]
     }
 
-   onReorder(source.droppableId, sourceIndex, targetIndex)
+    onReorder(source.droppableId, sourceIndex, targetIndex)
   }
 
   onDragTeamsEnd = (result) => {
     const { destination, source } = result
-    const {teams, onReorderTeams} = this.props
+    const { teams, onReorderTeams } = this.props
 
-    if (!destination || source.index === destination.index ||
-      destination.index >= teams.length) {
+    if (
+      !destination ||
+      source.index === destination.index ||
+      destination.index >= teams.length
+    ) {
       return
     }
 
@@ -58,10 +61,10 @@ class BoardItemsGrid extends Component {
     const Wrapper = editMode ? DroppableSpace : "div"
     const wrapperProps = editMode
       ? {
-        onDragEnd: this.onDragEnd,
-        droppableId: "others",
-        className: "color-white"
-      }
+          onDragEnd: this.onDragEnd,
+          droppableId: "others",
+          className: "color-white",
+        }
       : { className: "color-white" }
 
     return (
@@ -85,7 +88,16 @@ class BoardItemsGrid extends Component {
   }
 
   render() {
-    const { board, teams, teamMembers, otherMembers, priorities, data, loading, editMode } = this.props
+    const {
+      board,
+      teams,
+      teamMembers,
+      otherMembers,
+      priorities,
+      data,
+      loading,
+      editMode,
+    } = this.props
     const items = {}
     for (const item of data) {
       items[item.member] = item
@@ -100,24 +112,27 @@ class BoardItemsGrid extends Component {
       openTeams.push("others")
     }
 
-    const spinning = loading &&
-      !!(loading.states[SUBJECT_BOARD_ITEMS] ||
+    const spinning =
+      loading &&
+      !!(
+        loading.states[SUBJECT_BOARD_ITEMS] ||
         loading.states[SUBJECT_BOARD_TEAMS] ||
         loading.states[SUBJECT_BOARD_MEMBERS] ||
-        loading.states[SUBJECT_BOARD_SETTINGS])
+        loading.states[SUBJECT_BOARD_SETTINGS]
+      )
 
     const ItemsWrapper = editMode ? DroppableSpace : React.Fragment
 
     const TeamsWrapper = editMode ? DroppableSpace : Collapse
     const teamsWrapperProps = editMode
       ? {
-        droppableId: "teams",
-        onDragEnd: this.onDragTeamsEnd
-      }
+          droppableId: "teams",
+          onDragEnd: this.onDragTeamsEnd,
+        }
       : {
-        ghost: true,
-        defaultActiveKey: openTeams
-      }
+          ghost: true,
+          defaultActiveKey: openTeams,
+        }
     const TeamWrapper = editMode ? DraggableHeader : Collapse.Panel
 
     return (
@@ -136,8 +151,8 @@ class BoardItemsGrid extends Component {
                 className="board__col--header"
                 {...getColSpan(col + 1, priorities, true)}
               >
-                Priority
-                {" "}
+                Priority 
+                {' '}
                 {col + 1}
               </Col>
             ))}
@@ -147,9 +162,9 @@ class BoardItemsGrid extends Component {
               {teams.map((team, teamIndex) => {
                 const wrapperProps = editMode
                   ? {
-                    onDragEnd: this.onDragEnd,
-                    droppableId: team._id
-                  }
+                      onDragEnd: this.onDragEnd,
+                      droppableId: team._id,
+                    }
                   : {}
                 return (
                   <TeamWrapper
@@ -186,17 +201,12 @@ class BoardItemsGrid extends Component {
                   headerClass="board__team-header"
                   className="color-white"
                 >
-                  {this.renderOthers(
-                    otherMembers,
-                    items,
-                    cols
-                  )}
+                  {this.renderOthers(otherMembers, items, cols)}
                 </TeamWrapper>
               )}
             </TeamsWrapper>
           )}
-          {teams.length === 0 &&
-          this.renderOthers(otherMembers, items, cols)}
+          {teams.length === 0 && this.renderOthers(otherMembers, items, cols)}
         </div>
       </Spin>
     )
@@ -222,7 +232,7 @@ BoardItemsGrid.defaultProps = {
   loading: null,
   data: [],
   teamMembers: null,
-  otherMembers: null
+  otherMembers: null,
 }
 
 function mapStateToProps({ boardTools }) {

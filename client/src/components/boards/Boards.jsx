@@ -1,7 +1,12 @@
 import React, { Component } from "react"
 import { Route } from "react-router-dom"
 import { connect } from "react-redux"
-import { fetchBoards, fetchLoggedUser, sendBoard, SUBJECT_BOARDS } from "actions"
+import {
+  fetchBoards,
+  fetchLoggedUser,
+  sendBoard,
+  SUBJECT_BOARDS,
+} from "actions"
 
 import { Modal, Spin } from "antd"
 
@@ -38,7 +43,7 @@ class Boards extends Component {
           sizing={{ xs: 24, sm: 24, md: 12, xl: 8, xxl: 6 }}
           gutter={[
             { xs: 8, sm: 16, md: 24, lg: 32 },
-            { xs: 8, sm: 16, md: 24, lg: 32 }
+            { xs: 8, sm: 16, md: 24, lg: 32 },
           ]}
           onCardClick={(board) => history.push(`/board/${board.identifier}`)}
         />
@@ -71,17 +76,19 @@ class Boards extends Component {
 
 Boards.propTypes = {
   fetchBoards: PropTypes.func.isRequired,
-  loading: shapes.loading
+  loading: shapes.loading,
 }
 
 Boards.defaultProps = {
-  loading: null
+  loading: null,
 }
 
 function mapStateToProps({ auth, loading }) {
   return { auth, loading }
 }
 
-export default connect(mapStateToProps, { fetchUser: fetchLoggedUser, fetchBoards, sendBoard })(
-  Boards
-)
+export default connect(mapStateToProps, {
+  fetchUser: fetchLoggedUser,
+  fetchBoards,
+  sendBoard,
+})(Boards)

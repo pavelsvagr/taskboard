@@ -2,7 +2,7 @@ import * as sorting from "../sorting"
 
 describe("UNIT: sortingTest.js", () => {
   describe("lexicalSort", () => {
-    it('case insensitive', () => {
+    it("case insensitive", () => {
       const lexicalSortI = sorting.lexicalSort(false, (val) => val)
       expect(["a", "b", "c"].sort(lexicalSortI)).toStrictEqual(["a", "b", "c"])
       expect(["a", "c", "a"].sort(lexicalSortI)).toStrictEqual(["a", "a", "c"])
@@ -12,7 +12,7 @@ describe("UNIT: sortingTest.js", () => {
       expect(["a", "A", "a"].sort(lexicalSortI)).toStrictEqual(["a", "A", "a"])
     })
 
-    it('case sensitive', () => {
+    it("case sensitive", () => {
       const lexicalSortC = sorting.lexicalSort(true, (val) => val)
       expect(["a", "b", "c"].sort(lexicalSortC)).toStrictEqual(["a", "b", "c"])
       expect(["a", "c", "a"].sort(lexicalSortC)).toStrictEqual(["a", "a", "c"])
@@ -22,7 +22,7 @@ describe("UNIT: sortingTest.js", () => {
       expect(["a", "A", "a"].sort(lexicalSortC)).toStrictEqual(["a", "a", "A"])
     })
 
-    it('numeric', () => {
+    it("numeric", () => {
       const numeric = sorting.numericSort((val) => val)
       expect([1, 2, 3].sort(numeric)).toStrictEqual([1, 2, 3])
       expect([1, 3, 2].sort(numeric)).toStrictEqual([1, 2, 3])

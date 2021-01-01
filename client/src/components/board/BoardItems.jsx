@@ -18,7 +18,7 @@ import {
   updateBoardMember,
   updateBoardMembers,
   updateBoardSettings,
-  updateBoardTeamMembers
+  updateBoardTeamMembers,
 } from "actions"
 import arrayMove from "@shared/utils/arrayMove"
 import { getDateFromTo } from "@shared/utils/interval"
@@ -31,12 +31,17 @@ import {
   changeBoardDate,
   reloadTaskBoard,
   showCellAssignment,
-  submitCellAssignment
+  submitCellAssignment,
 } from "../../actions/boardToolsAction"
 
 class BoardItems extends Component {
   componentDidMount() {
-    const { board, date, reloadTaskBoard: reload, changeBoardDate: changeDate } = this.props
+    const {
+      board,
+      date,
+      reloadTaskBoard: reload,
+      changeBoardDate: changeDate,
+    } = this.props
 
     const { location } = this.props
     const { search } = location
@@ -48,9 +53,6 @@ class BoardItems extends Component {
       finalDate = moment(params.date)
     }
     [finalDate] = getDateFromTo(finalDate, board.intervals)
-
-    console.log(date)
-    console.log(finalDate)
 
     if (date.format("YYYY-MM-DD") !== finalDate.format("YYYY-MM-DD")) {
       changeDate(board, finalDate, false)
@@ -101,21 +103,37 @@ class BoardItems extends Component {
       return this.props.updateBoardMembers(board.identifier, newMembers)
     }
 
-    const team = this.props.teams.find(t => t._id === teamId)
+    const team = this.props.teams.find((t) => t._id === teamId)
 
     const teamMembers = [...team.members]
-    const sourceIndex = teamMembers.findIndex(m => m === sourceId)
-    const targetIndex = teamMembers.findIndex(m => m === targetId)
+    const sourceIndex = teamMembers.findIndex((m) => m === sourceId)
+    const targetIndex = teamMembers.findIndex((m) => m === targetId)
 
     const [removed] = teamMembers.splice(sourceIndex, 1)
     teamMembers.splice(targetIndex, 0, removed)
-    this.props.updateBoardTeamMembers(this.props.board.identifier, team.identifier, teamMembers)
+    this.props.updateBoardTeamMembers(
+      this.props.board.identifier,
+      team.identifier,
+      teamMembers
+    )
   }
 
   render() {
-    const { board, loading, members, teams, boardItems, boardSettings, assignment} = this.props
+    const {
+      board,
+      loading,
+      members,
+      teams,
+      boardItems,
+      boardSettings,
+      assignment,
+    } = this.props
 
-    const priorities = boardSettings ? boardSettings.priorities : board ? board.priorities : 3
+    const priorities = boardSettings
+      ? boardSettings.priorities
+      : board
+      ? board.priorities
+      : 3
 
     const items = boardItems || []
     const teamsData = teams || []
@@ -143,15 +161,14 @@ class BoardItems extends Component {
       }
     }
 
-    const loadingState = loading?.states[SUBJECT_BOARD] || !(members && teams && boardItems)
+    const loadingState =
+      loading?.states[SUBJECT_BOARD] || !(members && teams && boardItems)
     const spinning = !!(loading?.active && loadingState)
 
     return (
       <div>
         {assignment && !board.hasInlineEdit && (
-          <BoardItemEditModal
-            maxPriority={priorities}
-          />
+          <BoardItemEditModal maxPriority={priorities} />
         )}
         <BoardToolbar
           board={board}
@@ -188,15 +205,22 @@ BoardItems.propTypes = {
   location: PropTypes.objectOf(PropTypes.string).isRequired,
   changeBoardDate: PropTypes.func.isRequired,
   loading: shapes.loading,
-  boardSettings: shapes.settings
+  boardSettings: shapes.settings,
 }
 
 BoardItems.defaultProps = {
   loading: null,
-  boardSettings: null
+  boardSettings: null,
 }
 
-function mapStateToProps({ loading, boardItems, boardAssignments, boards, boardSettings, boardTools }) {
+function mapStateToProps({
+  loading,
+  boardItems,
+  boardAssignments,
+  boards,
+  boardSettings,
+  boardTools,
+}) {
   if (boards) {
     return {
       board: boards.board,
@@ -207,10 +231,16 @@ function mapStateToProps({ loading, boardItems, boardAssignments, boards, boardS
       teams: boards.teams,
       boardItems,
       boardAssignments,
-      loading
+      loading,
     }
   }
-  return { loading, boardItems, boardAssignments, boardSettings, date: boardTools.date }
+  return {
+    loading,
+    boardItems,
+    boardAssignments,
+    boardSettings,
+    date: boardTools.date,
+  }
 }
 
 export default connect(mapStateToProps, {
@@ -230,5 +260,5 @@ export default connect(mapStateToProps, {
   updateBoardSettings,
   showCellAssignment,
   submitCellAssignment,
-  changeBoardDate
+  changeBoardDate,
 })(BoardItems)

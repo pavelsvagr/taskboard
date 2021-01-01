@@ -44,7 +44,6 @@ export const BOARD_TASK_ASSIGNMENT = "BOARD/ASSIGNMENT"
 export const BOARD_INITIAL_TOOLS = "BOARD/INITIAL_RULES"
 export const BOARD_TASK_SEARCH = "BOARD/TASKS/SEARCH"
 
-
 // Teams
 export const FETCH_TEAMS = "GET teams"
 export const ADD_TEAM = "POST teams"

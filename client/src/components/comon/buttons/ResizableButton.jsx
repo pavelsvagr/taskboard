@@ -24,13 +24,13 @@ function ResizableButton({ size, className, children, ...otherProps }) {
 ResizableButton.propTypes = {
   size: PropTypes.string,
   className: PropTypes.string,
-  children: PropTypes.node
+  children: PropTypes.node,
 }
 
 ResizableButton.defaultProps = {
   size: null,
   className: null,
-  children: null
+  children: null,
 }
 
 export default ResizableButton

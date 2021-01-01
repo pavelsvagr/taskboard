@@ -3,11 +3,12 @@ import {
   ADD_CREDENTIALS,
   DELETE_CREDENTIALS,
   FEEDBACK_SUCCESS,
-  FETCH_CREDENTIALS, FETCH_SINGLE_CREDENTIALS,
+  FETCH_CREDENTIALS,
+  FETCH_SINGLE_CREDENTIALS,
   LOADING,
   LOADING_DONE,
   REDIRECT,
-  UPDATE_CREDENTIALS
+  UPDATE_CREDENTIALS,
 } from "./types"
 import errorDispatch from "./errorDispatch"
 
@@ -17,12 +18,15 @@ export const SUBJECT_CREDENTIALS = "credentials"
  * Fetch credentials from server
  * @returns {function(...[*]=)}
  */
-export const fetchCredentials = (search, offset = 0, limit = 25) => async (dispatch) => {
+export const fetchCredentials = (search, offset = 0, limit = 25) => async (
+  dispatch
+) => {
   dispatch({ type: LOADING, subject: SUBJECT_CREDENTIALS })
 
   search = search || null
 
-  const res = await axios.get("/api/credentials", { params: { search, offset, limit } })
+  const res = await axios
+    .get("/api/credentials", { params: { search, offset, limit } })
     .catch(errorDispatch(dispatch, SUBJECT_CREDENTIALS))
 
   if (res) {
@@ -31,7 +35,6 @@ export const fetchCredentials = (search, offset = 0, limit = 25) => async (dispa
   dispatch({ type: LOADING_DONE, subject: SUBJECT_CREDENTIALS })
 }
 
-
 /**
  * Fetch single credentials from server
  * @returns {function(...[*]=)}
@@ -39,7 +42,8 @@ export const fetchCredentials = (search, offset = 0, limit = 25) => async (dispa
 export const fetchSingleCredentials = (id) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_CREDENTIALS })
 
-  const res = await axios.get(`/api/credentials/${id}`)
+  const res = await axios
+    .get(`/api/credentials/${id}`)
     .catch(errorDispatch(dispatch, SUBJECT_CREDENTIALS))
 
   if (res) {
@@ -56,7 +60,8 @@ export const fetchSingleCredentials = (id) => async (dispatch) => {
 export const sendCredentials = (values) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_CREDENTIALS })
 
-  const res = await axios.post("/api/credentials", values)
+  const res = await axios
+    .post("/api/credentials", values)
     .catch(errorDispatch(dispatch, SUBJECT_CREDENTIALS))
 
   if (res) {
@@ -75,7 +80,8 @@ export const sendCredentials = (values) => async (dispatch) => {
 export const deleteCredentials = (credentialsId) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_CREDENTIALS })
 
-  const res = await axios.delete(`/api/credentials/${credentialsId}`)
+  const res = await axios
+    .delete(`/api/credentials/${credentialsId}`)
     .catch(errorDispatch(dispatch, SUBJECT_CREDENTIALS))
 
   if (res) {
@@ -91,10 +97,13 @@ export const deleteCredentials = (credentialsId) => async (dispatch) => {
  * @param {object} values
  * @returns {function(...[*]=)}
  */
-export const updateCredentials = (credentialsId, values) => async (dispatch) => {
+export const updateCredentials = (credentialsId, values) => async (
+  dispatch
+) => {
   dispatch({ type: LOADING, subject: SUBJECT_CREDENTIALS })
 
-  const res = await axios.patch(`/api/credentials/${credentialsId}`, values)
+  const res = await axios
+    .patch(`/api/credentials/${credentialsId}`, values)
     .catch(errorDispatch(dispatch, SUBJECT_CREDENTIALS))
 
   if (res) {
@@ -104,4 +113,3 @@ export const updateCredentials = (credentialsId, values) => async (dispatch) => 
   }
   dispatch({ type: LOADING_DONE, subject: SUBJECT_CREDENTIALS })
 }
-

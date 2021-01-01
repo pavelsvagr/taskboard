@@ -1,11 +1,20 @@
 import React from "react"
 import { Button, Col, Row } from "antd"
-import { DownCircleOutlined, EyeOutlined, PlusCircleOutlined } from "@ant-design/icons"
+import {
+  DownCircleOutlined,
+  EyeOutlined,
+  PlusCircleOutlined,
+} from "@ant-design/icons"
 import PropTypes from "prop-types"
 
-function AssignmentButton({ onClick, disabled, assignment = null, type = "select" }) {
+function AssignmentButton({
+  onClick,
+  disabled,
+  assignment = null,
+  type = "select",
+}) {
   const buttonProps = {
-    disabled
+    disabled,
   }
 
   let buttonIcon
@@ -27,11 +36,7 @@ function AssignmentButton({ onClick, disabled, assignment = null, type = "select
   }
 
   return (
-    <Button
-      disabled={disabled}
-      className="board__assignment"
-      {...buttonProps}
-    >
+    <Button disabled={disabled} className="board__assignment" {...buttonProps}>
       <Row>
         <Col span={22} className="ellipsis board__assignment__selected">
           {assignment && assignment.title}
@@ -44,16 +49,18 @@ function AssignmentButton({ onClick, disabled, assignment = null, type = "select
 
 AssignmentButton.propTypes = {
   onClick: PropTypes.func,
-  assignment: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number])),
+  assignment: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+  ),
   disabled: PropTypes.bool,
-  type: PropTypes.oneOf(["select", "add", "see"])
+  type: PropTypes.oneOf(["select", "add", "see"]),
 }
 
 AssignmentButton.defaultProps = {
   onClick: null,
   assignment: null,
   disabled: false,
-  type: "select"
+  type: "select",
 }
 
 export default AssignmentButton

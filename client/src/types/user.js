@@ -8,5 +8,5 @@ export default PropTypes.shape({
   photo: PropTypes.string,
   googleId: PropTypes.string,
   googlePhoto: PropTypes.string,
-  active: PropTypes.bool
+  active: PropTypes.bool,
 })

@@ -5,5 +5,5 @@ export default PropTypes.shape({
   type: PropTypes.string.isRequired,
   url: PropTypes.string,
   name: PropTypes.string,
-  creator: PropTypes.string
+  creator: PropTypes.string,
 })

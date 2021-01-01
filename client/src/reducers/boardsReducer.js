@@ -10,9 +10,13 @@ import {
   REORDER_BOARD_TEAMS,
   UPDATE_BOARD,
   UPDATE_BOARD_MEMBER,
-  UPDATE_BOARD_TEAM_MEMBERS
+  UPDATE_BOARD_TEAM_MEMBERS,
 } from "actions/types"
-import { addToPagination, removeFromPagination, updateInPagination } from "../helpers/paginationManipulate"
+import {
+  addToPagination,
+  removeFromPagination,
+  updateInPagination,
+} from "../helpers/paginationManipulate"
 
 export default (state = {}, action) => {
   const { type, payload } = action
@@ -25,13 +29,19 @@ export default (state = {}, action) => {
       return { ...state, board: payload }
 
     case ADD_BOARD:
-      return payload ? { ...state, all: addToPagination(state.all, payload) } : state
+      return payload
+        ? { ...state, all: addToPagination(state.all, payload) }
+        : state
 
     case UPDATE_BOARD:
-      return payload ? { ...state, all: updateInPagination(state.all, payload) } : state
+      return payload
+        ? { ...state, all: updateInPagination(state.all, payload) }
+        : state
 
     case DELETE_BOARD:
-      return payload ? { ...state, all: removeFromPagination(state.all, payload) } : state
+      return payload
+        ? { ...state, all: removeFromPagination(state.all, payload) }
+        : state
 
     case FETCH_BOARD_MEMBERS:
       return { ...state, ...{ members: payload }, error: null }
@@ -48,18 +58,18 @@ export default (state = {}, action) => {
       }
 
       return {
-        ...state, members: [...state.members.filter((m) => m._id !== payload._id)],
+        ...state,
+        members: [...state.members.filter((m) => m._id !== payload._id)],
         teams: newTeams,
-        error: null
+        error: null,
       }
 
     case UPDATE_BOARD_MEMBER:
       return {
-        ...state, members: [
-          ...state.members.map((m) =>
-            m._id === payload._id ? payload : m
-          )
-        ]
+        ...state,
+        members: [
+          ...state.members.map((m) => (m._id === payload._id ? payload : m)),
+        ],
       }
 
     case FETCH_BOARD_TEAMS:
@@ -68,20 +78,21 @@ export default (state = {}, action) => {
     case REORDER_BOARD_TEAMS:
       return {
         ...state,
-        board: state.board ? { ...state.board, teams: payload.map(t => t._id) } : null,
-        teams: payload
+        board: state.board
+          ? { ...state.board, teams: payload.map((t) => t._id) }
+          : null,
+        teams: payload,
       }
 
     case UPDATE_BOARD_TEAM_MEMBERS:
-      const oldTeam = state.teams.find(
-        (t) => t.identifier === payload.team
-      )
+      const oldTeam = state.teams.find((t) => t.identifier === payload.team)
       const newTeam = { ...oldTeam, members: payload.members }
 
       return {
-        ...state, teams: [
-          ...state.teams.map((t) => (t._id === newTeam._id ? newTeam : t))
-        ]
+        ...state,
+        teams: [
+          ...state.teams.map((t) => (t._id === newTeam._id ? newTeam : t)),
+        ],
       }
 
     default:

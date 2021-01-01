@@ -5,5 +5,5 @@ export default PropTypes.shape({
   board: PropTypes.string.isRequired,
   nickname: PropTypes.string.isRequired,
   order: PropTypes.number.isRequired,
-  role: PropTypes.string.isRequired
+  role: PropTypes.string.isRequired,
 })

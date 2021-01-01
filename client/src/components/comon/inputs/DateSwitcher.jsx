@@ -97,7 +97,9 @@ DateSwitcher.propTypes = {
   onChange: PropTypes.func,
   intervals: PropTypes.string,
   disabled: PropTypes.bool,
-  buttonProps: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.bool, PropTypes.string])),
+  buttonProps: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.bool, PropTypes.string])
+  ),
 }
 
 DateSwitcher.defaultProps = {
@@ -105,8 +107,7 @@ DateSwitcher.defaultProps = {
   onChange: null,
   disabled: false,
   buttonProps: {},
-  intervals: null
+  intervals: null,
 }
-
 
 export default DateSwitcher

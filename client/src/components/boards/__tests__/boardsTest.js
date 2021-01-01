@@ -30,7 +30,9 @@ describe("Boards.jsx", () => {
         <MemoryRouter>
           <Boards />
         </MemoryRouter>
-      </Provider>, div)
+      </Provider>,
+      div
+    )
   })
 
   it("Snapshot: Match admin", () => {

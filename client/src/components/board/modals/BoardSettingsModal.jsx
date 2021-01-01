@@ -11,7 +11,7 @@ import {
   updateBoardItem,
   updateBoardMember,
   updateBoardMembers,
-  updateBoardTeamMembers
+  updateBoardTeamMembers,
 } from "actions"
 import BoardShape from "types/board"
 import MemberShape from "types/member"
@@ -34,35 +34,19 @@ function BoardSettingsModal({ board, members, boardTeams, onReload, onClose }) {
       width={1200}
     >
       <Tabs defaultActiveKey="1" centered>
-        <TabPane
-          tab="Settings"
-          key="1"
-          className="basic-modal__body"
-        >
+        <TabPane tab="Settings" key="1" className="basic-modal__body">
           <BoardSettingsForm board={board} />
         </TabPane>
-        <TabPane
-          tab="Members"
-          key="2"
-          className="basic-modal__body"
-        >
+        <TabPane tab="Members" key="2" className="basic-modal__body">
           <BoardMembersGrid board={board} members={members} />
         </TabPane>
-        <TabPane
-          tab="Teams"
-          key="3"
-          className="basic-modal__body"
-        >
+        <TabPane tab="Teams" key="3" className="basic-modal__body">
           <BoardTeamsForm
             board={board}
             boardTeams={boardTeams ? boardTeams.map((t) => t._id) : []}
           />
         </TabPane>
-        <TabPane
-          tab="Tasks filter"
-          key="4"
-          className="basic-modal__body"
-        >
+        <TabPane tab="Tasks filter" key="4" className="basic-modal__body">
           <BoardFiltersForm board={board} afterSubmit={onReload} />
         </TabPane>
       </Tabs>
@@ -75,20 +59,20 @@ BoardSettingsModal.propTypes = {
   members: PropTypes.arrayOf(MemberShape),
   boardTeams: PropTypes.arrayOf(TeamShape),
   onReload: PropTypes.func.isRequired,
-  onClose: PropTypes.func.isRequired
+  onClose: PropTypes.func.isRequired,
 }
 
 BoardSettingsModal.defaultProps = {
   board: null,
   members: null,
-  boardTeams: null
+  boardTeams: null,
 }
 
 function mapStateToProps({ boards }) {
   return {
     board: boards?.board,
     members: boards?.members,
-    boardTeams: boards?.teams
+    boardTeams: boards?.teams,
   }
 }
 
@@ -100,5 +84,5 @@ export default connect(mapStateToProps, {
   updateBoardItem,
   updateBoardTeamMembers,
   updateBoardMember,
-  updateBoardMembers
+  updateBoardMembers,
 })(BoardSettingsModal)

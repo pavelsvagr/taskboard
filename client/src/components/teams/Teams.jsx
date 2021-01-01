@@ -1,7 +1,13 @@
 import React, { Component } from "react"
 import { Route } from "react-router-dom"
 import { connect } from "react-redux"
-import { deleteTeam, fetchTeams, sendTeam, SUBJECT_TEAMS, updateTeam } from "actions"
+import {
+  deleteTeam,
+  fetchTeams,
+  sendTeam,
+  SUBJECT_TEAMS,
+  updateTeam,
+} from "actions"
 
 import { Button, Input, Modal, Spin } from "antd"
 
@@ -25,7 +31,7 @@ class Teams extends Component {
     super(props)
 
     this.state = {
-      search: ""
+      search: "",
     }
   }
 
@@ -103,7 +109,9 @@ class Teams extends Component {
             style={{ width: 250 }}
             allowClear
           />
-          <Button onClick={this.handleReload} icon={<SyncOutlined />}>Refresh</Button>
+          <Button onClick={this.handleReload} icon={<SyncOutlined />}>
+            Refresh
+          </Button>
         </div>
         <TeamsGrid
           onEdit={(id) => history.push(`/teams/${id}`)}
@@ -139,14 +147,13 @@ Teams.propTypes = {
   loading: shapes.loading,
   teams: shapes.paginate(shapes.team),
   fetchTeams: PropTypes.func.isRequired,
-  deleteTeam: PropTypes.func.isRequired
+  deleteTeam: PropTypes.func.isRequired,
 }
 
 Teams.defaultProps = {
   loading: null,
-  teams: {}
+  teams: {},
 }
-
 
 function mapStateToProps({ teams, loading }) {
   return { teams: teams?.all, loading }
@@ -156,5 +163,5 @@ export default connect(mapStateToProps, {
   fetchTeams,
   sendTeam,
   updateTeam,
-  deleteTeam
+  deleteTeam,
 })(Teams)

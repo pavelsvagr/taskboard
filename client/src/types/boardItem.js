@@ -6,5 +6,5 @@ export default PropTypes.shape({
   member: PropTypes.string,
   board: PropTypes.string,
   date: PropTypes.oneOfType([PropTypes.string, MomentPropTypes.momentObj]),
-  assignments: PropTypes.arrayOf(PropTypes.object)
+  assignments: PropTypes.arrayOf(PropTypes.object),
 })

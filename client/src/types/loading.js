@@ -5,7 +5,7 @@ export default PropTypes.shape({
   states: PropTypes.objectOf(
     PropTypes.shape({
       message: PropTypes.string,
-      progress: PropTypes.number
+      progress: PropTypes.number,
     })
-  )
+  ),
 })

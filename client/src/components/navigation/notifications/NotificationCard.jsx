@@ -12,7 +12,7 @@ function NotificationCard({ notification, deleteNotification: deleteAction }) {
     <Card
       title={notification.title}
       bordered={false}
-      className={`notification${  notification.visited ? "" : "--new"}`}
+      className={`notification${notification.visited ? "" : "--new"}`}
       size="small"
       extra={(
         <Button
@@ -39,7 +39,7 @@ function NotificationCard({ notification, deleteNotification: deleteAction }) {
 
 NotificationCard.propTypes = {
   notification: NotificationShape.isRequired,
-  deleteNotification: PropTypes.func.isRequired
+  deleteNotification: PropTypes.func.isRequired,
 }
 
 export default connect(null, { deleteNotification })(NotificationCard)

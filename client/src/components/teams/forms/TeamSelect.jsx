@@ -15,7 +15,7 @@ class TeamSelect extends Component {
     this.handleFetch = debounce(props.fetchTeams, 300)
 
     this.state = {
-      search: ""
+      search: "",
     }
   }
 
@@ -46,7 +46,15 @@ class TeamSelect extends Component {
   }
 
   render() {
-    const { value, onChange, teams, loading, fetchTeams: fetchAction, placeholder, disabled } = this.props
+    const {
+      value,
+      onChange,
+      teams,
+      loading,
+      fetchTeams: fetchAction,
+      placeholder,
+      disabled,
+    } = this.props
     const { search } = this.state
     const { offset = 0, limit = 0, count = 0, data = [] } = teams
 
@@ -100,7 +108,7 @@ class TeamSelect extends Component {
               {" "}
               <span>
                 {team.name}
-                {" "}
+                {' '}
                 (
                 {team.identifier}
                 )
@@ -120,7 +128,7 @@ TeamSelect.propTypes = {
   onChange: PropTypes.func,
   disabled: PropTypes.objectOf(PropTypes.bool),
   fetchTeams: PropTypes.func.isRequired,
-  loading: shapes.loading
+  loading: shapes.loading,
 }
 
 TeamSelect.defaultProps = {
@@ -129,7 +137,7 @@ TeamSelect.defaultProps = {
   value: [],
   disabled: {},
   onChange: null,
-  placeholder: "use teams..."
+  placeholder: "use teams...",
 }
 
 function mapStateToProps({ teams, loading }) {

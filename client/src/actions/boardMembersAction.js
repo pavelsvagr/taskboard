@@ -7,7 +7,7 @@ import {
   FETCH_BOARD_TEAMS,
   LOADING,
   LOADING_DONE,
-  UPDATE_BOARD_MEMBER
+  UPDATE_BOARD_MEMBER,
 } from "./types"
 import errorDispatch from "./errorDispatch"
 
@@ -22,21 +22,26 @@ export const SUBJECT_BOARD_MEMBERS = "boardMembers"
 export const createBoardMembers = (identifier, values) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_BOARD_MEMBERS })
 
-  const res = await axios.post(`/api/boards/${identifier}/members`, values)
+  const res = await axios
+    .post(`/api/boards/${identifier}/members`, values)
     .catch(errorDispatch(dispatch, SUBJECT_BOARD_MEMBERS))
 
   if (res) {
     dispatch({ type: ADD_BOARD_MEMBERS, payload: res.data })
   }
 
-  const resTeams = await axios.get(`/api/boards/${identifier}/teams`)
+  const resTeams = await axios
+    .get(`/api/boards/${identifier}/teams`)
     .catch(errorDispatch(dispatch, SUBJECT_BOARD_MEMBERS))
 
   if (resTeams) {
     dispatch({ type: FETCH_BOARD_TEAMS, payload: resTeams.data })
   }
   if (resTeams && res) {
-    dispatch({ type: FEEDBACK_SUCCESS, title: "Board members was successfully updated" })
+    dispatch({
+      type: FEEDBACK_SUCCESS,
+      title: "Board members was successfully updated",
+    })
   }
   dispatch({ type: LOADING_DONE, subject: SUBJECT_BOARD_MEMBERS })
 }
@@ -48,10 +53,13 @@ export const createBoardMembers = (identifier, values) => async (dispatch) => {
  * @param {object} values
  * @returns {function(...[*]=)}
  */
-export const updateBoardMember = (identifier, id, values) => async (dispatch) => {
+export const updateBoardMember = (identifier, id, values) => async (
+  dispatch
+) => {
   dispatch({ type: LOADING, subject: SUBJECT_BOARD_MEMBERS })
 
-  const res = await axios.patch(`/api/boards/${identifier}/members/${id}`, values)
+  const res = await axios
+    .patch(`/api/boards/${identifier}/members/${id}`, values)
     .catch(errorDispatch(dispatch, SUBJECT_BOARD_MEMBERS))
 
   if (res) {
@@ -67,10 +75,13 @@ export const updateBoardMember = (identifier, id, values) => async (dispatch) =>
  * @param {boolean} wait
  * @returns {function(...[*]=)}
  */
-export const updateBoardMembers = (identifier, values, wait = false) => async (dispatch) => {
+export const updateBoardMembers = (identifier, values, wait = false) => async (
+  dispatch
+) => {
   dispatch({ type: LOADING, subject: SUBJECT_BOARD_MEMBERS })
 
-  const promise = axios.put(`/api/boards/${identifier}/members`, values)
+  const promise = axios
+    .put(`/api/boards/${identifier}/members`, values)
     .catch(errorDispatch(dispatch, SUBJECT_BOARD_MEMBERS))
 
   if (wait) {
@@ -88,7 +99,8 @@ export const updateBoardMembers = (identifier, values, wait = false) => async (d
 export const fetchBoardMembers = (identifier) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_BOARD_MEMBERS })
 
-  const res = await axios.get(`/api/boards/${identifier}/members`)
+  const res = await axios
+    .get(`/api/boards/${identifier}/members`)
     .catch(errorDispatch(dispatch, SUBJECT_BOARD_MEMBERS))
 
   if (res) {
@@ -106,7 +118,8 @@ export const fetchBoardMembers = (identifier) => async (dispatch) => {
 export const deleteBoardMember = (identifier, memberId) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_BOARD_MEMBERS })
 
-  const res = await axios.delete(`/api/boards/${identifier}/members/${memberId}`)
+  const res = await axios
+    .delete(`/api/boards/${identifier}/members/${memberId}`)
     .catch(errorDispatch(dispatch, SUBJECT_BOARD_MEMBERS))
 
   if (res) {

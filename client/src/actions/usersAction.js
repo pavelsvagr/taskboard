@@ -3,12 +3,13 @@ import {
   ADD_USER,
   FEEDBACK_SUCCESS,
   FETCH_AUTH_ERRORS,
-  FETCH_LOGGED_USER, FETCH_USER,
+  FETCH_LOGGED_USER,
+  FETCH_USER,
   FETCH_USERS,
   LOADING,
   LOADING_DONE,
   REDIRECT,
-  UPDATE_USER
+  UPDATE_USER,
 } from "./types"
 import errorDispatch from "./errorDispatch"
 
@@ -23,11 +24,17 @@ export const SUBJECT_USERS = "users"
  * @param {string|null} sort
  * @returns {function(...[*]=)}
  */
-export const fetchUsers = (search, offset = 0, limit = 10, sort = null) => async (dispatch) => {
+export const fetchUsers = (
+  search,
+  offset = 0,
+  limit = 10,
+  sort = null
+) => async (dispatch) => {
   search = search || null
 
   dispatch({ type: LOADING, subject: SUBJECT_USERS })
-  const res = await axios.get("/api/users", { params: {search, limit, offset, sort }})
+  const res = await axios
+    .get("/api/users", { params: { search, limit, offset, sort } })
     .catch(errorDispatch(dispatch, SUBJECT_USERS))
 
   if (res) {
@@ -41,8 +48,7 @@ export const fetchUsers = (search, offset = 0, limit = 10, sort = null) => async
  * @returns {function(...[*]=)}
  */
 export const fetchAuthErrors = () => async (dispatch) => {
-  const res = await axios.get("/api/auth/errors")
-    .catch(errorDispatch(dispatch))
+  const res = await axios.get("/api/auth/errors").catch(errorDispatch(dispatch))
 
   dispatch({ type: FETCH_AUTH_ERRORS, payload: res.data })
 }
@@ -54,7 +60,8 @@ export const fetchAuthErrors = () => async (dispatch) => {
 export const fetchLoggedUser = () => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_USER })
 
-  const res = await axios.get("/api/user")
+  const res = await axios
+    .get("/api/user")
     .catch(errorDispatch(dispatch, SUBJECT_USER))
 
   if (res) {
@@ -70,7 +77,8 @@ export const fetchLoggedUser = () => async (dispatch) => {
 export const fetchUser = (id) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_USER })
 
-  const res = await axios.get(`/api/users/${id}`)
+  const res = await axios
+    .get(`/api/users/${id}`)
     .catch(errorDispatch(dispatch, SUBJECT_USER))
 
   if (res) {
@@ -88,7 +96,8 @@ export const fetchUser = (id) => async (dispatch) => {
 export const updateUser = (id, user) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_USERS })
 
-  const res = await axios.patch(`/api/users/${id}`, user)
+  const res = await axios
+    .patch(`/api/users/${id}`, user)
     .catch(errorDispatch(dispatch, SUBJECT_USERS))
 
   if (res) {
@@ -99,7 +108,6 @@ export const updateUser = (id, user) => async (dispatch) => {
   dispatch({ type: REDIRECT, redirect: "/users" })
 }
 
-
 /**
  * Create new user
  * @param {object} user
@@ -108,7 +116,8 @@ export const updateUser = (id, user) => async (dispatch) => {
 export const createUser = (user) => async (dispatch) => {
   dispatch({ type: LOADING, subject: SUBJECT_USERS })
 
-  const res = await axios.post("/api/users", user)
+  const res = await axios
+    .post("/api/users", user)
     .catch(errorDispatch(dispatch, SUBJECT_USERS))
 
   if (res) {

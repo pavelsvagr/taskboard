@@ -13,9 +13,9 @@ $size-lg: 5 * $size-xs
 
 $nav-width: 80px
 
-$sizes: ('xs' : $size-xs,  'sm' : $size-sm, 'md' : $size-md, 'lg' : $size-lg )
+$sizes: ( 'xs' : $size-xs,  'sm' : $size-sm, 'md' : $size-md, 'lg' : $size-lg )
 
-$spaces: ('xs' : $space-xs, 'sm' : $space-sm, 'md' : $space-md, 'lg' : $space-lg, 'xl' : $space-xl)
+$spaces: ('0': 0 !important, 'xs' : $space-xs, 'sm' : $space-sm, 'md' : $space-md, 'lg' : $space-lg, 'xl' : $space-xl)
 
 @each $sizeName, $size in $sizes
   .size-#{$sizeName}

@@ -7,7 +7,7 @@ function ActionButtons({ children }) {
     <Affix
       offsetBottom={30}
       style={{ textAlign: "right" }}
-      className="button-action" 
+      className="button-action"
     >
       {children}
     </Affix>
@@ -15,7 +15,7 @@ function ActionButtons({ children }) {
 }
 
 ActionButtons.propTypes = {
-  children: PropTypes.node.isRequired
+  children: PropTypes.node.isRequired,
 }
 
 export default ActionButtons

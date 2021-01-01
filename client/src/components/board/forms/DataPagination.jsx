@@ -2,7 +2,16 @@ import React from "react"
 import { Pagination } from "antd"
 import PropTypes from "prop-types"
 
-function DataPagination({ offset, limit, count, search, sort, onFetch, size = "small", showSizeChanger }) {
+function DataPagination({
+  offset,
+  limit,
+  count,
+  search,
+  sort,
+  onFetch,
+  size = "small",
+  showSizeChanger,
+}) {
   const className = limit >= count ? "no-paginate" : ""
 
   return (
@@ -28,14 +37,14 @@ DataPagination.propTypes = {
   count: PropTypes.number.isRequired,
   sort: PropTypes.objectOf(PropTypes.number),
   search: PropTypes.string,
-  onFetch: PropTypes.func.isRequired
+  onFetch: PropTypes.func.isRequired,
 }
 
 DataPagination.defaultProps = {
   size: "small",
   sort: null,
   search: "",
-  showSizeChanger: false
+  showSizeChanger: false,
 }
 
 export default DataPagination

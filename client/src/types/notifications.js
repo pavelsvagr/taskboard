@@ -9,7 +9,7 @@ export default PropTypes.shape({
       message: PropTypes.string,
       link: PropTypes.string,
       linkText: PropTypes.string,
-      createdAt: PropTypes.instanceOf(Date)
+      createdAt: PropTypes.instanceOf(Date),
     })
-  )
+  ),
 })

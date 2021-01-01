@@ -7,13 +7,19 @@ import credentialTypes from "helpers/credentialTypes"
 import PropTypes from "prop-types"
 import shapes from "../../types"
 
-const CredentialCard = ({ onClick, actions = [], search, credentials, disabled }) => {
+const CredentialCard = ({
+  onClick,
+  actions = [],
+  search,
+  credentials,
+  disabled,
+}) => {
   const actionsReact = []
   for (let i = 0; i < actions.length; i += 1) {
     const action = actions[i]
     const props = {
       key: action.key,
-      onClick: () => action.onClick(credentials)
+      onClick: () => action.onClick(credentials),
     }
     actionsReact.push(React.createElement(action.icon, props))
   }
@@ -26,8 +32,8 @@ const CredentialCard = ({ onClick, actions = [], search, credentials, disabled }
       onClick={
         onClick && !disabled
           ? () => {
-            onClick(credentials)
-          }
+              onClick(credentials)
+            }
           : null
       }
       hoverable={onClick && !disabled}
@@ -40,7 +46,7 @@ const CredentialCard = ({ onClick, actions = [], search, credentials, disabled }
               highlightStyle={{
                 backgroundColor: "#40a9ff",
                 padding: 0,
-                color: "white"
+                color: "white",
               }}
               searchWords={[search]}
               autoEscape
@@ -50,13 +56,13 @@ const CredentialCard = ({ onClick, actions = [], search, credentials, disabled }
             credentials.name
           )
         }
-        description={(
+        description={
           search ? (
             <Highlighter
               highlightStyle={{
                 backgroundColor: "#40a9ff",
                 padding: 0,
-                color: "white"
+                color: "white",
               }}
               searchWords={[search]}
               autoEscape
@@ -65,7 +71,7 @@ const CredentialCard = ({ onClick, actions = [], search, credentials, disabled }
           ) : (
             credentials.url
           )
-        )}
+        }
         avatar={(
           <Avatar
             size={60}
@@ -83,7 +89,7 @@ CredentialCard.propTypes = {
   actions: PropTypes.arrayOf(PropTypes.object),
   search: PropTypes.string,
   credentials: shapes.credentials,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
 }
 
 CredentialCard.defaultProps = {
@@ -91,7 +97,7 @@ CredentialCard.defaultProps = {
   actions: [],
   search: null,
   credentials: null,
-  disabled: false
+  disabled: false,
 }
 
 export default CredentialCard

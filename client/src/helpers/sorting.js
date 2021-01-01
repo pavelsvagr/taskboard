@@ -7,13 +7,16 @@ export const lexicalSort = (caseSensitive = true, get) => {
 
 export const numericSort = (get) => (a, b) => get(a) - get(b)
 
-export const antSortToString = (sorter) => sorter?.order ? `${sorter.field},${sorter.order === "ascend" ? "ASC" : "DESC"}` : null
+export const antSortToString = (sorter) =>
+  sorter?.order
+    ? `${sorter.field},${sorter.order === "ascend" ? "ASC" : "DESC"}`
+    : null
 
 export const sortToString = (sort) => {
-  if (! sort) return null
+  if (!sort) return null
 
   const name = Object.keys(sort)[0]
-  return  `${name},${sort[name] === 1 ? "ASC" : "DESC"}`
+  return `${name},${sort[name] === 1 ? "ASC" : "DESC"}`
 }
 
 export const isAntColSorted = (sort, column) => {
