@@ -150,6 +150,7 @@ class BoardToolbar extends Component {
               <Row>
                 <Col span={24}>
                   <Dropdown
+                    placement="bottomCenter"
                     overlay={(
                       <div className='shadow window p-md'>
                         <PrioritiesSelect
@@ -222,7 +223,7 @@ class BoardToolbar extends Component {
                   </Tooltip>
                 )}
                 <Tooltip
-                  title={editMode ? "Turn off reordering" : "Reorder items"}
+                  title={editMode ? "Turn off reordering" : "Reorder users"}
                 >
                   <Button
                     className={
