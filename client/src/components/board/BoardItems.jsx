@@ -1,38 +1,20 @@
-import React, { Component } from "react"
-import { connect } from "react-redux"
+import React, {Component} from "react"
+import {connect} from "react-redux"
 import queryString from "query-string"
 import moment from "moment"
-import { Spin } from "antd"
+import {Spin} from "antd"
 import shapes from "types"
 import PropTypes from "prop-types"
 
-import {
-  copyBoardItems,
-  fetchBoardItems,
-  fetchBoardMembers,
-  fetchBoardSettings,
-  fetchBoardTeams,
-  sendBoardItem,
-  SUBJECT_BOARD,
-  updateBoardItem,
-  updateBoardMember,
-  updateBoardMembers,
-  updateBoardSettings,
-  updateBoardTeamMembers,
-} from "actions"
+import {SUBJECT_BOARD, updateBoardMembers, updateBoardTeamMembers,} from "actions"
 import arrayMove from "@shared/utils/arrayMove"
-import { getDateFromTo } from "@shared/utils/interval"
+import {getDateFromTo} from "@shared/utils/interval"
 import * as MomentPropTypes from "react-moment-proptypes"
 import BoardItemEditModal from "./modals/BoardItemEditModal"
 import BoardToolbar from "./BoardToolbar"
 import BoardItemsGrid from "./grid/BoardItemsGrid"
-import { reorderBoardTeams, updateBoard } from "../../actions"
-import {
-  changeBoardDate,
-  reloadTaskBoard,
-  showCellAssignment,
-  submitCellAssignment,
-} from "../../actions/boardToolsAction"
+import {reorderBoardTeams} from "../../actions"
+import {changeBoardDate, reloadTaskBoard,} from "../../actions/boardToolsAction"
 
 class BoardItems extends Component {
   componentDidMount() {
@@ -75,9 +57,9 @@ class BoardItems extends Component {
       return
     }
 
-    const { board } = this.props
-    const teams = [...this.props.teams]
-    const newTeams = arrayMove(teams, source, target)
+    const { board, reorderBoardTeams: reorderTeams, teams } = this.props
+    const actualTeams = [...teams]
+    const newTeams = arrayMove(actualTeams, source, target)
 
     let i = 1
     for (const team of newTeams) {
@@ -85,11 +67,11 @@ class BoardItems extends Component {
       i += 1
     }
 
-    this.props.reorderBoardTeams(board.identifier, newTeams)
+    reorderTeams(board.identifier, newTeams)
   }
 
   handleReorderMembers = (teamId, sourceId, targetId) => {
-    const { members, board } = this.props
+    const { members, teams, board, updateBoardMembers: updateMembers, updateBoardTeamMembers: updateTeamMembers } = this.props
 
     if (teamId === "others") {
       const source = members.findIndex((m) => m._id === sourceId)
@@ -100,10 +82,11 @@ class BoardItems extends Component {
       newMembers = newMembers.map((m, i) => {
         return { ...m, order: i + 1 }
       })
-      return this.props.updateBoardMembers(board.identifier, newMembers)
+      updateMembers(board.identifier, newMembers)
+      return
     }
 
-    const team = this.props.teams.find((t) => t._id === teamId)
+    const team = teams.find((t) => t._id === teamId)
 
     const teamMembers = [...team.members]
     const sourceIndex = teamMembers.findIndex((m) => m === sourceId)
@@ -111,8 +94,8 @@ class BoardItems extends Component {
 
     const [removed] = teamMembers.splice(sourceIndex, 1)
     teamMembers.splice(targetIndex, 0, removed)
-    this.props.updateBoardTeamMembers(
-      this.props.board.identifier,
+    updateTeamMembers(
+      board.identifier,
       team.identifier,
       teamMembers
     )
@@ -129,11 +112,7 @@ class BoardItems extends Component {
       assignment,
     } = this.props
 
-    const priorities = boardSettings
-      ? boardSettings.priorities
-      : board
-      ? board.priorities
-      : 3
+    const priorities = boardSettings?.priorities || board?.priorities || 3
 
     const items = boardItems || []
     const teamsData = teams || []
@@ -201,9 +180,16 @@ class BoardItems extends Component {
 BoardItems.propTypes = {
   board: shapes.board.isRequired,
   reloadTaskBoard: PropTypes.func.isRequired,
+  changeBoardDate: PropTypes.func.isRequired,
+  reorderBoardTeams: PropTypes.func.isRequired,
+  updateBoardTeamMembers: PropTypes.func.isRequired,
+  updateBoardMembers: PropTypes.func.isRequired,
+  members: PropTypes.arrayOf(shapes.member),
+  teams: PropTypes.arrayOf(shapes.team),
+  assignment: shapes.assignment,
+  boardItems: PropTypes.arrayOf(shapes.boardItem),
   date: MomentPropTypes.momentObj.isRequired,
   location: PropTypes.objectOf(PropTypes.string).isRequired,
-  changeBoardDate: PropTypes.func.isRequired,
   loading: shapes.loading,
   boardSettings: shapes.settings,
 }
@@ -211,6 +197,10 @@ BoardItems.propTypes = {
 BoardItems.defaultProps = {
   loading: null,
   boardSettings: null,
+  boardItems: [],
+  assignment: null,
+  members: [],
+  teams: [],
 }
 
 function mapStateToProps({
@@ -244,21 +234,9 @@ function mapStateToProps({
 }
 
 export default connect(mapStateToProps, {
-  fetchBoardItems,
-  fetchBoardMembers,
-  fetchBoardTeams,
-  copyBoardItems,
-  updateBoard,
   reloadTaskBoard,
-  reorderBoardTeams,
-  updateBoardItem,
-  updateBoardTeamMembers,
-  updateBoardMember,
-  updateBoardMembers,
-  sendBoardItem,
-  fetchBoardSettings,
-  updateBoardSettings,
-  showCellAssignment,
-  submitCellAssignment,
   changeBoardDate,
+  reorderBoardTeams,
+  updateBoardTeamMembers,
+  updateBoardMembers,
 })(BoardItems)

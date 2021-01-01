@@ -61,27 +61,37 @@ export default {
         members: [],
       },
     ],
-    all: [
-      {
-        _id: "test-smoke",
-        credentials: "test-credentials",
-        identifier: "test-smoke",
-        name: "test-smoke",
-        owner: "test-user",
-        assignment: "projects",
-        intervals: "weeks",
-      },
-    ],
+    all: {
+      data: [
+        {
+          _id: "test-smoke",
+          credentials: "test-credentials",
+          identifier: "test-smoke",
+          name: "test-smoke",
+          owner: "test-user",
+          assignment: "projects",
+          intervals: "weeks",
+        }
+      ],
+      offset: 0,
+      limit: 10,
+      count: 1
+    }
   },
   teams: {
-    all: [
-      {
-        _id: "test-smoke-team",
-        identifier: "test-smoke-team",
-        name: "test-smoke-team",
-        color: "white",
-      },
-    ],
+    all: {
+      data: [
+        {
+          _id: "test-smoke-team",
+          identifier: "test-smoke-team",
+          name: "test-smoke-team",
+          color: "white",
+        }
+      ],
+      offset: 0,
+      limit: 10,
+      count: 1
+    }
   },
   boardItems: [
     {
@@ -96,30 +106,43 @@ export default {
       ],
     },
   ],
-  users: [
-    {
-      _id: "test-user",
-      email: "test@example.org",
-      name: "Test",
-      role: "admin",
-    },
-  ],
+  users: {
+    data: [
+      {
+        _id: "test-user",
+        email: "test@example.org",
+        name: "Test",
+        role: "admin",
+      },
+    ],
+    offset: 0,
+    limit: 10,
+    count: 1
+  },
   boardTools: {
-    editMode: true,
+    date: moment(),
+    editMode: false,
     boardCopy: null,
     itemCopy: null,
     assignment: null,
+    editMember: null,
+    search: "",
   },
   credentials: {
-    all: [
-      {
-        _id: "test-credentials",
-        url: "https://fit.cvut.cz",
-        name: "test-credentials",
-        type: "redmine",
-        creator: "test-user",
-      },
-    ],
+    all: {
+      data: [
+        {
+          _id: "test-credentials",
+          url: "https://fit.cvut.cz",
+          name: "test-credentials",
+          type: "redmine",
+          creator: "test-user",
+        },
+      ],
+      offset: 0,
+      limit: 10,
+      count: 1
+    },
   },
   boardAssignments: [],
 }

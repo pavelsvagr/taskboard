@@ -16,9 +16,10 @@ const initialState = {
   assignment: null,
   editMember: null,
   search: "",
+  date: moment()
 }
 
-export default (state = { ...initialState, date: moment() }, action) => {
+export default (state = initialState, action) => {
   switch (action.type) {
     case BOARD_EDIT_MODE:
       return { ...state, editMode: action.payload }

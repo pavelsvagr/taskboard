@@ -3,16 +3,13 @@
 
 const chai = require("chai")
 const chaiHttp = require("chai-http")
-const mongoose = require("mongoose")
 const app = require("../../index")
 const keys = require("../../config/keys")
-const UserModel = require("../../app/model/models/User")
 
 const testValidation = require("./data/validation.teams.js")
 
 const { prepareTestTeam, cleanTestTeam } = require("../helpers/prepareTestTeam")
-
-const User = mongoose.model(UserModel.SCHEMA)
+const { prepareTestUser, cleanTestUser } = require("../helpers/prepareTestUser")
 
 // Configure chai
 chai.use(chaiHttp)
@@ -23,7 +20,7 @@ let team
 
 describe("Integration tests: Teams routes errors", () => {
   before(async function() {
-    user = await User.findOne({ email: keys.testUserAdminGmail })
+    user = await prepareTestUser('TEST', keys.testUserAdminGmail)
     team = await prepareTestTeam(user, false)
     app.request.user = user
   })
@@ -91,7 +88,8 @@ describe("Integration tests: Teams routes errors", () => {
     }
   })
   after(async function() {
-    cleanTestTeam()
+    await cleanTestTeam()
+    await cleanTestUser(keys.testUserAdminGmail)
     app.request.user = undefined
   })
 })

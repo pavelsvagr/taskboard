@@ -5,6 +5,8 @@ import { Card, Modal, Skeleton } from "antd"
 import history from "helpers/history"
 import CredentialCard from "components/credentials/CredentialCard"
 import CredentialsBox from "components/credentials/CredentialsBox"
+import PropTypes from "prop-types"
+import shapes from "../../../types"
 
 const CredentialsSelect = ({ value = {}, onChange, data }) => {
   const [showModal, setShowModal] = useState()
@@ -50,6 +52,17 @@ const CredentialsSelect = ({ value = {}, onChange, data }) => {
       )}
     </div>
   )
+}
+
+CredentialsSelect.propTypes = {
+  value: shapes.credentials,
+  onChange: PropTypes.func.isRequired,
+  data: PropTypes.arrayOf(shapes.credentials),
+}
+
+CredentialsSelect.defaultProps = {
+  data: [],
+  value: {}
 }
 
 export default CredentialsSelect

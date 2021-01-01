@@ -1,3 +1,4 @@
+/* eslint no-console: 0 */
 const logManager = require("../../services/managers/logManager")
 const { PRIORITY_HIGH } = require("../../../../shared/constants/logsPriorities")
 const AppError = require("../../exceptions/AppError")

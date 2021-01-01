@@ -7,6 +7,7 @@ const app = require("../../index")
 const keys = require("../../config/keys")
 const UserModel = require("../../app/model/models/User")
 const roles = require("../../../shared/security/roles")
+const { prepareTestUser, cleanTestUser } = require("../helpers/prepareTestUser")
 
 const User = mongoose.model(UserModel.SCHEMA)
 
@@ -26,7 +27,7 @@ let createdId = null
 describe("Integration tests: Users endpoints", () => {
   before(async () => {
     // Treat user as test admin
-    app.request.user = await User.findOne({ email: keys.testUserAdminGmail })
+    app.request.user = await prepareTestUser('TEST', keys.testUserAdminGmail)
   })
 
   it("GET /users Get all user records", function(done) {
@@ -34,12 +35,14 @@ describe("Integration tests: Users endpoints", () => {
       .get("/api/users")
       .end((err, res) => {
         res.should.have.status(200)
-        res.body.should.to.be.a("array")
-        if (res.body.length) {
-          res.body[0].should.be.a("object")
+        res.body.should.have.property('limit')
+        res.body.should.have.property('offset')
+        res.body.should.have.property('count')
+        if (res.body.data.length) {
+          res.body.data[0].should.be.a("object")
         }
 
-        length = res.body.length // Save length of array for future tests
+        length = res.body.count // Save length of array for future tests
 
         done()
       })
@@ -105,7 +108,8 @@ describe("Integration tests: Users endpoints", () => {
       .get("/api/users")
       .end((err, res) => {
         res.should.have.status(200)
-        res.body.should.to.be.a("array").lengthOf(length + 1)
+        res.body.data.should.to.be.a("array")
+        res.body.count.should.to.be.eq(length + 1)
         done()
       })
   })
@@ -113,6 +117,7 @@ describe("Integration tests: Users endpoints", () => {
   after(async () => {
     // Delete created test user
     await User.deleteOne({ email: testUser.email })
+    await cleanTestUser(keys.testUserAdminGmail)
 
     app.request.user = undefined
   })

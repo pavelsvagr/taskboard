@@ -33,7 +33,7 @@ async function prepareTestBoard(owner, useTeam = false, addOwner = true) {
   if (addOwner) {
     const member = new Member()
     member.board = board._id
-    member.user = owner
+    member.user = owner._id
     member.order = 1
     member.role = boardRoles.Owner
     createdMember = await member.save()

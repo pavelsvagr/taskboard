@@ -162,31 +162,17 @@ exports[`Inputs Snapshot: DateSwitcher.jsx 1`] = `
 
 exports[`Inputs Snapshot: FormSubmit.jsx 1`] = `
 <div
-  className="ant-row ant-form-item form__submit"
-  style={Object {}}
+  className="form__submitfalse"
 >
-  <div
-    className="ant-col ant-form-item-control"
-    style={Object {}}
+  <button
+    className="ant-btn ant-btn-primary"
+    onClick={[Function]}
+    type="submit"
   >
-    <div
-      className="ant-form-item-control-input"
-    >
-      <div
-        className="ant-form-item-control-input-content"
-      >
-        <button
-          className="ant-btn ant-btn-primary"
-          onClick={[Function]}
-          type="submit"
-        >
-          <span>
-            test submit
-          </span>
-        </button>
-      </div>
-    </div>
-  </div>
+    <span>
+      test submit
+    </span>
+  </button>
 </div>
 `;
 

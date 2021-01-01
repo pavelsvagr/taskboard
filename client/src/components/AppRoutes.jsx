@@ -186,7 +186,7 @@ AppRoutes.propTypes = {
   feedback: FeedbackShape,
   errors: ErrorsShape,
   authErrors: PropTypes.objectOf(PropTypes.string),
-  fetchUser: PropTypes.func.isRequired,
+  fetchLoggedUser: PropTypes.func.isRequired
 }
 
 AppRoutes.defaultProps = {

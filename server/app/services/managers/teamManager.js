@@ -9,7 +9,7 @@ const BoardTeam = require("../../model/entities/BoardTeam")
  * Retruns all teams by given parameters
  * @returns {Promise<any>}
  */
-exports.getAll = async ({limit, offset, search, sort}) => {
+exports.getAll = async ({limit = 10, offset = 0, search, sort}) => {
   const searchProps = {
     limit,
     offset: (offset) * limit,

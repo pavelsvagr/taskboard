@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import AssignmentSelect from "components/board/forms/AssignmentSelect"
-import { isChild } from "helpers/dom"
+import isChild from "helpers/isChild"
 import { connect } from "react-redux"
 import shapes from "types"
 import PropTypes from "prop-types"

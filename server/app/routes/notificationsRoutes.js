@@ -9,7 +9,7 @@ const NotificationsController = require("../controllers/notificationsController"
 
 module.exports = (app) => {
   /**
-   * @api {get} /api/notifications.
+   * @api {get} /api/notifications List notifications
    * @apiGroup Notifications
    * @apiDescription Returns paginated notifications for logged user
    */
@@ -23,8 +23,12 @@ module.exports = (app) => {
   )
 
   /**
-   * @api {get} /api/notifications/unread/count.
+   * @api {get} /api/notifications/unread/count Number of unread notifications
    * @apiGroup Notifications
+   * @apiSuccessExample {json} Success-Response:
+   *  {
+   *    "count": 2,
+   *  }
    * @apiDescription Returns number of actual unread notifications in application for logged user
    */
   app.get(
@@ -34,9 +38,8 @@ module.exports = (app) => {
   )
 
   /**
-   * @api {get} /api/notifications/stream SSE notification stream.
+   * @api {get} /api/notifications/stream SSE notification stream
    * @apiGroup Notifications
-   *
    * @apiDescription Opens SSE stream for actual browser window.
    */
   app.get(
@@ -46,11 +49,11 @@ module.exports = (app) => {
   )
 
   /**
-   * @api {delete} /api/notifications/:id Delete notification.
+   * @api {delete} /api/notifications/:id Delete notification
    * @apiGroup Notifications
    * @apiParam (url) {String} id        Notification id
    *
-   * @apiDescription Deletes existing notification and returns deleted representation
+   * @apiDescription Deletes existing notification and returns its representation
    */
   app.delete(
     "/api/notifications/:id",

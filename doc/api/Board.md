@@ -4,26 +4,26 @@
 TaskBoard application API endpoints documentation
 
  - [Board](#Board)
-   - [Create new board members.](#Create-new-board-members.)
-   - [Create or copy board items](#Create-or-copy-board-items)
-   - [Delete board items](#Delete-board-items)
-   - [Delete board member](#Delete-board-member)
-   - [Delete board settings](#Delete-board-settings)
-   - [Get board items](#Get-board-items)
-   - [Get board settings](#Get-board-settings)
-   - [List board members](#List-board-members)
+   - [Create new members.](#Create-new-members.)
+   - [Create or copy items](#Create-or-copy-items)
+   - [Delete items](#Delete-items)
+   - [Delete member](#Delete-member)
+   - [Delete settings](#Delete-settings)
+   - [Get items](#Get-items)
+   - [Get settings](#Get-settings)
+   - [List members](#List-members)
    - [List possible tasks](#List-possible-tasks)
-   - [Replace board members](#Replace-board-members)
-   - [Replaces board item](#Replaces-board-item)
-   - [Replaces board settings](#Replaces-board-settings)
-   - [Update part of member](#Update-part-of-member)
+   - [Replace item](#Replace-item)
+   - [Replace members](#Replace-members)
+   - [Replaces settings](#Replaces-settings)
+   - [Update member](#Update-member)
 
 ___
 
 
 # <a name='Board'></a> Board
 
-## <a name='Create-new-board-members.'></a> Create new board members.
+## <a name='Create-new-members.'></a> Create new members.
 [Back to top](#top)
 
 <p>Create new members from users ids to given board and returns new members.</p>
@@ -44,7 +44,7 @@ POST /api/boards/:identifier/members
 |----------|------------|---------------------------------------|
 | body | `array` | <p>Array of user ids.</p> |
 
-## <a name='Create-or-copy-board-items'></a> Create or copy board items
+## <a name='Create-or-copy-items'></a> Create or copy items
 [Back to top](#top)
 
 <p>Creates new item or copies existing items from one interval to another.  If sourceFrom, sourceTo and shift are given, endpoint do copying. If they are not given, app tries to create new item from given body. Returns new board item or array of copied items.</p>
@@ -75,7 +75,7 @@ POST /api/boards/:identifier/items
 | date | `String` | **optional** <p>Date in ISO8601 format</p> |
 | assignments | `array` | **optional** <p>Array of task objects.</p> |
 
-## <a name='Delete-board-items'></a> Delete board items
+## <a name='Delete-items'></a> Delete items
 [Back to top](#top)
 
 <p>Deletes all items of board in interval given by parameters dateFrom and dateTo.</p>
@@ -91,7 +91,7 @@ DELETE /api/boards/:identifier/items?dateFrom=:dateFrom&amp;dateTo=:dateTo
 | dateFrom | `String` | **optional** <p>Date in ISO8601 format</p> |
 | dateTo | `String` | **optional** <p>Date in ISO8601 format</p> |
 
-## <a name='Delete-board-member'></a> Delete board member
+## <a name='Delete-member'></a> Delete member
 [Back to top](#top)
 
 <p>Delete user from board and return its deleted member object.</p>
@@ -107,7 +107,7 @@ DELETE /api/boards/:identifier/members/:id
 | identifier | `String` | <p>Identifier of the board</p> |
 | id | `String` | <p>Id of board member</p> |
 
-## <a name='Delete-board-settings'></a> Delete board settings
+## <a name='Delete-settings'></a> Delete settings
 [Back to top](#top)
 
 <p>Deletes existing board settings for given date and returns them.</p>
@@ -123,7 +123,7 @@ DELETE /api/boards/:identifier/settings/:date
 | identifier | `String` | <p>Identifier of the board</p> |
 | date | `String` | <p>Date in ISO8601 format</p> |
 
-## <a name='Get-board-items'></a> Get board items
+## <a name='Get-items'></a> Get items
 [Back to top](#top)
 
 <p>Returns existing items in given interval.</p>
@@ -170,7 +170,7 @@ GET /api/boards/:identifier/items?from=:from&amp;to=:to
 ]
 ```
 
-## <a name='Get-board-settings'></a> Get board settings
+## <a name='Get-settings'></a> Get settings
 [Back to top](#top)
 
 <p>Returns existing settings for given date.</p>
@@ -200,7 +200,7 @@ GET /api/boards/:identifier/settings/:date
 }
 ```
 
-## <a name='List-board-members'></a> List board members
+## <a name='List-members'></a> List members
 [Back to top](#top)
 
 <p>Returns all members of given board.</p>
@@ -238,28 +238,7 @@ GET /api/boards/:identifier/assignments
 | offset | `Number` | **optional** <p>Actual page of viewed records.</p>_Default value: 0_<br> |
 | search | `String` | **optional** <p>Searches issues or project titles.</p> |
 
-## <a name='Replace-board-members'></a> Replace board members
-[Back to top](#top)
-
-<p>Replaces all members and returns them.</p>
-
-```
-PUT /api/boards/:identifier/members
-```
-
-### Parameters - `url`
-
-| Name     | Type       | Description                           |
-|----------|------------|---------------------------------------|
-| identifier | `String` | <p>Identifier of the board</p> |
-
-### Parameters - `body`
-
-| Name     | Type       | Description                           |
-|----------|------------|---------------------------------------|
-| body | `array` | <p>Array of member objects.</p> |
-
-## <a name='Replaces-board-item'></a> Replaces board item
+## <a name='Replace-item'></a> Replace item
 [Back to top](#top)
 
 <p>Replaces specific board item with given values</p>
@@ -283,7 +262,28 @@ PUT /api/boards/:identifier/items/:id
 | date | `String` | <p>Date in ISO8601 format</p> |
 | assignments | `array` | <p>Array of task objects.</p> |
 
-## <a name='Replaces-board-settings'></a> Replaces board settings
+## <a name='Replace-members'></a> Replace members
+[Back to top](#top)
+
+<p>Replaces all members and returns them.</p>
+
+```
+PUT /api/boards/:identifier/members
+```
+
+### Parameters - `url`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| identifier | `String` | <p>Identifier of the board</p> |
+
+### Parameters - `body`
+
+| Name     | Type       | Description                           |
+|----------|------------|---------------------------------------|
+| body | `array` | <p>Array of member objects.</p> |
+
+## <a name='Replaces-settings'></a> Replaces settings
 [Back to top](#top)
 
 <p>Replaces settings for given date and returns them.</p>
@@ -306,7 +306,7 @@ PUT /api/boards/:identifier/settings/:date
 | priorities | `String` | <p>Actual priorities on board for given date</p> |
 | deactivated | `array` | <p>List of deactivated users (id strings)</p> |
 
-## <a name='Update-part-of-member'></a> Update part of member
+## <a name='Update-member'></a> Update member
 [Back to top](#top)
 
 <p>Updates member of the board and returns its new interpretation.</p>

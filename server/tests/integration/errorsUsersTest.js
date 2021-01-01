@@ -3,14 +3,12 @@
 
 const chai = require("chai")
 const chaiHttp = require("chai-http")
-const mongoose = require("mongoose")
 const app = require("../../index")
 const keys = require("../../config/keys")
-const UserModel = require("../../app/model/models/User")
 
 const testValidation = require("./data/validation.users.js")
 
-const User = mongoose.model(UserModel.SCHEMA)
+const { prepareTestUser, cleanTestUser } = require("../helpers/prepareTestUser")
 
 // Configure chai
 chai.use(chaiHttp)
@@ -20,7 +18,7 @@ let user = null
 
 describe("Integration tests: User routes errors", () => {
   before(async function() {
-    user = await User.findOne({ email: keys.testUserAdminGmail })
+    user = await prepareTestUser('TEST', keys.testUserAdminGmail)
     app.request.user = user
   })
 
@@ -70,6 +68,7 @@ describe("Integration tests: User routes errors", () => {
     }
   })
   after(async function() {
+    await cleanTestUser(keys.testUserAdminGmail)
     app.request.user = undefined
   })
 })

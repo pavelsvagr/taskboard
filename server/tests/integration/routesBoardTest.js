@@ -1,18 +1,16 @@
 /* eslint func-names: 0 */
+/* eslint prefer-destructuring: 0 */
 /* eslint import/no-extraneous-dependencies:0 */
 const chai = require("chai")
 const chaiHttp = require("chai-http")
-const mongoose = require("mongoose")
 const boardRoles = require("../../../shared/security/rolesBoard")
 const app = require("../../index")
 const keys = require("../../config/keys")
 const intervalsTypes = require("../../../shared/constants/intervalsTypes")
 const assignmentsTypes = require("../../../shared/constants/assignmentTypes")
-const UserModel = require("../../app/model/models/User")
 const { cleanTestCredentials, prepareTestCredentials } = require("../helpers/prepareTestCredentials")
 const { prepareTestTeam, cleanTestTeam } = require("../helpers/prepareTestTeam")
-
-const User = mongoose.model(UserModel.SCHEMA)
+const { prepareTestUser, cleanTestUser } = require("../helpers/prepareTestUser")
 
 // Configure chai
 chai.use(chaiHttp)
@@ -115,7 +113,7 @@ describe("Integration tests: Boards endpoints", () => {
     this.timeout(5000)
 
     // Treat user as test admin
-    user = await User.findOne({ email: keys.testUserAdminGmail })
+    user = await prepareTestUser('TEST', keys.testUserAdminGmail)
     app.request.user = user
 
     member.nickname = user.name
@@ -132,13 +130,15 @@ describe("Integration tests: Boards endpoints", () => {
       .get("/api/boards")
       .end((err, res) => {
         res.should.have.status(200)
-        res.body.should.to.be.a("array")
-        if (res.body.length) {
-          const first = res.body[0]
-          checkBoardBody(first)
+        res.body.should.to.be.a("object")
+        res.body.should.have.property('limit')
+        res.body.should.have.property('offset')
+        res.body.should.have.property('count')
+        res.body.data.should.to.be.a("array")
+        if (res.body.data.length) {
+          res.body.data[0].should.to.be.a('object')
         }
-
-        length = res.body.length // Save length of array for future tests
+        length = res.body.count // Save length of array for future tests
         done()
       })
   })
@@ -166,7 +166,9 @@ describe("Integration tests: Boards endpoints", () => {
       .get("/api/boards")
       .end((err, res) => {
         res.should.have.status(200)
-        res.body.should.to.be.a("array").lengthOf(length + 1)
+        res.body.should.to.be.a("object")
+        res.body.data.should.to.be.a("array")
+        res.body.count.should.to.be.equal(length + 1)
         done()
       })
   })
@@ -485,17 +487,7 @@ describe("Integration tests: Boards endpoints", () => {
       .get("/api/boards")
       .end((err, res) => {
         res.should.have.status(200)
-        res.body.should.to.be.a("array").lengthOf(length)
-        done()
-      })
-  })
-
-  it("GET /boards Get all boards after delete", function(done) {
-    chai.request(app)
-      .get("/api/boards")
-      .end((err, res) => {
-        res.should.have.status(200)
-        res.body.should.to.be.a("array").lengthOf(length)
+        res.body.data.should.to.be.a("array").lengthOf(length)
         done()
       })
   })
@@ -503,6 +495,7 @@ describe("Integration tests: Boards endpoints", () => {
   after(async () => {
     await cleanTestCredentials()
     await cleanTestTeam()
+    await cleanTestUser(keys.testUserAdminGmail)
     app.request.user = undefined
   })
 })

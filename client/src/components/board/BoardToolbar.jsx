@@ -2,13 +2,7 @@ import React, {Component} from "react"
 import {Route} from "react-router-dom"
 import {Button, Col, Dropdown, Row, Tooltip} from "antd"
 import DateSwitcher from "components/comon/inputs/DateSwitcher"
-import {
-  ContainerOutlined,
-  CopyOutlined,
-  EditOutlined, PicCenterOutlined,
-  SettingOutlined,
-  SyncOutlined,
-} from "@ant-design/icons"
+import {ContainerOutlined, CopyOutlined, PicCenterOutlined, SettingOutlined, SyncOutlined,} from "@ant-design/icons"
 import {getIntervalTypeColor} from "helpers/intervalTypes"
 import {connect} from "react-redux"
 import PropTypes from "prop-types"
@@ -49,9 +43,6 @@ class BoardToolbar extends Component {
     } else {
       newSettings = {priorities, deactivated: []}
     }
-
-    console.log(boardTools.date)
-
     updateAction(board.identifier, boardTools.date, newSettings, send)
   }
 

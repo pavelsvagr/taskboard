@@ -2,13 +2,10 @@
 /* eslint import/no-extraneous-dependencies:0 */
 const chai = require("chai")
 const chaiHttp = require("chai-http")
-const mongoose = require("mongoose")
 const app = require("../../index")
 const keys = require("../../config/keys")
-const UserModel = require("../../app/model/models/User")
 const credentialsTypes = require("../../../shared/constants/credentialTypes")
-
-const User = mongoose.model(UserModel.SCHEMA)
+const { prepareTestUser, cleanTestUser } = require("../helpers/prepareTestUser")
 
 // Configure chai
 chai.use(chaiHttp)
@@ -27,7 +24,7 @@ let createdId = null
 describe("Integration tests: Credentials endpoints", () => {
   before(async () => {
     // Treat user as test admin
-    app.request.user = await User.findOne({ email: keys.testUserAdminGmail })
+    app.request.user = await prepareTestUser('TEST', keys.testUserAdminGmail)
   })
 
   it("GET /credentials Get all credentials records", function(done) {
@@ -35,12 +32,15 @@ describe("Integration tests: Credentials endpoints", () => {
       .get("/api/credentials")
       .end((err, res) => {
         res.should.have.status(200)
-        res.body.should.to.be.a("array")
-        if (res.body.length) {
-          res.body[0].should.be.a("object")
+        res.body.should.have.property('limit')
+        res.body.should.have.property('offset')
+        res.body.should.have.property('count')
+        res.body.data.should.to.be.a("array")
+        if (res.body.data.length) {
+          res.body.data[0].should.be.a("object")
         }
 
-        length = res.body.length // Save length of array for future tests
+        length = res.body.count // Save length of array for future tests
 
         done()
       })
@@ -74,7 +74,8 @@ describe("Integration tests: Credentials endpoints", () => {
       .get("/api/credentials")
       .end((err, res) => {
         res.should.have.status(200)
-        res.body.should.to.be.a("array").lengthOf(length + 1)
+        res.body.data.should.to.be.a("array")
+        res.body.count.should.to.be.equal(length + 1)
         done()
       })
   })
@@ -98,6 +99,7 @@ describe("Integration tests: Credentials endpoints", () => {
   })
 
   after(async () => {
+    await cleanTestUser(keys.testUserAdminGmail)
     app.request.user = undefined
   })
 })

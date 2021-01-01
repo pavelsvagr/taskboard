@@ -2,12 +2,18 @@
 import React from "react"
 import renderer from "react-test-renderer"
 import moment from "moment"
+import {Provider} from "react-redux"
+import configureMockStore from "redux-mock-store"
+import thunk from "redux-thunk"
 import windowMedia from "../../../helpers/tests/windowMedia"
 import ColorPicker from "../inputs/ColorPicker"
 import DateSwitcher from "../inputs/DateSwitcher"
 import FormSubmit from "../inputs/FormSubmit"
 import UserSelect from "../inputs/UserSelect"
-import testAdminStore from "../../../helpers/tests/testAdminStore"
+import testStore from "../../../helpers/tests/testAdminStore"
+
+const middlewares = [thunk]
+const mockStore = configureMockStore(middlewares)
 
 describe("Inputs", () => {
   it("Snapshot: ColorPicker.jsx", () => {
@@ -39,14 +45,16 @@ describe("Inputs", () => {
   })
 
   it("Snapshot: UserSelect.jsx", () => {
+    const store = mockStore(testStore)
     Object.defineProperty(window, "matchMedia", windowMedia)
     const tree = renderer
       .create(
-        <UserSelect
-          value={[]}
-          onChange={jest.fn()}
-          data={testAdminStore.users}
-        />
+        <Provider store={store}>
+          <UserSelect
+            value={[]}
+            onChange={jest.fn()}
+          />
+        </Provider>
       )
       .toJSON()
     expect(tree).toMatchSnapshot()

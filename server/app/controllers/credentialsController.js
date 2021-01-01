@@ -14,7 +14,7 @@ const keys = require("../../config/keys")
  * @return {Promise<void>}
  */
 exports.getAll = async (req, res) => {
-  const { search, offset, limit } = req.query
+  const { search, offset = 0, limit = 25 } = req.query
 
   const searchProps = {
     limit,
