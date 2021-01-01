@@ -1,25 +1,25 @@
-import React, { Component } from "react"
-import { Route } from "react-router-dom"
-import { Button, Col, Row, Tooltip } from "antd"
+import React, {Component} from "react"
+import {Route} from "react-router-dom"
+import {Button, Col, Dropdown, Row, Tooltip} from "antd"
 import DateSwitcher from "components/comon/inputs/DateSwitcher"
 import {
   ContainerOutlined,
   CopyOutlined,
-  EditOutlined,
+  EditOutlined, PicCenterOutlined,
   SettingOutlined,
   SyncOutlined,
 } from "@ant-design/icons"
-import { getIntervalTypeColor } from "helpers/intervalTypes"
-import { connect } from "react-redux"
+import {getIntervalTypeColor} from "helpers/intervalTypes"
+import {connect} from "react-redux"
 import PropTypes from "prop-types"
 import MomentPropTypes from "react-moment-proptypes"
 
-import { getDateFromTo } from "@shared/utils/interval"
+import {getDateFromTo} from "@shared/utils/interval"
 import BoardShape from "types/board"
 import SettingsShape from "types/settings"
-import { fetchBoard, fetchBoardSettings, updateBoardSettings } from "actions"
+import {fetchBoard, fetchBoardSettings, updateBoardSettings} from "actions"
 import PrioritiesSelect from "components/boards/forms/PrioritiesSelect"
-import { getAssignmentTypeColor } from "helpers/assignmentTypes"
+import {getAssignmentTypeColor} from "helpers/assignmentTypes"
 import UnlockForBoardAdmin from "components/comon/security/UnlockForBoardAdmin"
 import history from "../../helpers/history"
 import BoardSettingsModal from "./modals/BoardSettingsModal"
@@ -45,9 +45,9 @@ class BoardToolbar extends Component {
       if (!send && settings.priorities === priorities) {
         return
       }
-      newSettings = { ...settings, priorities }
+      newSettings = {...settings, priorities}
     } else {
-      newSettings = { priorities, deactivated: [] }
+      newSettings = {priorities, deactivated: []}
     }
 
     console.log(boardTools.date)
@@ -64,7 +64,7 @@ class BoardToolbar extends Component {
   }
 
   handleChangeMode = () => {
-    const { changeEditMode: changeModeAction, boardTools } = this.props
+    const {changeEditMode: changeModeAction, boardTools} = this.props
     changeModeAction(!boardTools.editMode)
   }
 
@@ -79,29 +79,29 @@ class BoardToolbar extends Component {
   }
 
   handlePasteBoard = () => {
-    const { pasteBoardTasks: pasteTasks, board, boardTools } = this.props
+    const {pasteBoardTasks: pasteTasks, board, boardTools} = this.props
     pasteTasks(board, boardTools.date, boardTools.boardCopy)
   }
 
   handleReload = () => {
-    const { reloadTaskBoard: reload, boardTools, board } = this.props
+    const {reloadTaskBoard: reload, boardTools, board} = this.props
     reload(board, boardTools.date)
   }
 
   handleDateChange = (date) => {
-    const { changeBoardDate: changeDate, board } = this.props
+    const {changeBoardDate: changeDate, board} = this.props
     changeDate(board, date)
   }
 
   render() {
-    const { disabled, board, settings, boardTools } = this.props
+    const {disabled, board, settings, boardTools} = this.props
 
-    const { editMode, boardCopy, date } = boardTools
+    const {editMode, boardCopy, date} = boardTools
 
     const hasCopy =
       boardCopy &&
       boardCopy?.fromDate.format("YYYY-MM-DD") !==
-        getDateFromTo(date, board.intervals)[0].format("YYYY-MM-DD")
+      getDateFromTo(date, board.intervals)[0].format("YYYY-MM-DD")
 
     const tagColor = board
       ? getAssignmentTypeColor(board.assignment)
@@ -111,7 +111,7 @@ class BoardToolbar extends Component {
       ? getIntervalTypeColor(board.intervals)
       : "transparent"
 
-    const buttonProps = { shape: "circle", disabled, ghost: true }
+    const buttonProps = {shape: "circle", disabled, ghost: true}
 
     return (
       <div className="board__toolbar">
@@ -123,15 +123,15 @@ class BoardToolbar extends Component {
           }}
         >
           <Col xs={24} sm={24} md={24} lg={6} xl={7} xxl={7} order={1}>
-            <h1 style={{ color: "white" }}>{board.name}</h1>
+            <h1 style={{color: "white"}}>{board.name}</h1>
           </Col>
           <Col
-            xs={{ span: 24, order: 3 }}
-            sm={{ span: 24, order: 3 }}
-            md={{ span: 24, order: 3 }}
-            lg={{ span: 12, order: 2 }}
-            xl={{ span: 10, order: 2 }}
-            xxl={{ span: 10, order: 2 }}
+            xs={{span: 24, order: 3}}
+            sm={{span: 24, order: 3}}
+            md={{span: 24, order: 3}}
+            lg={{span: 12, order: 2}}
+            xl={{span: 10, order: 2}}
+            xxl={{span: 10, order: 2}}
             className="text-center"
           >
             <DateSwitcher
@@ -146,14 +146,42 @@ class BoardToolbar extends Component {
               onChange={this.handleDateChange}
               intervals={board.intervals}
             />
+            <UnlockForBoardAdmin>
+              <Row>
+                <Col span={24}>
+                  <Dropdown
+                    overlay={(
+                      <div className='shadow window p-md'>
+                        <PrioritiesSelect
+                          disabled={disabled}
+                          width={300}
+                          onChange={this.handlePrioritiesChange}
+                          onAfterChange={this.handleAfterPrioritiesChange}
+                          value={settings?.priorities || board?.priorities}
+                        />
+                      </div>
+                    )}
+                    trigger={['click']}
+                  >
+                    <Button
+                      size='small'
+                      className="ant-dropdown-link button--light-text m-xs"
+                      onClick={e => e.preventDefault()}
+                    >
+                      Change priorities
+                    </Button>
+                  </Dropdown>
+                </Col>
+              </Row>
+            </UnlockForBoardAdmin>
           </Col>
           <Col
-            xs={{ span: 24, order: 2 }}
-            sm={{ span: 24, order: 2 }}
-            md={{ span: 24, order: 2 }}
-            lg={{ span: 6, order: 3 }}
-            xl={{ span: 7, order: 3 }}
-            xxl={{ span: 7, order: 3 }}
+            xs={{span: 24, order: 2}}
+            sm={{span: 24, order: 2}}
+            md={{span: 24, order: 2}}
+            lg={{span: 6, order: 3}}
+            xl={{span: 7, order: 3}}
+            xxl={{span: 7, order: 3}}
             className="board__toolbar__actions"
           >
             <div className="table__actions">
@@ -194,7 +222,7 @@ class BoardToolbar extends Component {
                   </Tooltip>
                 )}
                 <Tooltip
-                  title={`${editMode ? "Turn off " : "Turn on "}edit mode`}
+                  title={editMode ? "Turn off reordering" : "Reorder items"}
                 >
                   <Button
                     className={
@@ -202,7 +230,7 @@ class BoardToolbar extends Component {
                         ? "button--light button--active"
                         : "button--light "
                     }
-                    icon={<EditOutlined />}
+                    icon={<PicCenterOutlined />}
                     onClick={this.handleChangeMode}
                     {...buttonProps}
                   />
@@ -215,7 +243,7 @@ class BoardToolbar extends Component {
           <Route
             exact
             path="/board/:identifier/settings"
-            render={({ match }) => (
+            render={({match}) => (
               <BoardSettingsModal
                 onClose={() =>
                   history.push(`/board/${match.params.identifier}`)}
@@ -224,22 +252,6 @@ class BoardToolbar extends Component {
             )}
           />
         )}
-        <UnlockForBoardAdmin>
-          {editMode && (
-            <Row>
-              <Col span={24}>
-                <PrioritiesSelect
-                  disabled={disabled}
-                  label="Priorities"
-                  width={300}
-                  onChange={this.handlePrioritiesChange}
-                  onAfterChange={this.handleAfterPrioritiesChange}
-                  value={settings?.priorities || board?.priorities}
-                />
-              </Col>
-            </Row>
-          )}
-        </UnlockForBoardAdmin>
       </div>
     )
   }
@@ -279,7 +291,7 @@ BoardToolbar.defaultProps = {
   disabled: false,
 }
 
-function mapStateToProps({ boardSettings, boards, boardTools }) {
+function mapStateToProps({boardSettings, boards, boardTools}) {
   return {
     settings: boardSettings,
     boards: boards?.board,

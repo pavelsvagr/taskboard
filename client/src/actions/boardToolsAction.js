@@ -9,7 +9,7 @@ import {
   COPY_BOARD_ROW,
   COPY_BOARD_TASKS,
   BOARD_INITIAL_TOOLS,
-  BOARD_TASK_SEARCH,
+  BOARD_TASK_SEARCH, BOARD_MEMBER_EDIT,
 } from "./types"
 import { fetchBoardMembers } from "./boardMembersAction"
 import { fetchBoardAssignments, fetchBoardTeams } from "./boardsAction"
@@ -219,6 +219,14 @@ export const activateBoardMember = (board, date, member, settings) =>
       deactivated,
     })(dispatch)
   }
+}
+
+/**
+ * Indicates to whole board, that some meber should show edit form
+ * @param {object} member
+ */
+export const editMemberNickname = (member) => (dispatch) => {
+  dispatch({type: BOARD_MEMBER_EDIT, payload: member})
 }
 
 export const deactivateBoardMember = (board, date, member, settings) => (dispatch) => {
