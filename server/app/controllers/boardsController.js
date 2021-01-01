@@ -9,7 +9,7 @@ const boardsManager = require("../services/managers/boardsManager")
 const teamsManager = require("../services/managers/teamManager")
 const ConnectorError = require("../exceptions/ConnectorError")
 const Board = require("../model/entities/Board")
-const { createApiConnector } = require("../services/external/connectors")
+const {createApiConnector} = require("../services/external/connectors")
 const AppError = require("../exceptions/AppError")
 const keys = require("../../config/keys")
 
@@ -17,7 +17,6 @@ const PARAM_BOARD_ID = "identifier"
 exports.PARAM_BOARD_ID = PARAM_BOARD_ID
 
 /**
- * Returns all boards for logged user from database
  * @param {e.Request} req
  * @param {e.Response} res
  * @return {Promise<void>}
@@ -34,8 +33,8 @@ exports.getAll = async (req, res) => {
  * @return {Promise<any>}
  */
 exports.createBoardItem = async (req, res, next) => {
-  const { sourceFrom, sourceTo, shift } = req.query
-  const { board } = res.locals
+  const {sourceFrom, sourceTo, shift} = req.query
+  const {board} = res.locals
 
   // Copy from one place to another
   if (sourceFrom && sourceTo && shift) {
@@ -44,7 +43,7 @@ exports.createBoardItem = async (req, res, next) => {
   }
 
   // Create new from body
-  const { member, date, assignments } = req.body
+  const {member, date, assignments} = req.body
   if (member && date && assignments) {
     res.send(await boardsManager.createBoardItem(board, date, member, assignments, req.user))
     return
@@ -59,9 +58,9 @@ exports.createBoardItem = async (req, res, next) => {
  * @return {Promise<void>}
  */
 exports.updateBoardItem = async (req, res) => {
-  const { board } = res.locals
-  const { user } = req
-  const { assignments } = req.body
+  const {board} = res.locals
+  const {user} = req
+  const {assignments} = req.body
 
   res.send(
     await boardsManager.updateBoardItem(board, req.params.id, assignments, user)
@@ -75,8 +74,8 @@ exports.updateBoardItem = async (req, res) => {
  * @return {Promise<void>}
  */
 exports.deleteBoardItems = async (req, res) => {
-  const { board } = res.locals
-  const { dateFrom, dateTo } = req.query
+  const {board} = res.locals
+  const {dateFrom, dateTo} = req.query
 
   await boardItemsRepository.deleteManyBy(board._id, dateFrom, dateTo)
   res.status(204).send()
@@ -89,7 +88,7 @@ exports.deleteBoardItems = async (req, res) => {
  * @return {Promise<void>}
  */
 exports.getBoardItems = async (req, res) => {
-  const { board } = res.locals
+  const {board} = res.locals
 
   const fromDate = req.query.from || moment().format("YYYY-MM-DD")
   const toDate = req.query.to || moment().format("YYYY-MM-DD")
@@ -105,17 +104,17 @@ exports.getBoardItems = async (req, res) => {
  * @return {Promise<any>}
  */
 exports.getBoardAssignments = async (req, res, next) => {
-  const { board } = res.locals
-  const credentials = await boardsRepository.findCredentials(board, { select: ["apiKey", "url", "type"] })
-  const { apiKey, url, type } = credentials
-  const { limit, offset, search } = req.query
+  const {board} = res.locals
+  const credentials = await boardsRepository.findCredentials(board, {select: ["apiKey", "url", "type"]})
+  const {apiKey, url, type} = credentials
+  const {limit, offset, search} = req.query
 
   const decryptedKey = CryptoJS.AES.decrypt(apiKey, keys.encryptPassphrase).toString(CryptoJS.enc.Utf8)
 
   const api = createApiConnector(type, url, decryptedKey)
 
-  board.addApiFilter({ name: "limit", value: limit })
-  board.addApiFilter({ name: "offset", value: offset * limit })
+  board.addApiFilter({name: "limit", value: limit})
+  board.addApiFilter({name: "offset", value: offset * limit})
 
   if (board.assignment === assignmentsTypes.projects) {
     const projects = await api.getProjects(board.apiFilters || [], search)
@@ -144,7 +143,7 @@ exports.getBoardAssignments = async (req, res, next) => {
  * @return {Promise<void>}
  */
 exports.getBoard = async (req, res) => {
-  const { board } = res.locals
+  const {board} = res.locals
   board.credentials = await boardsRepository.findCredentials(board)
   res.send(board)
 }
@@ -167,7 +166,7 @@ exports.deleteBoard = async (req, res) => {
  * @param next
  */
 exports.createBoard = async (req, res, next) => {
-  const { name, identifier, credentials, assignment, priorities, intervals, teams } = req.body
+  const {name, identifier, credentials, assignment, priorities, intervals, teams} = req.body
 
   let board = new Board(name, identifier, credentials, intervals, assignment, priorities)
   board.owner = req.user._id
@@ -191,8 +190,8 @@ exports.createBoard = async (req, res, next) => {
  * @param next
  */
 exports.updateBoard = async (req, res, next) => {
-  const { board } = res.locals
-  const { name, identifier, priorities, teams, hasAvatars, hasInlineEdit, hasEmailNotifications, apiFilters, lastSynchronized } = req.body
+  const {board} = res.locals
+  const {name, identifier, priorities, teams, hasAvatars, hasInlineEdit, hasEmailNotifications, apiFilters, lastSynchronized} = req.body
 
   if (name) board.name = name
   if (identifier) board.identifier = identifier

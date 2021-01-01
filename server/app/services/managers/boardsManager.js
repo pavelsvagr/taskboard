@@ -96,6 +96,10 @@ exports.copyItems = async (board, dateFrom, dateTo, shift) => {
   return items
 }
 
+/**
+ * @param board
+ * @returns {Promise<*>}
+ */
 exports.delete = async (board) => {
   await Promise.all([
     membersRepository.deleteMany({ board: board._id }),

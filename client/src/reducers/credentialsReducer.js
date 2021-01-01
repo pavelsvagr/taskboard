@@ -35,7 +35,7 @@ export default (state = null, action) => {
           all: updateInPagination(state.all, action.payload),
         }
       }
-      return { new: action.payload }
+      return state
 
     case DELETE_CREDENTIALS:
       if (state?.all) {

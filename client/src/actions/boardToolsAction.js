@@ -196,9 +196,15 @@ export const pasteBoardTasks = (board, targetDate, boardCopy) => async (
   dispatch({ type: COPY_BOARD_TASKS, tasks: null })
 }
 
-export const activateBoardMember = (board, date, member, settings) => (
-  dispatch
-) => {
+/**
+ * @param {object} board
+ * @param {moment|string} date
+ * @param {object} member
+ * @param {object|null} settings
+ * @returns {function(...[*]=)}
+ */
+export const activateBoardMember = (board, date, member, settings) =>
+  (dispatch) => {
   const [dateFrom] = getDateFromTo(date, board.intervals)
   if (
     settings &&
@@ -215,9 +221,7 @@ export const activateBoardMember = (board, date, member, settings) => (
   }
 }
 
-export const deactivateBoardMember = (board, date, member, settings) => (
-  dispatch
-) => {
+export const deactivateBoardMember = (board, date, member, settings) => (dispatch) => {
   const [dateFrom] = getDateFromTo(date, board.intervals)
 
   if (
@@ -237,18 +241,6 @@ export const deactivateBoardMember = (board, date, member, settings) => (
       deactivated: [member._id],
     })(dispatch)
   }
-}
-
-export const assignBoardTask = (
-  memberId,
-  teamId,
-  priority,
-  boardItem = null
-) => (dispatch) => {
-  dispatch({
-    type: BOARD_TASK_ASSIGNMENT,
-    assignment: { memberId, teamId, priority, boardItem },
-  })
 }
 
 /**

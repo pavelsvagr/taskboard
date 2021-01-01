@@ -6,13 +6,19 @@ function DataPagination({
   offset,
   limit,
   count,
-  search,
+  search = null,
   sort,
   onFetch,
   size = "small",
   showSizeChanger,
 }) {
   const className = limit >= count ? "no-paginate" : ""
+  let handleChange
+  if (search !== null) {
+    handleChange = (page, pageSize) => onFetch(search, page - 1, pageSize, sort)
+  } else {
+    handleChange = (page, pageSize) => onFetch(page - 1, pageSize, sort)
+  }
 
   return (
     <Pagination
@@ -24,7 +30,7 @@ function DataPagination({
       pageSize={limit}
       total={count}
       pageSizeOptions={[5, 10, 25, 50]}
-      onChange={(page, pageSize) => onFetch(search, page - 1, pageSize, sort)}
+      onChange={handleChange}
     />
   )
 }

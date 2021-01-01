@@ -18,7 +18,8 @@ exports.getAll = async (req, res) => {
 
   const searchProps = {
     limit,
-    offset: (offset) * limit
+    offset: (offset) * limit,
+    select: {apiKey: 0}
   }
   const searchQuery = search ? {
     $or: [

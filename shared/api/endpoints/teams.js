@@ -1,26 +1,23 @@
 const {URL_API_NAMESPACE} = require('../../constants/http')
 const boards = require('./boards')
 
-const URL_TEAMS = '/teams'
-const URL_MEMBERS = '/members'
-const URL_USERS = '/users'
+const users = () => `${URL_API_NAMESPACE}/users`
+const user = (id) => `${users()}/${id}`
 
-const users = () => URL_API_NAMESPACE + URL_USERS
-const user = (id) => URL_API_NAMESPACE + URL_USERS + '/' + id
-const teams = () =>  URL_API_NAMESPACE + URL_TEAMS
-const team = (identifier) => teams() + '/' + identifier
-const members = (identifier) => team(identifier) + URL_MEMBERS
-const boardTeams = (boardIdentifier) => boards.board(boardIdentifier) + URL_TEAMS
-const boardTeamMembers = (boardIdentifier, teamIdentifier) => {
-    return boardTeams(boardIdentifier, teamIdentifier) + '/' + teamIdentifier + URL_MEMBERS
-}
+const teams = () => `${URL_API_NAMESPACE}/teams`
+const team = (identifier) => `${teams()}/${identifier}`
+
+const members = (identifier) => `${team(identifier)}/members`
+
+const boardTeams = (boardIdentifier) => `${boards.board(boardIdentifier)}/teams`
+const boardTeamMembers = (boardIdentifier, teamIdentifier) => `${boardTeams(boardIdentifier, teamIdentifier)}/${teamIdentifier}/members`
 
 module.exports = {
-    teams,
-    users,
-    user,
-    team,
-    members,
-    boardTeams,
-    boardTeamMembers
+  teams,
+  users,
+  user,
+  team,
+  members,
+  boardTeams,
+  boardTeamMembers
 }
