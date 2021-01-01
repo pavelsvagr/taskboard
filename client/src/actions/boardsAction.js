@@ -123,7 +123,7 @@ export const updateBoard = (identifier, values) => async (dispatch) => {
  * @param {int} offset
  * @param {int} limit
  */
-export const fetchBoardAssignments = (search, offset = 0, limit = 15) => async (dispatch, getState) => {
+export const fetchBoardAssignments = (search, offset = 0, limit = 10) => async (dispatch, getState) => {
   dispatch({ type: LOADING, subject: SUBJECT_BOARD_ASSIGNMENTS })
 
   search = search || null

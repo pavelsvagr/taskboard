@@ -122,6 +122,7 @@ exports.getBoardAssignments = async (req, res, next) => {
     if (projects === null) {
       return next(new ConnectorError("External API is not responding on list projects call"))
     }
+    projects.offset = offset
     return res.send(projects)
   }
 
@@ -130,6 +131,7 @@ exports.getBoardAssignments = async (req, res, next) => {
     if (issues === null) {
       return next(new ConnectorError("External API is not responding on list issues call"))
     }
+    issues.offset = offset
     return res.send(issues)
   }
   return next(new AppError("Invalid request for tasks list"))

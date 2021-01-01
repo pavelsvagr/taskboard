@@ -1,25 +1,28 @@
 import React, { Component } from "react"
-import { Button, Select, Spin, Tag } from "antd"
-import { CloseOutlined, DeleteOutlined } from "@ant-design/icons"
+import { Button, Dropdown, Select, Spin, Tag } from "antd"
+import { CloseOutlined, DeleteOutlined, EyeOutlined } from "@ant-design/icons"
 import { connect } from "react-redux"
 import debounce from "lodash.debounce"
 import PropTypes from "prop-types"
+
 import EmptyData from "../../comon/data/EmptyData"
-import { fetchBoardAssignments, SUBJECT_BOARD_ASSIGNMENTS } from "../../../actions"
+import {
+  fetchBoardAssignments,
+  SUBJECT_BOARD_ASSIGNMENTS,
+} from "../../../actions"
 import shapes from "../../../types"
-import { showCellAssignment } from "../../../actions/boardToolsAction"
+import {
+  searchAssignments,
+  showCellAssignment,
+} from "../../../actions/boardToolsAction"
 import DataPagination from "./DataPagination"
+import ProjectCard from "../cards/ProjectCard"
+import IssueCard from "../cards/IssueCard"
 
 class AssignmentSelect extends Component {
   constructor(props) {
     super(props)
-
     const { fetchBoardAssignments: handleFetch } = props
-
-    this.state = {
-      search: ""
-    }
-
     this.fetch = debounce(handleFetch, 300)
   }
 
@@ -29,25 +32,38 @@ class AssignmentSelect extends Component {
   }
 
   handleSearch = (search) => {
-    const { boardAssignments } = this.props
+    const { boardAssignments, searchAssignments: searchAction } = this.props
     const { limit, offset } = boardAssignments || {}
 
     this.fetch(search, offset, limit)
-
-    this.setState({ search })
+    searchAction(search)
   }
 
   render() {
-    const { loading, onSelect, value, selected, boardAssignments, color, fetchBoardAssignments: handleFetch, showCellAssignment: show, ...otherProps } = this.props
-    const { limit = 0, offset = 0, count = 0, data = [] } = boardAssignments || {}
-    const { search } = this.state
+    const {
+      loading,
+      onSelect,
+      value,
+      selected,
+      boardAssignments,
+      color,
+      board,
+      fetchBoardAssignments: handleFetch,
+      showCellAssignment: show,
+      searchAssignments: searchAction,
+      search,
+      ...otherProps
+    } = this.props
+
+    const { limit = 0, offset = 0, count = 0, data = [] } =
+      boardAssignments || {}
 
     let dataWithSelected = data
 
     let valueIndex = null
     if (value) {
-      valueIndex = data.findIndex(a => a.id === value.id)
-      if (valueIndex === -1 && !offset && !search) {
+      const foundIndex = data.findIndex((a) => a.id === value.id)
+      if (foundIndex === -1 && !offset && !search) {
         dataWithSelected = [value, ...data]
         valueIndex = 0
       }
@@ -71,11 +87,16 @@ class AssignmentSelect extends Component {
                 <Spin spinning={!!loading?.states[SUBJECT_BOARD_ASSIGNMENTS]}>
                   {menu}
                 </Spin>
-                {limit < count && (
-                  <div className="text-center p-md">
-                    <DataPagination limit={limit} offset={offset} count={count} search={search} onFetch={handleFetch} />
-                  </div>
-                )}
+                <div className="text-center p-md">
+                  <DataPagination
+                    limit={limit}
+                    offset={offset}
+                    count={count}
+                    search={search}
+                    onFetch={handleFetch}
+                    showSizeChanger
+                  />
+                </div>
                 <div className="text-center">
                   <Button
                     icon={<DeleteOutlined />}
@@ -102,23 +123,38 @@ class AssignmentSelect extends Component {
         )}
         {...otherProps}
       >
-        {dataWithSelected && dataWithSelected.map((assignment, index) => (
-          <Select.Option
-            key={assignment.id}
-            value={index}
-            label={assignment.title}
-          >
-            <div className="board__col__inline-edit__option">
-              <span>{assignment.title}</span>
-              {selected && selected[assignment.id] && value?.id !== assignment.id && (
-                <Tag className={`color-${color}`}>
-                  p
-                  {selected[assignment.id]}
-                </Tag>
-              )}
-            </div>
-          </Select.Option>
-        ))}
+        {dataWithSelected &&
+          dataWithSelected.map((assignment, index) => (
+            <Select.Option
+              key={assignment.id}
+              value={index}
+              label={assignment.title}
+            >
+              <div className="board__col__inline-edit__option">
+                <span>{assignment.title}</span>
+                {selected &&
+                  selected[assignment.id] &&
+                  value?.id !== assignment.id && (
+                    <Tag className={`color-${color}`}>
+                      p
+                      {selected[assignment.id]}
+                    </Tag>
+                  )}
+                <Dropdown
+                  trigger={['click']}
+                  overlay={
+                    board.assignment === "projects" ? (
+                      <ProjectCard project={assignment} className="shadow" onClick={e => e.stopPropagation()} />
+                    ) : (
+                      <IssueCard issue={assignment} className="shadow" onClick={e => e.stopPropagation()} />
+                    )
+                  }
+                >
+                  <EyeOutlined className="ant-dropdown-link" onClick={e => e.stopPropagation()} />
+                </Dropdown>
+              </div>
+            </Select.Option>
+          ))}
       </Select>
     )
   }
@@ -126,24 +162,37 @@ class AssignmentSelect extends Component {
 
 AssignmentSelect.propTypes = {
   loading: shapes.loading,
+  searchAssignments: PropTypes.func.isRequired,
+  search: PropTypes.string.isRequired,
   boardAssignments: shapes.paginate(PropTypes.object),
+  board: shapes.board,
   showCellAssignment: PropTypes.func.isRequired,
   fetchBoardAssignments: PropTypes.func.isRequired,
   onSelect: PropTypes.func.isRequired,
   value: shapes.assignment,
   selected: shapes.assignment,
-  color: PropTypes.string.isRequired
+  color: PropTypes.string.isRequired,
 }
 
 AssignmentSelect.defaultProps = {
   loading: null,
   boardAssignments: [],
   value: null,
-  selected: null
+  selected: null,
+  board: null,
 }
 
-function mapStateToProps({ boardAssignments, loading }) {
-  return { boardAssignments, loading }
+function mapStateToProps({ boards, boardAssignments, loading, boardTools }) {
+  return {
+    board: boards?.board,
+    boardAssignments,
+    loading,
+    search: boardTools.search,
+  }
 }
 
-export default connect(mapStateToProps, { fetchBoardAssignments, showCellAssignment })(AssignmentSelect)
+export default connect(mapStateToProps, {
+  fetchBoardAssignments,
+  showCellAssignment,
+  searchAssignments,
+})(AssignmentSelect)

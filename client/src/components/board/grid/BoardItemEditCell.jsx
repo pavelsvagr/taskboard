@@ -5,7 +5,10 @@ import { connect } from "react-redux"
 import shapes from "types"
 import PropTypes from "prop-types"
 import BoardItemCell from "./BoardItemCell"
-import { showCellAssignment, submitCellAssignment } from "../../../actions/boardToolsAction"
+import {
+  showCellAssignment,
+  submitCellAssignment,
+} from "../../../actions/boardToolsAction"
 import { fetchBoard } from "../../../actions"
 
 class BoardItemEditCell extends Component {
@@ -19,14 +22,16 @@ class BoardItemEditCell extends Component {
     document.removeEventListener("mousedown", this.handleClickOutside)
   }
 
-
-
   handleHideAssignment = () => {
     const { showCellAssignment: show } = this.props
     show(null)
   }
 
   handleClickOutside = (event) => {
+    if (event.target.tagName === "A") {
+      return
+    }
+
     if (
       this.wrapperRef &&
       this.wrapperRef.current &&
@@ -38,7 +43,12 @@ class BoardItemEditCell extends Component {
   }
 
   handleSelect = (valueIndex) => {
-    const { assignment, submitCellAssignment: onSubmit, boardAssignments, board } = this.props
+    const {
+      assignment,
+      submitCellAssignment: onSubmit,
+      boardAssignments,
+      board,
+    } = this.props
 
     const tasks = boardAssignments.data
     const type = board.assignment
@@ -63,11 +73,13 @@ class BoardItemEditCell extends Component {
       url: target.url,
       title: target.title,
       priority,
-      type
+      type,
     }
 
     if (boardItem) {
-      const assignments = boardItem.assignments.length ? [...boardItem.assignments] : []
+      const assignments = boardItem.assignments.length
+        ? [...boardItem.assignments]
+        : []
 
       const exists = assignments.findIndex((a) => a.id === target.id)
       if (exists > -1) {
@@ -88,11 +100,7 @@ class BoardItemEditCell extends Component {
   }
 
   render() {
-    const {
-      team,
-      assignment,
-      cellProps
-    } = this.props
+    const { team, assignment, cellProps } = this.props
 
     const itemAssignments = assignment?.boardItem?.assignments || []
     const { priority } = assignment
@@ -126,27 +134,32 @@ BoardItemEditCell.propTypes = {
   team: shapes.team,
   boardAssignments: shapes.paginate(PropTypes.object),
   assignment: shapes.assignment,
-  cellProps: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object])),
+  cellProps: PropTypes.objectOf(
+    PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object])
+  ),
   fetchBoard: PropTypes.func.isRequired,
   showCellAssignment: PropTypes.func.isRequired,
-  submitCellAssignment: PropTypes.func.isRequired
+  submitCellAssignment: PropTypes.func.isRequired,
 }
 
 BoardItemEditCell.defaultProps = {
-  board: null ,
+  board: null,
   team: null,
   assignment: null,
   cellProps: {},
-  boardAssignments: {}
+  boardAssignments: {},
 }
 
-
 function mapStateToProps({ boardTools, boards, boardAssignments }) {
-  return { assignment: boardTools.assignment, board: boards?.board, boardAssignments }
+  return {
+    assignment: boardTools.assignment,
+    board: boards?.board,
+    boardAssignments,
+  }
 }
 
 export default connect(mapStateToProps, {
   submitCellAssignment,
   fetchBoard,
-  showCellAssignment
+  showCellAssignment,
 })(BoardItemEditCell)
