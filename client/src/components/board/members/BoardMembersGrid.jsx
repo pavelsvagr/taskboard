@@ -132,6 +132,7 @@ class BoardMembersGrid extends Component {
             rowKey="_id"
             dataSource={members}
             columns={this.columns}
+            pagination={{position: ['bottomCenter']}}
             locale={{
               emptyText: (
                 <EmptyData description={`${board.name} has no member.`} />

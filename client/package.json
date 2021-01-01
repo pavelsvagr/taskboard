@@ -50,7 +50,7 @@
   "scripts": {
     "start": "craco start",
     "build": "craco build",
-    "test": "craco test --watchAll=false -u",
+    "test": "craco test --watchAll=false",
     "eject": "react-scripts eject"
   },
   "browserslist": {
