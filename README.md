@@ -1,6 +1,4 @@
-#TaskBoard 
-
-![TaskBoard logo](client/public/favicon/favicon-64x64.png)
+# TaskBoard ![TaskBoard logo](client/public/favicon/favicon-32x32.png)
 
 TaskBoard is an application for prioritizing tasks or projects for team members during product creation.
 It helps solve conflicts in deadlines or priorities. It can be also used as a team schedule for days,
