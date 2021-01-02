@@ -71,7 +71,7 @@ const CredentialsBox = ({
             ) : (
               <Col span={24} style={{ textAlign: "center" }}>
                 <UnlockAccess
-                  globalRoles={[Role.Admin, Role.Mod]}
+                  globalRoles={[Role.Admin]}
                   lock={<EmptyData description="No credentials found." />}
                 >
                   <EmptyData
