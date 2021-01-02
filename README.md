@@ -11,7 +11,7 @@ weeks or months.
 
 
 - Google account.
-- Installed MongoDB database locally or use official cloud. More can be found details at [MongoDB web page](https://www.mongodb.com/).
+- Installed MongoDB database locally or use of official cloud. More details can be found at [MongoDB web page](https://www.mongodb.com/).
 - SendGrid account  for email notifications (you can set it up for free). For more details see [SendGrid web page](https://sendgrid.com/).
 - Amazon S3 file storage credentials. More details at [AWS S3 web page](https://aws.amazon.com/s3/).
 - Registered credentials in google account developer console for oAuth2. More details can be found at [Google DEV page](https://console.cloud.google.com/apis/credentials/oauthclient).
