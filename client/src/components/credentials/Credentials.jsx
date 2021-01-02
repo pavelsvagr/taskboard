@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import { Modal } from "antd"
 import { DeleteOutlined, EditOutlined } from "@ant-design/icons"
 import PropTypes from "prop-types"
+import Roles from "@shared/security/roles"
 import {
   deleteCredentials,
   fetchCredentials,
@@ -16,6 +17,7 @@ import CredentialsForm from "./forms/CredentialsForm"
 import CredentialsBox from "./CredentialsBox"
 import shapes from "../../types"
 import history from "../../helpers/history"
+import UnlockAccess from "../comon/security/UnlockAccess"
 
 class Credentials extends Component {
   componentDidMount() {
@@ -43,7 +45,8 @@ class Credentials extends Component {
     return (
       <>
         <h1>Credentials</h1>
-        {data && (
+        <UnlockAccess globalRoles={[Roles.Admin]}>
+          {data && (
           <Route
             exact
             path="/credentials/:id"
@@ -64,6 +67,7 @@ class Credentials extends Component {
             }}
           />
         )}
+        </UnlockAccess>
         <CredentialsBox
           onNew={() => this.handleShowForm(null)}
           sizing={{ xs: 24, sm: 24, xl: 6, md: 12 }}

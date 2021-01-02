@@ -95,7 +95,7 @@ const CredentialsBox = ({
           </div>
         </div>
         {!!credentials?.length && onNew && (
-          <UnlockAccess globalRoles={[Role.Admin, Role.Mod]}>
+          <UnlockAccess globalRoles={[Role.Admin]}>
             <ActionButtons>
               <AddButton onClick={onNew} shape="circle" />
             </ActionButtons>
