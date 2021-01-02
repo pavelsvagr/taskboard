@@ -6,10 +6,8 @@ weeks or months.
 
 ## Run locally 
 ### Requirements ❗
-- node.js version >= 14.15.1.
-- npm version >= 6.14.8. 
-
-
+- node.js version >= `14.15.1`.
+- npm version >= `6.14.8`. 
 - Google account.
 - Installed MongoDB database locally or use of official cloud. More details can be found at [MongoDB web page](https://www.mongodb.com/).
 - SendGrid account  for email notifications (you can set it up for free). For more details see [SendGrid web page](https://sendgrid.com/).
