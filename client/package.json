@@ -8,6 +8,7 @@
     "url": "git+https://github.com/pavelsvagr/taskboard.git"
   },
   "author": "Pavel Švagr",
+  "licence": "FIT ČVUT thesis licence version 4, December 2020",
   "keywords": [
     "react",
     "node",

@@ -25,7 +25,7 @@
     "type": "git",
     "url": "git+https://github.com/pavelsvagr/taskboard.git"
   },
-
+  "licence": "FIT ČVUT thesis licence version 4, December 2020",
   "author": "Pavel Švagr",
   "keywords": [
     "react",
