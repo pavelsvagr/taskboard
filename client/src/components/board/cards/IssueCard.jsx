@@ -57,13 +57,14 @@ const IssueCard = ({ issue, className = "", onClick }) => {
 IssueCard.propTypes = {
   issue: PropTypes.objectOf(
     PropTypes.oneOfType([PropTypes.string, PropTypes.number])
-  ).isRequired,
+  ),
   className: PropTypes.string,
   onClick: PropTypes.func,
 }
 
 IssueCard.defaultProps = {
   className: "",
+  issue: null,
   onClick: null,
 }
 

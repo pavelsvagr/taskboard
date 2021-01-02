@@ -1,6 +1,6 @@
 import React from "react"
 import {Draggable} from "react-beautiful-dnd"
-import {Row} from "antd"
+import {Row, Skeleton} from "antd"
 import getColSpan from "helpers/colSpan"
 import UnlockForBoardAdmin from "components/comon/security/UnlockForBoardAdmin"
 import {connect} from "react-redux"
@@ -119,7 +119,7 @@ function BoardItemRow({
 
   }
 
-  const getRow = (provided = {}, snapshot) => (
+  const getRow = (provided = {}, snapshot) =>  member ? (
     <Row
       key={member._id}
       className={
@@ -141,15 +141,19 @@ function BoardItemRow({
         <BoardItemCell
           key="user"
           className="board__col board__col--first ellipsis"
-          title={member.user.active ? member.nickname : <span className="strike">{member.nickname}</span>}
+          title={member?.user?.active ? member?.nickname : <span className="strike">{member?.nickname}</span>}
           dragButton={editMode ? <DragButton provider={provided} /> : null}
-          toolbox={member.user.active && <MemberDropdown member={member} board={board} item={memberItem} />}
+          toolbox={member?.user?.active && <MemberDropdown member={member} board={board} item={memberItem} />}
           disabled={disabled}
           avatar={board.hasAvatars ? <UserAvatar user={member.user} /> : null}
           span={getColSpan(0, cols.length, false)}
         />
       )}
       {cols.map((col) => getCell(col))}
+    </Row>
+  ) : (
+    <Row>
+      <Skeleton />
     </Row>
   )
 

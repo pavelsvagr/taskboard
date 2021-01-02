@@ -34,7 +34,7 @@ const ProjectCard = ({ project, className = "", onClick }) => {
 }
 
 ProjectCard.propTypes = {
-  project: PropTypes.objectOf(PropTypes.string).isRequired,
+  project: PropTypes.objectOf(PropTypes.string),
   className: PropTypes.string,
   onClick: PropTypes.func,
 }
@@ -42,6 +42,7 @@ ProjectCard.propTypes = {
 ProjectCard.defaultProps = {
   className: "",
   onClick: null,
+  project: null
 }
 
 export default ProjectCard

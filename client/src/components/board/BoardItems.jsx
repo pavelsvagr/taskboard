@@ -37,7 +37,7 @@ class BoardItems extends Component {
     [finalDate] = getDateFromTo(finalDate, board.intervals)
 
     if (date.format("YYYY-MM-DD") !== finalDate.format("YYYY-MM-DD")) {
-      changeDate(board, finalDate, false)
+      changeDate(board, finalDate, false, false)
     }
     reload(board, finalDate)
   }
@@ -197,10 +197,10 @@ BoardItems.propTypes = {
 BoardItems.defaultProps = {
   loading: null,
   boardSettings: null,
-  boardItems: [],
+  boardItems: null,
   assignment: null,
-  members: [],
-  teams: [],
+  members: null,
+  teams: null,
 }
 
 function mapStateToProps({

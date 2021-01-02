@@ -44,10 +44,10 @@ export default (state = {}, action) => {
         : state
 
     case FETCH_BOARD_MEMBERS:
-      return { ...state, ...{ members: payload }, error: null }
+      return { ...state, ...{ members: payload }}
 
     case ADD_BOARD_MEMBERS:
-      return { ...state, members: [...state.members, ...payload], error: null }
+      return { ...state, members: [...state.members, ...payload]}
 
     case DELETE_BOARD_MEMBER:
       const { teams = [] } = state
@@ -61,7 +61,6 @@ export default (state = {}, action) => {
         ...state,
         members: [...state.members.filter((m) => m._id !== payload._id)],
         teams: newTeams,
-        error: null,
       }
 
     case UPDATE_BOARD_MEMBER:

@@ -29,12 +29,12 @@ export default (state = {}, action) => {
 
     case UPDATE_TEAM:
       return payload
-        ? { ...state, all: updateInPagination(state, payload) }
+        ? { ...state, all: updateInPagination(state.all, payload) }
         : state
 
     case DELETE_TEAM:
       return payload
-        ? { ...state, all: removeFromPagination(state, payload) }
+        ? { ...state, all: removeFromPagination(state.all, payload) }
         : state
 
     case FETCH_TEAM_MEMBERS:

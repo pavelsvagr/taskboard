@@ -80,8 +80,10 @@ export const updateBoardMembers = (identifier, values, wait = false) => async (
 ) => {
   dispatch({ type: LOADING, subject: SUBJECT_BOARD_MEMBERS })
 
+  const newValues = values.map(m => { return {...m, user: m.user._id}})
+
   const promise = axios
-    .put(`/api/boards/${identifier}/members`, values)
+    .put(`/api/boards/${identifier}/members`, newValues)
     .catch(errorDispatch(dispatch, SUBJECT_BOARD_MEMBERS))
 
   if (wait) {

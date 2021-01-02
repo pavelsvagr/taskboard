@@ -100,7 +100,7 @@ class BoardMembersGrid extends Component {
 
   handleRoleChangeMember = (member, targetRole) => {
     const { board, updateBoardMember: action } = this.props
-    const newMember = { ...member, ...{ role: targetRole } }
+    const newMember = { ...member, ...{ role: targetRole }, user: member.user._id }
     action(board?.identifier, newMember?._id, newMember)
   }
 

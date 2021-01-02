@@ -17,7 +17,8 @@ function DragButton({ provider, className, size }) {
 }
 
 DragButton.propTypes = {
-  provider: PropTypes.objectOf(PropTypes.oneOfType([PropTypes.string, PropTypes.number, PropTypes.object])).isRequired,
+  // eslint-disable-next-line react/forbid-prop-types
+  provider: PropTypes.object.isRequired,
   className: PropTypes.string,
   size: PropTypes.string,
 }

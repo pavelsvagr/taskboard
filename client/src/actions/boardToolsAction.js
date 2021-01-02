@@ -124,9 +124,10 @@ export const searchAssignments = (search) => (dispatch) => {
  * @param {object} board
  * @param {object} date
  * @param {boolean} reload
+ * @param {boolean} redirect
  * @returns {function(...[*]=)}
  */
-export const changeBoardDate = (board, date, reload = true) => (dispatch) => {
+export const changeBoardDate = (board, date, reload = true, redirect = true) => (dispatch) => {
   const [dateFrom, dateTo] = getDateFromTo(date, board.intervals)
 
   if (reload) {
@@ -136,10 +137,12 @@ export const changeBoardDate = (board, date, reload = true) => (dispatch) => {
 
   dispatch({ type: BOARD_TASK_ASSIGNMENT, assignment: null })
 
-  history.push({
-    pathname: `/board/${board.identifier}`,
-    search: `?date=${date.format("YYYY-MM-DD")}`,
-  })
+  if (redirect) {
+    history.push({
+      pathname: `/board/${board.identifier}`,
+      search: `?date=${date.format("YYYY-MM-DD")}`,
+    })
+  }
 
   dispatch({ type: CHANGE_BOARD_DATE, date })
 }

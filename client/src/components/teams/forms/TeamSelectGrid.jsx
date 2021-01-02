@@ -63,7 +63,7 @@ class TeamSelectGrid extends Component {
   handleDeleteTeam = (team) => {
     const { value, onChange } = this.props
     const valueTeams = value || []
-    onChange(valueTeams.filter((i) => i !== team._id))
+    onChange(valueTeams.filter((i) => i._id !== team._id))
   }
 
   handleChangeSelected = (selectedTeams) => {
