@@ -30,7 +30,7 @@
     "axios": "^0.20.0",
     "craco-alias": "^2.1.1",
     "craco-less": "^1.17.0",
-    "history": "^4.10.1",
+    "history": "^4.1.0",
     "http-proxy-middleware": "^1.0.5",
     "lodash.debounce": "^4.0.8",
     "moment": "^2.29.0",
