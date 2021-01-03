@@ -40,6 +40,14 @@ class Teams extends Component {
     fetch()
   }
 
+  handleReload = () => {
+    const { fetchTeams: fetch, teams } = this.props
+    const { search } = this.state
+    const { limit, offset, sort } = teams || {}
+
+    fetch(search, offset, limit, sortToString(sort))
+  }
+
   handleNewTeam = () => {
     history.push("/teams/new")
   }

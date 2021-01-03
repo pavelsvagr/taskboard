@@ -102,9 +102,9 @@ export const updateUser = (id, user) => async (dispatch) => {
 
   if (res) {
     dispatch({ type: UPDATE_USER, payload: res.data })
-    dispatch({ type: LOADING_DONE, subject: SUBJECT_USERS })
     dispatch({ type: FEEDBACK_SUCCESS, title: "User was updated" })
   }
+  dispatch({ type: LOADING_DONE, subject: SUBJECT_USERS })
   dispatch({ type: REDIRECT, redirect: "/users" })
 }
 
@@ -122,8 +122,8 @@ export const createUser = (user) => async (dispatch) => {
 
   if (res) {
     dispatch({ type: ADD_USER, payload: res.data })
-    dispatch({ type: LOADING_DONE, subject: SUBJECT_USERS })
     dispatch({ type: FEEDBACK_SUCCESS, title: "User was created" })
   }
+  dispatch({ type: LOADING_DONE, subject: SUBJECT_USERS })
   dispatch({ type: REDIRECT, redirect: "/users" })
 }

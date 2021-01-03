@@ -86,10 +86,9 @@ function UsersGrid({
               icon={<EditOutlined />}
               onClick={() => onDetail(record)}
             />
-          </UnlockAccess>
-          {record.active ? (
-            <Tooltip title="Deactivate">
-              {record.role !== Role.Admin && record._id !== userId && (
+            {record.active ? (
+              <Tooltip title="Deactivate">
+                {record.role !== Role.Admin && record._id !== userId && (
                 <Button
                   shape="circle"
                   icon={<CloseOutlined />}
@@ -97,7 +96,7 @@ function UsersGrid({
                   danger
                 />
               )}
-            </Tooltip>
+              </Tooltip>
           ) : (
             <Tooltip title="Activate">
               {record.role !== Role.Admin && (
@@ -110,6 +109,7 @@ function UsersGrid({
               )}
             </Tooltip>
           )}
+          </UnlockAccess>
         </div>
       ),
     },

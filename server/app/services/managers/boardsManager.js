@@ -92,8 +92,7 @@ exports.copyItems = async (board, dateFrom, dateTo, shift) => {
     }
     items[i].date = new Date(`${date.format("YYYY-MM-DD")}T00:00:00.000Z`)
   }
-  await boardItemsRepository.createMany(items)
-  return items
+  return boardItemsRepository.createMany(items)
 }
 
 /**

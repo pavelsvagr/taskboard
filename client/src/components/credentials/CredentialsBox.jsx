@@ -60,12 +60,24 @@ const CredentialsBox = ({
             {credentials?.length ? (
               credentials.map((credential) => (
                 <Col key={credential._id} {...sizing}>
-                  <CredentialCard
-                    onClick={onCardClick}
-                    actions={actions}
-                    credentials={credential}
-                    search={search}
-                  />
+                  <UnlockAccess
+                    globalRoles={[Role.Admin]}
+                    lock={(
+                      <CredentialCard
+                        onClick={onCardClick}
+                        actions={[]}
+                        credentials={credential}
+                        search={search}
+                      />
+                  )}
+                  >
+                    <CredentialCard
+                      onClick={onCardClick}
+                      actions={actions}
+                      credentials={credential}
+                      search={search}
+                    />
+                  </UnlockAccess>
                 </Col>
               ))
             ) : (

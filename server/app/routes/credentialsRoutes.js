@@ -123,7 +123,7 @@ module.exports = (app) => {
    */
   app.delete(
     credentialSingle,
-    requireMod,
+    requireRoles([Role.Admin]),
     ...validate(
       param("credentialsId", "Invalid credentials id given").isMongoId().exists()
     ),
