@@ -19,7 +19,8 @@ exports.getUsers = async (req, res) => {
   const searchProps = {
     limit,
     offset: (offset) * limit,
-    sort
+    sort,
+    select: {googleId: 0, photo: 0, googlePhoto: 0, created: 0, updated: 0}
   }
   const searchQuery = search ? {
     $or: [

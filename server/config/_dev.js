@@ -17,8 +17,12 @@ module.exports = {
   cookieKey: "",
   // AES encryption (your secret)
   encryptPassphrase:"",
-  // All emails with this domain will be whitelisted. Use comma separator. For example: "gmail.com,google.com".
-  whitelistedEmails:"",
+  // All emails with this domain will be whitelisted and their role will be set to moderator.
+  // Use comma separator. For example: "gmail.com,google.com".
+  whitelistedEmailsMod:"",
+  // All emails with this domain will be whitelisted and their role will be set to Admin.
+  // Use comma separator. For example: "gmail.com,google.com".
+  whitelistedEmailsAdmin: "",
 
   /** Test data for seeding and testing */
   testCredentialsRedmineUrl: "",

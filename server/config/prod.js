@@ -17,7 +17,8 @@ module.exports = {
   awsKeySecret: process.env.AWS_SECRET_ACCESS_KEY,
   awsBucketName: process.env.S3_BUCKET_NAME,
   // Security
-  whitelistedEmails: process.env.EMAIL_WHITELIST,
+  whitelistedEmailsMod: process.env.EMAIL_WHITELIST_MOD,
+  whitelistedEmailsAdmin: process.env.EMAIL_WHITELIST_ADMIN,
   encryptPassphrase: process.env.ENCRYPT_PASSPHRASE,
   // Test data
   testCredentialsRedmineUrl: process.env.TEST_REDMINE_API_URL,

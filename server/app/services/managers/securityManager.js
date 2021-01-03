@@ -5,6 +5,19 @@ const AuthenticationError = require("../../exceptions/AuthorizationError")
 const Role = require("../../../../shared/security/roles")
 const User = require("../../model/entities/User")
 
+
+const checkWhitelist = async (whitelist, googleId, fullName, email, role) => {
+  for (const emailEnding of whitelist.split(',')) {
+    if (email.endsWith(`@${emailEnding}`)) {
+      // User is whitelisted, give it base permission and create him
+      return userRepository.create(
+        new User(googleId, email, null, null, fullName, role, true)
+      )
+    }
+  }
+  return null
+}
+
 /**
  * @param {object} profile
  * @return {Promise<any>}
@@ -19,18 +32,13 @@ exports.loginByGoogle = async (profile) => {
     )
   }
   const email = emails[0].value
-
   if (!user) {
     user = await userRepository.findByEmail(email)
-    if (!user && keys.whitelistedEmails) {
-      for (const emailEnding of keys.whitelistedEmails.split(',')) {
-        if (email.endsWith(`@${emailEnding}`)) {
-          // User is whitelisted, give it base permission and create him
-          user = new User(googleId, email, null, null, fullName, Role.Mod, true)
-          user = await userRepository.create(user)
-          break
-        }
-      }
+    if (!user && keys.whitelistedEmailsAdmin) {
+      user = await checkWhitelist(keys.whitelistedEmailsAdmin, googleId, fullName, email, Role.Admin)
+    }
+    if (!user && keys.whitelistedEmailsMod) {
+      user = await checkWhitelist(keys.whitelistedEmailsMod, googleId, fullName, email, Role.Mod)
     }
   }
   if (!user) {

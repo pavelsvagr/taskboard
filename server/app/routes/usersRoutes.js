@@ -50,7 +50,6 @@ module.exports = (app) => {
    */
   app.get(
     urlUsers,
-    requireMod,
     ...validate(
       validatePaginate(),
       validateSort(),

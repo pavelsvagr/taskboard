@@ -29,7 +29,13 @@ function AssignmentButton({
       break
     case "see":
       buttonIcon = <EyeOutlined />
-      buttonProps.href = assignment ? assignment.url : "#"
+      if (assignment?.url) {
+        buttonProps.target = "_blank"
+        buttonProps.href = assignment.url
+        buttonProps.rel = "noopener noreferrer"
+      } else {
+        buttonProps.href = "#"
+      }
       break
     default:
       buttonIcon = null
